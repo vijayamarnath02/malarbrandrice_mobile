@@ -5,19 +5,23 @@ import { IonContent, IonHeader, IonIcon, IonLabel, IonTabBar, IonTabButton, IonT
 import { addIcons } from 'ionicons';
 import { filmOutline, gridOutline, personCircleOutline, playCircleOutline, repeatOutline } from 'ionicons/icons';
 import { TabItem } from '../models/tab.model';
+import { AdminPage } from "./page/admin/admin.page";
+import { DailyProcessPage } from "./page/daily-process/daily-process.page";
 import { DashboardPage } from './page/dashboard/dashboard.page';
+import { PrestreamingPage } from "./page/prestreaming/prestreaming.page";
+import { StreamingPage } from "./page/streaming/streaming.page";
 
 @Component({
   selector: 'app-tabs',
   templateUrl: './tabs.page.html',
   styleUrls: ['./tabs.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonTabBar, IonTabButton, IonIcon, IonLabel, IonTabs, DashboardPage]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonTabBar, IonTabButton, IonIcon, IonLabel, IonTabs, DashboardPage, StreamingPage, DailyProcessPage, PrestreamingPage, AdminPage]
 })
 export class TabsPage implements OnInit {
   title: string = "Dash Board"
-  tabs: TabItem[] = [
 
+  tabs: TabItem[] = [
     { id: 1, tab: 'daily-process', icon: 'repeat-outline', label: 'Daily Process', adminOnly: true, title: 'Daily Process', centerTab: false },
     { id: 2, tab: 'prestreaming', icon: 'film-outline', label: 'Prestreaming', adminOnly: true, title: 'Prestreaming', centerTab: false },
     { id: 3, tab: 'dash-board', icon: 'grid-outline', label: 'Dash Board', adminOnly: true, title: 'Dash Board', centerTab: true },

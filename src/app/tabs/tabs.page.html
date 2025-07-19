@@ -7,19 +7,19 @@
 <ion-content [fullscreen]="true">
   @switch (selectedTab) {
   @case (1) {
-  <app-dashboard></app-dashboard>
+  <app-daily-process></app-daily-process>
   }
   @case (2) {
-  <app-dashboard></app-dashboard>
+  <app-prestreaming></app-prestreaming>
   }
   @case (3) {
   <app-dashboard></app-dashboard>
   }
   @case (4) {
-  <app-dashboard></app-dashboard>
+  <app-streaming></app-streaming>
   }
   @default {
-  <app-dashboard></app-dashboard>
+  <app-admin></app-admin>
   }
   }
 </ion-content>
