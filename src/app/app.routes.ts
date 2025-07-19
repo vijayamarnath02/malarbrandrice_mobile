@@ -6,13 +6,25 @@ export const routes: Routes = [
     loadComponent: () => import('./auth/login/login.page').then(m => m.LoginPage)
   },
   {
-    path: 'home',
-    loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
+    path: 'tabs',
+    loadComponent: () => import('./tabs/tabs.page').then(m => m.TabsPage),
+    children: [
+      {
+        path: 'dashboard',
+        loadComponent: () => import('./tabs/dashboard/dashboard.page').then(m => m.DashboardPage)
+      },
+      {
+        path: '',
+        redirectTo: 'dashboard',
+        pathMatch: 'full'
+      }
+    ]
   },
   {
     path: '',
     redirectTo: '',
     pathMatch: 'full',
   },
+
 
 ];

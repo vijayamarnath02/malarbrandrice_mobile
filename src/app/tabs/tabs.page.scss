@@ -1,0 +1,36 @@
+.animated-tab-bar {
+  display: flex;
+  width: 100%;
+
+  ion-tab-button {
+    color: black;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.4s ease-in-out;
+    overflow: hidden;
+    position: relative;
+
+    ion-icon,
+    ion-label {
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    &.active-tab {
+      flex: 2; // slightly larger tab
+      background: var(--ion-color-light-shade);
+      border-radius: 10px;
+
+      ion-icon,
+      ion-label {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    &:not(.active-tab) {
+      flex: 1;
+    }
+  }
+}

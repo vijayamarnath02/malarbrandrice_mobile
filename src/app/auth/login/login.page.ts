@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { IonButton, IonCard, IonCardContent, IonCol, IonContent, IonGrid, IonInput, IonInputPasswordToggle, IonItem, IonRow, IonText } from '@ionic/angular/standalone';
 
 
@@ -9,7 +10,7 @@ import { IonButton, IonCard, IonCardContent, IonCol, IonContent, IonGrid, IonInp
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.css'],
   standalone: true,
-  imports: [IonContent, CommonModule, FormsModule, IonInput, IonCard, IonRow, IonGrid, IonCol, IonCardContent, IonInputPasswordToggle, IonButton, ReactiveFormsModule, IonText, IonItem]
+  imports: [IonContent, CommonModule, FormsModule, IonInput, IonCard, IonRow, IonGrid, IonCol, IonCardContent, IonInputPasswordToggle, IonButton, ReactiveFormsModule, IonText, IonItem, RouterModule]
 })
 export class LoginPage implements OnInit {
   loginForm!: FormGroup;
