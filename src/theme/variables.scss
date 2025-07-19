@@ -1,2 +1,94 @@
-// For information on how to create your own theme, please see:
-// http://ionicframework.com/docs/theming/
+:root {
+  /* Brand Colors */
+  --ion-color-primary: #4b2e07;
+  --ion-color-primary-rgb: 75, 46, 7;
+  --ion-color-primary-contrast: #fffde6;
+  --ion-color-primary-contrast-rgb: 255, 253, 230;
+  --ion-color-primary-shade: #402706;
+  --ion-color-primary-tint: #614313;
+
+  --ion-color-secondary: #d4af37; // Golden Yellow (highlights)
+  --ion-color-secondary-rgb: 212, 175, 55;
+  --ion-color-secondary-contrast: #1c1c1c; // Dark contrast
+  --ion-color-secondary-contrast-rgb: 28, 28, 28;
+  --ion-color-secondary-shade: #b9952c;
+  --ion-color-secondary-tint: #d8b948;
+
+  --ion-color-tertiary: #4b6f44; // Green (nature)
+  --ion-color-tertiary-rgb: 75, 111, 68;
+  --ion-color-tertiary-contrast: #fffde6;
+  --ion-color-tertiary-contrast-rgb: 255, 253, 230;
+  --ion-color-tertiary-shade: #406039;
+  --ion-color-tertiary-tint: #5d8856;
+
+  --ion-color-success: #87a96b; // Natural green (success)
+  --ion-color-success-rgb: 135, 169, 107;
+  --ion-color-success-contrast: #ffffff;
+  --ion-color-success-contrast-rgb: 255, 255, 255;
+  --ion-color-success-shade: #73925b;
+  --ion-color-success-tint: #98b97f;
+
+  --ion-color-warning: #e2c290; // Beige (warm warning)
+  --ion-color-warning-rgb: 226, 194, 144;
+  --ion-color-warning-contrast: #4b2e07;
+  --ion-color-warning-contrast-rgb: 75, 46, 7;
+  --ion-color-warning-shade: #c7ad7e;
+  --ion-color-warning-tint: #e5c99d;
+
+  --ion-color-danger: #c0392b; // Standard danger (red)
+  --ion-color-danger-rgb: 192, 57, 43;
+  --ion-color-danger-contrast: #fff;
+  --ion-color-danger-contrast-rgb: 255, 255, 255;
+  --ion-color-danger-shade: #a83224;
+  --ion-color-danger-tint: #c74d3e;
+
+  --ion-color-dark: #1c1c1c; // Charcoal Black (text)
+  --ion-color-dark-rgb: 28, 28, 28;
+  --ion-color-dark-contrast: #fffde6;
+  --ion-color-dark-contrast-rgb: 255, 253, 230;
+  --ion-color-dark-shade: #181818;
+  --ion-color-dark-tint: #353535;
+
+  --ion-color-medium: #e2c290; // Earthy Beige (medium backgrounds)
+  --ion-color-medium-rgb: 226, 194, 144;
+  --ion-color-medium-contrast: #4b2e07;
+  --ion-color-medium-contrast-rgb: 75, 46, 7;
+  --ion-color-medium-shade: #c7ad7e;
+  --ion-color-medium-tint: #e5c99d;
+
+  --ion-color-light: #fffde6; // Soft White (background)
+  --ion-color-light-rgb: 255, 253, 230;
+  --ion-color-light-contrast: #4b2e07;
+  --ion-color-light-contrast-rgb: 75, 46, 7;
+  --ion-color-light-shade: #e0dfc6;
+  --ion-color-light-tint: #fffdea;
+}
+
+/* Optionally, override Ionic color classes */
+.ion-color-primary {
+  --ion-color-base: var(--ion-color-primary);
+}
+.ion-color-secondary {
+  --ion-color-base: var(--ion-color-secondary);
+}
+.ion-color-tertiary {
+  --ion-color-base: var(--ion-color-tertiary);
+}
+.ion-color-success {
+  --ion-color-base: var(--ion-color-success);
+}
+.ion-color-warning {
+  --ion-color-base: var(--ion-color-warning);
+}
+.ion-color-danger {
+  --ion-color-base: var(--ion-color-danger);
+}
+.ion-color-dark {
+  --ion-color-base: var(--ion-color-dark);
+}
+.ion-color-medium {
+  --ion-color-base: var(--ion-color-medium);
+}
+.ion-color-light {
+  --ion-color-base: var(--ion-color-light);
+}
