@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { IonContent, IonInput, IonItem, IonList } from '@ionic/angular/standalone';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { IonButton, IonCard, IonCardContent, IonCol, IonContent, IonGrid, IonInput, IonInputPasswordToggle, IonItem, IonRow, IonText } from '@ionic/angular/standalone';
 
 
 @Component({
@@ -9,13 +9,26 @@ import { IonContent, IonInput, IonItem, IonList } from '@ionic/angular/standalon
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.css'],
   standalone: true,
-  imports: [IonContent, CommonModule, FormsModule, IonItem, IonInput, IonList]
+  imports: [IonContent, CommonModule, FormsModule, IonInput, IonCard, IonRow, IonGrid, IonCol, IonCardContent, IonInputPasswordToggle, IonButton, ReactiveFormsModule, IonText, IonItem]
 })
 export class LoginPage implements OnInit {
-
-  constructor() { }
+  loginForm!: FormGroup;
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.loginForm = this.fb.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required],
+    });
+  }
+  onLogin() {
+    if (this.loginForm.valid) {
+      const { username, password } = this.loginForm.value;
+      console.log('Logging in with', username, password);
+      // Call login service or logic here
+    } else {
+      this.loginForm.markAllAsTouched();
+    }
   }
 
 }
