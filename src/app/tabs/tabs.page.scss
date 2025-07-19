@@ -18,8 +18,9 @@
 
     &.active-tab {
       flex: 2; // slightly larger tab
-      background: var(--ion-color-light-shade);
+      background: var(--ion-color-primary);
       border-radius: 10px;
+      color: white;
 
       ion-icon,
       ion-label {
