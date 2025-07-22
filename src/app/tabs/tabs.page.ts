@@ -1,22 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonIcon, IonLabel, IonTabBar, IonTabButton, IonTabs, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { RouterModule } from '@angular/router';
+import { IonicModule } from '@ionic/angular';
 import { addIcons } from 'ionicons';
 import { filmOutline, gridOutline, personCircleOutline, playCircleOutline, repeatOutline } from 'ionicons/icons';
 import { TabItem } from '../models/tab.model';
-import { AdminPage } from "./page/admin/admin.page";
-import { DailyProcessPage } from "./page/daily-process/daily-process.page";
-import { DashboardPage } from './page/dashboard/dashboard.page';
-import { PrestreamingPage } from "./page/prestreaming/prestreaming.page";
-import { StreamingPage } from "./page/streaming/streaming.page";
-
 @Component({
   selector: 'app-tabs',
   templateUrl: './tabs.page.html',
   styleUrls: ['./tabs.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonTabBar, IonTabButton, IonIcon, IonLabel, IonTabs, DashboardPage, StreamingPage, DailyProcessPage, PrestreamingPage, AdminPage]
+  imports: [IonicModule, CommonModule, FormsModule, RouterModule]
 })
 export class TabsPage implements OnInit {
   title: string = "Dash Board"

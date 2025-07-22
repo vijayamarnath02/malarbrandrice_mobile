@@ -1,28 +1,29 @@
 import {
+  Keyboard,
+  KeyboardResize
+} from "./chunk-UDOB7BMP.js";
+import "./chunk-KH3VUFSP.js";
+import {
   findClosestIonContent,
   getScrollElement,
   scrollByPoint
-} from "./chunk-D6MKN2U2.js";
+} from "./chunk-MXLJ5ZII.js";
+import {
+  doc,
+  win
+} from "./chunk-LCMILTBF.js";
 import {
   addEventListener,
   componentOnReady,
   raf,
   removeEventListener
-} from "./chunk-4554YRK6.js";
-import "./chunk-2H3NLAAY.js";
-import {
-  Keyboard,
-  KeyboardResize
-} from "./chunk-IKS2SDKY.js";
-import {
-  doc,
-  win
-} from "./chunk-QEE7QVES.js";
+} from "./chunk-HWO4LHY4.js";
+import "./chunk-GTOQHHRZ.js";
 import {
   __async
 } from "./chunk-QHQP2P2Z.js";
 
-// node_modules/@ionic/core/components/input-shims.js
+// node_modules/@ionic/core/dist/esm/input-shims-C3lNp93k.js
 var cloneMap = /* @__PURE__ */ new WeakMap();
 var relocateInput = (componentEl, inputEl, shouldRelocate, inputRelativeY = 0, disabledClonedInput = false) => {
   if (cloneMap.has(componentEl) === shouldRelocate) {
@@ -358,9 +359,9 @@ export {
 };
 /*! Bundled license information:
 
-@ionic/core/components/input-shims.js:
+@ionic/core/dist/esm/input-shims-C3lNp93k.js:
   (*!
    * (C) Ionic http://ionicframework.com - MIT License
    *)
 */
-//# sourceMappingURL=input-shims-VMGWDCYC.js.map
+//# sourceMappingURL=input-shims-C3lNp93k-ROC3XAO4.js.map

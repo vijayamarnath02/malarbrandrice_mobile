@@ -133,3 +133,11 @@ ion-content {
     color: var(--ion-color-danger);
   }
 }
+.error-message {
+  color: var(--ion-color-danger);
+  font-size: 0.75rem;
+  margin-left: 16px;
+  margin-top: 2px;
+  display: block;
+  background-color: transparent;
+}

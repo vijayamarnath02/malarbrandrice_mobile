@@ -10,12 +10,28 @@ export const routes: Routes = [
     loadComponent: () => import('./tabs/tabs.page').then(m => m.TabsPage),
     children: [
       {
-        path: 'dashboard',
+        path: 'dash-board',
         loadComponent: () => import('./tabs/page/dashboard/dashboard.page').then(m => m.DashboardPage)
       },
       {
+        path: 'daily-process',
+        loadComponent: () => import('./tabs/page/daily-process/daily-process.page').then(m => m.DailyProcessPage)
+      },
+      {
+        path: 'streaming',
+        loadComponent: () => import('./tabs/page/streaming/streaming.page').then(m => m.StreamingPage)
+      },
+      {
+        path: 'prestreaming',
+        loadComponent: () => import('./tabs/page/prestreaming/prestreaming.page').then(m => m.PrestreamingPage)
+      },
+      {
+        path: 'admin',
+        loadComponent: () => import('./tabs/page/admin/admin.page').then(m => m.AdminPage)
+      },
+      {
         path: '',
-        redirectTo: 'dashboard',
+        redirectTo: 'dash-board',
         pathMatch: 'full'
       }
     ]
@@ -31,15 +47,15 @@ export const routes: Routes = [
   },
   {
     path: 'prestreaming',
-    loadComponent: () => import('./tabs/page/prestreaming/prestreaming.page').then( m => m.PrestreamingPage)
+    loadComponent: () => import('./tabs/page/prestreaming/prestreaming.page').then(m => m.PrestreamingPage)
   },
   {
     path: 'streaming',
-    loadComponent: () => import('./tabs/page/streaming/streaming.page').then( m => m.StreamingPage)
+    loadComponent: () => import('./tabs/page/streaming/streaming.page').then(m => m.StreamingPage)
   },
   {
     path: 'admin',
-    loadComponent: () => import('./tabs/page/admin/admin.page').then( m => m.AdminPage)
+    loadComponent: () => import('./tabs/page/admin/admin.page').then(m => m.AdminPage)
   },
 
 

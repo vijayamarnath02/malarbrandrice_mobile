@@ -1,34 +1,9 @@
-<ion-header [translucent]="true">
-  <ion-toolbar color="primary">
-    <ion-title style="text-align: center;">{{title.toUpperCase()}}</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  @switch (selectedTab) {
-  @case (1) {
-  <app-daily-process></app-daily-process>
-  }
-  @case (2) {
-  <app-prestreaming></app-prestreaming>
-  }
-  @case (3) {
-  <app-dashboard></app-dashboard>
-  }
-  @case (4) {
-  <app-streaming></app-streaming>
-  }
-  @default {
-  <app-admin></app-admin>
-  }
-  }
-</ion-content>
 <ion-tabs>
   <ion-tab-bar slot="bottom" color="light" class="animated-tab-bar">
     <ion-tab-button *ngFor="let tab of tabs; let i = index" [tab]="tab.tab"
       [ngClass]="{'active-tab': selectedTab === tab.id, 'center-tab': tab.centerTab}" (click)="onTabClick(tab)">
       <ion-icon [name]="tab.icon"></ion-icon>
-      <ion-label *ngIf="selectedTab === tab.id">{{ tab.label }}</ion-label>
+      <ion-label *ngIf="selectedTab === tab.id" style="color: white;">{{ tab.label }}</ion-label>
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>
