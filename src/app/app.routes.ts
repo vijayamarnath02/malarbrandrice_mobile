@@ -3,7 +3,8 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: '',
-    loadComponent: () => import('./auth/login/login.page').then(m => m.LoginPage)
+    loadComponent: () =>
+      import('./auth/login/login.page').then((m) => m.LoginPage),
   },
   {
     path: 'tabs',
@@ -29,16 +30,6 @@ export const routes: Routes = [
         path: 'admin',
         loadComponent: () => import('./tabs/page/admin/admin.page').then(m => m.AdminPage)
       },
-      {
-        path: '',
-        redirectTo: 'dashboard',
-        pathMatch: 'full'
-      }
     ]
-  },
-  // Redirect any unknown route to login
-  {
-    path: '**',
-    redirectTo: ''
   }
 ];
