@@ -9,11 +9,12 @@
 
       <!-- ITEM SELECT -->
       <ion-item>
-        <ion-label position="stacked">Item <ion-text color="danger">(Required)</ion-text></ion-label>
-        <ion-select placeholder="Select an Item" formControlName="item">
+        <ion-label position="stacked">Item</ion-label>
+        <ion-select formControlName="item" placeholder="Select Item">
           <ion-select-option *ngFor="let a of items" [value]="a.key">{{ a.value }}</ion-select-option>
         </ion-select>
       </ion-item>
+
       <small *ngIf="itemControl?.touched && itemControl?.invalid" class="error-message">
         Item is required.
       </small>

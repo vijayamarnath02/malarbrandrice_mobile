@@ -3,6 +3,7 @@ import { PreloadAllModules, RouteReuseStrategy, provideRouter, withPreloading } 
 import { IonicRouteStrategy, provideIonicAngular } from '@ionic/angular/standalone';
 
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import 'web-animations-js';
 import { AppComponent } from './app/app.component';
 import { routes } from './app/app.routes';
 
