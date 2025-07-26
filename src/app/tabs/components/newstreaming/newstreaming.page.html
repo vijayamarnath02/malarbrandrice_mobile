@@ -1,13 +1,82 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>newstreaming</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title>Create Streaming</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">newstreaming</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="false">
+  <form [formGroup]="streamingForm" (ngSubmit)="submitForm()">
+    <ion-list style="background-color: var(--ion-color-background);">
+
+      <!-- Item -->
+      <ion-item>
+        <ion-label position="floating">Item</ion-label>
+        <ion-select formControlName="item" placeholder="Select Item">
+          <ion-select-option *ngFor="let item of itemList" [value]="item">{{ item }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-text color="danger" *ngIf="isInvalid('item')"><small>Item is required</small></ion-text>
+
+      <!-- Unit -->
+      <ion-item>
+        <ion-label position="floating">Unit</ion-label>
+        <ion-select formControlName="unit" placeholder="Select Unit">
+          <ion-select-option *ngFor="let unit of unitList" [value]="unit">{{ unit }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-text color="danger" *ngIf="isInvalid('unit')"><small>Unit is required</small></ion-text>
+
+      <!-- Batch Number (readonly) -->
+      <ion-item>
+        <ion-label position="floating">Batch Number</ion-label>
+        <ion-input [value]="batchNumber" readonly></ion-input>
+      </ion-item>
+
+      <!-- Streaming Timing -->
+      <ion-item>
+        <ion-label position="floating">Streaming Timing</ion-label>
+        <ion-input formControlName="streamingTiming" type="text" autocomplete="off"></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="isInvalid('streamingTiming')"><small>Streaming Timing is
+          required</small></ion-text>
+
+      <!-- Stream Start Time -->
+      <ion-item>
+        <ion-label position="floating">Stream Start Time</ion-label>
+        <ion-input formControlName="streamStartTime" type="text" autocomplete="off"></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="isInvalid('streamStartTime')"><small>Start Time is required</small></ion-text>
+
+      <!-- End Time -->
+      <ion-item>
+        <ion-label position="floating">End Time</ion-label>
+        <ion-input formControlName="endTime" type="text" autocomplete="off"></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="isInvalid('endTime')"><small>End Time is required</small></ion-text>
+
+      <!-- Dryer -->
+      <ion-item>
+        <ion-label position="floating">Dryer</ion-label>
+        <ion-select formControlName="dryer" placeholder="Select Dryer">
+          <ion-select-option *ngFor="let dryer of dryerList" [value]="dryer">{{ dryer }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-text color="danger" *ngIf="isInvalid('dryer')"><small>Dryer is required</small></ion-text>
+    </ion-list>
+
+    <ion-grid style="margin-top: 24px;">
+      <ion-row class="ion-justify-content-between ion-align-items-center">
+        <ion-col size="6">
+          <ion-button expand="block" color="medium" fill="outline" type="button" (click)="cancel()">
+            Cancel
+          </ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button expand="block" type="submit" [disabled]="streamingForm.invalid" color="primary" fill="solid">
+            Submit <ion-icon slot="end" name="checkmark-done-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
 </ion-content>

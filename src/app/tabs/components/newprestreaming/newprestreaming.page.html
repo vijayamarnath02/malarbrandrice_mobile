@@ -10,7 +10,7 @@
 
       <!-- Item Select -->
       <ion-item>
-        <ion-label position="floating" style="color: var(--ion-color-primary)">Item</ion-label>
+        <ion-label position="floating">Item</ion-label>
         <ion-select formControlName="item" placeholder="Select Item">
           <ion-select-option *ngFor="let item of itemList" [value]="item">{{ item }}</ion-select-option>
         </ion-select>
@@ -21,7 +21,7 @@
 
       <!-- Unit Select -->
       <ion-item>
-        <ion-label position="floating" style="color: var(--ion-color-primary)">Unit</ion-label>
+        <ion-label position="floating">Unit</ion-label>
         <ion-select formControlName="unit" placeholder="Select Unit">
           <ion-select-option *ngFor="let unit of unitList" [value]="unit">{{ unit }}</ion-select-option>
         </ion-select>
@@ -32,13 +32,13 @@
 
       <!-- Batch Number (Read-only) -->
       <ion-item>
-        <ion-label position="floating" style="color: var(--ion-color-primary)">Batch Number</ion-label>
+        <ion-label position="floating">Batch Number</ion-label>
         <ion-input [value]="batchNumber" readonly></ion-input>
       </ion-item>
 
       <!-- Tank Level Timing -->
       <ion-item>
-        <ion-label position="floating" style="color: var(--ion-color-primary)">Tank Level Timing</ion-label>
+        <ion-label position="floating">Tank Level Timing</ion-label>
         <ion-input formControlName="tankLevelTiming" type="text" autocomplete="off"></ion-input>
       </ion-item>
       <ion-text color="danger" *ngIf="isInvalid('tankLevelTiming')">
@@ -47,7 +47,7 @@
 
       <!-- Timing -->
       <ion-item>
-        <ion-label position="floating" style="color: var(--ion-color-primary)">Timing</ion-label>
+        <ion-label position="floating">Timing</ion-label>
         <ion-input formControlName="timing" type="text" autocomplete="off"></ion-input>
       </ion-item>
       <ion-text color="danger" *ngIf="isInvalid('timing')">
@@ -56,7 +56,7 @@
 
       <!-- Ural Timing -->
       <ion-item>
-        <ion-label position="floating" style="color: var(--ion-color-primary)">Ural Timing</ion-label>
+        <ion-label position="floating">Ural Timing</ion-label>
         <ion-input formControlName="uralTiming" type="text" autocomplete="off"></ion-input>
       </ion-item>
       <ion-text color="danger" *ngIf="isInvalid('uralTiming')">
@@ -65,7 +65,7 @@
 
       <!-- Water Release Timing -->
       <ion-item>
-        <ion-label position="floating" style="color: var(--ion-color-primary)">Water Release Timing</ion-label>
+        <ion-label position="floating">Water Release Timing</ion-label>
         <ion-input formControlName="waterReleaseTiming" type="text" autocomplete="off"></ion-input>
       </ion-item>
       <ion-text color="danger" *ngIf="isInvalid('waterReleaseTiming')">
@@ -74,7 +74,7 @@
 
       <!-- Remarks -->
       <ion-item>
-        <ion-label position="floating" style="color: var(--ion-color-primary)">Remarks</ion-label>
+        <ion-label position="floating">Remarks</ion-label>
         <ion-textarea formControlName="remarks" rows="3"></ion-textarea>
       </ion-item>
       <ion-text color="danger" *ngIf="isInvalid('remarks')">
@@ -83,7 +83,7 @@
 
       <!-- Incharge (read-only) -->
       <ion-item>
-        <ion-label position="floating" style="color: var(--ion-color-primary)">Incharge</ion-label>
+        <ion-label position="floating">Incharge</ion-label>
         <ion-input [value]="loggedInUser" readonly></ion-input>
       </ion-item>
     </ion-list>

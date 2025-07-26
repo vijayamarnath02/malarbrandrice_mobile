@@ -30,7 +30,6 @@ ion-input,
 ion-select,
 ion-textarea {
   font-size: 14px;
-  color: var(--ion-color-medium);
 }
 
 /* Validation messages style */
@@ -69,5 +68,4 @@ ion-button[color="medium"]:hover {
 /* Small text inside ion-text */
 ion-text small {
   font-size: 0.75rem;
-  padding-left: 8px;
 }

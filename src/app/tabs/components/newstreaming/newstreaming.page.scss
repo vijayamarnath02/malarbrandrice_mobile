@@ -1,0 +1,92 @@
+/* Ion-list container: white card effect */
+ion-list {
+  background-color: var(--ion-color-background);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Ion-items styled as cards */
+ion-item {
+  margin-bottom: 12px;
+  box-shadow: 0 2px 6px rgba(231, 51, 47, 0.1); /* subtle shadow using primary red */
+
+  --border-color: transparent;
+  transition: box-shadow 0.2s ease;
+}
+
+ion-item:focus-within,
+ion-item:hover {
+  box-shadow: 0 6px 12px rgba(231, 51, 47, 0.2);
+}
+
+/* Floating label color in primary */
+ion-label {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--ion-color-primary);
+}
+
+/* Floating label when floating */
+ion-item ion-label[aria-floating="true"] {
+  color: var(--ion-color-primary);
+}
+
+/* Inputs, selects font and color */
+ion-input,
+ion-select {
+  font-size: 14px;
+  color: var(--ion-color-medium);
+}
+
+/* Validation error messages */
+ion-text {
+  display: block;
+
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ion-color-danger);
+  min-height: 18px; /* Prevent layout shift */
+}
+
+/* Buttons styling */
+ion-button {
+  border-radius: 10px;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(231, 51, 47, 0.15);
+  transition: transform 0.2s ease;
+}
+
+ion-button[color="primary"]:not(:disabled):hover {
+  transform: scale(1.05);
+  transition: transform 0.2s ease;
+}
+
+/* Cancel button outlined */
+ion-button[color="medium"] {
+  --background: transparent;
+
+  transition: background-color 0.3s, color 0.3s;
+}
+
+ion-button[color="medium"]:hover {
+  --background: var(--ion-color-primary);
+  --color: #fff;
+}
+
+/* Responsive padding */
+@media (max-width: 767px) {
+  form {
+    padding: 0 12px;
+  }
+}
+
+@media (min-width: 768px) {
+  form {
+    padding: 0;
+  }
+}
+
+/* Small text inside ion-text */
+ion-text small {
+  font-size: 0.75rem;
+  padding-left: 8px;
+}

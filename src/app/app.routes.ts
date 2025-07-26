@@ -36,6 +36,11 @@ export const routes: Routes = [
         path: 'prestreaming/create',
         loadComponent: () => import('./tabs/components/newprestreaming/newprestreaming.page').then(m => m.NewPrestreamingPage)
       },
+      {
+        path: 'streaming/create',
+        loadComponent: () => import('./tabs/components/newstreaming/newstreaming.page').then(m => m.NewStreamingPage)
+      },
+
 
     ]
   },
@@ -44,10 +49,6 @@ export const routes: Routes = [
     path: '',
     redirectTo: 'home',
     pathMatch: 'full',
-  },
-  {
-    path: 'newstreaming',
-    loadComponent: () => import('./tabs/components/newstreaming/newstreaming.page').then( m => m.NewstreamingPage)
   },
 
 ];
