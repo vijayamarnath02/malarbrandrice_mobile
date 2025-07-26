@@ -1,0 +1,105 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>Create Prestreaming</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="false">
+  <form [formGroup]="prestreamingForm" (ngSubmit)="submitForm()">
+    <ion-list style="background-color: var(--ion-color-background); border-radius: 16px; padding: 16px;">
+
+      <!-- Item Select -->
+      <ion-item>
+        <ion-label position="floating" style="color: var(--ion-color-primary)">Item</ion-label>
+        <ion-select formControlName="item" placeholder="Select Item">
+          <ion-select-option *ngFor="let item of itemList" [value]="item">{{ item }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-text color="danger" *ngIf="isInvalid('item')">
+        <small>Item is required</small>
+      </ion-text>
+
+      <!-- Unit Select -->
+      <ion-item>
+        <ion-label position="floating" style="color: var(--ion-color-primary)">Unit</ion-label>
+        <ion-select formControlName="unit" placeholder="Select Unit">
+          <ion-select-option *ngFor="let unit of unitList" [value]="unit">{{ unit }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-text color="danger" *ngIf="isInvalid('unit')">
+        <small>Unit is required</small>
+      </ion-text>
+
+      <!-- Batch Number (Read-only) -->
+      <ion-item>
+        <ion-label position="floating" style="color: var(--ion-color-primary)">Batch Number</ion-label>
+        <ion-input [value]="batchNumber" readonly></ion-input>
+      </ion-item>
+
+      <!-- Tank Level Timing -->
+      <ion-item>
+        <ion-label position="floating" style="color: var(--ion-color-primary)">Tank Level Timing</ion-label>
+        <ion-input formControlName="tankLevelTiming" type="text" autocomplete="off"></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="isInvalid('tankLevelTiming')">
+        <small>Tank Level Timing is required</small>
+      </ion-text>
+
+      <!-- Timing -->
+      <ion-item>
+        <ion-label position="floating" style="color: var(--ion-color-primary)">Timing</ion-label>
+        <ion-input formControlName="timing" type="text" autocomplete="off"></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="isInvalid('timing')">
+        <small>Timing is required</small>
+      </ion-text>
+
+      <!-- Ural Timing -->
+      <ion-item>
+        <ion-label position="floating" style="color: var(--ion-color-primary)">Ural Timing</ion-label>
+        <ion-input formControlName="uralTiming" type="text" autocomplete="off"></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="isInvalid('uralTiming')">
+        <small>Ural Timing is required</small>
+      </ion-text>
+
+      <!-- Water Release Timing -->
+      <ion-item>
+        <ion-label position="floating" style="color: var(--ion-color-primary)">Water Release Timing</ion-label>
+        <ion-input formControlName="waterReleaseTiming" type="text" autocomplete="off"></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="isInvalid('waterReleaseTiming')">
+        <small>Water Release Timing is required</small>
+      </ion-text>
+
+      <!-- Remarks -->
+      <ion-item>
+        <ion-label position="floating" style="color: var(--ion-color-primary)">Remarks</ion-label>
+        <ion-textarea formControlName="remarks" rows="3"></ion-textarea>
+      </ion-item>
+      <ion-text color="danger" *ngIf="isInvalid('remarks')">
+        <small>Remarks are required</small>
+      </ion-text>
+
+      <!-- Incharge (read-only) -->
+      <ion-item>
+        <ion-label position="floating" style="color: var(--ion-color-primary)">Incharge</ion-label>
+        <ion-input [value]="loggedInUser" readonly></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-grid>
+      <ion-row class="ion-justify-content-between">
+        <ion-col size="6">
+          <ion-button expand="block" type="button" color="medium" fill="outline" (click)="onCancel()">
+            Cancel
+          </ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button expand="block" type="submit" [disabled]="prestreamingForm.invalid">
+            Submit
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

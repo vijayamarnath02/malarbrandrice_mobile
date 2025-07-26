@@ -12,9 +12,6 @@ export const routes: Routes = [
       {
         path: 'daily-process',
         loadComponent: () => import('./tabs/pages/daily-process/daily-process.page').then(m => m.DailyProcessPage),
-        children: [
-
-        ]
       },
       {
         path: 'prestreaming',
@@ -35,6 +32,11 @@ export const routes: Routes = [
         path: 'daily-process/create',
         loadComponent: () => import('./tabs/components/newdailyprocess/newdailyprocess.page').then(m => m.NewdailyprocessPage)
       },
+      {
+        path: 'prestreaming/create',
+        loadComponent: () => import('./tabs/components/newprestreaming/newprestreaming.page').then(m => m.NewPrestreamingPage)
+      },
+
     ]
   },
 
@@ -42,6 +44,10 @@ export const routes: Routes = [
     path: '',
     redirectTo: 'home',
     pathMatch: 'full',
+  },
+  {
+    path: 'newstreaming',
+    loadComponent: () => import('./tabs/components/newstreaming/newstreaming.page').then( m => m.NewstreamingPage)
   },
 
 ];
