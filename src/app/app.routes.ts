@@ -36,4 +36,8 @@ export const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full',
   },
+  {
+    path: 'newdailyprocess',
+    loadComponent: () => import('./tabs/components/newdailyprocess/newdailyprocess.page').then( m => m.NewdailyprocessPage)
+  },
 ];
