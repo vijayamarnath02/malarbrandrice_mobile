@@ -1,13 +1,57 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>prestreaming</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title>Prestreaming</ion-title>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/tabs/prestreaming/create']">
+        <ion-icon name="add-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">prestreaming</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-list *ngIf="prestreamList.length > 0" style="background-color: var(--ion-color-background);">
+    <ion-card *ngFor="let record of prestreamList" class="prestream-card animate__animated animate__fadeInUp">
+      <ion-card-header>
+        <ion-card-title>{{ record.item_id.name }} - {{ record.unit_id.name }}</ion-card-title>
+        <ion-card-subtitle>Batch: {{ record.batch_number }}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-row>
+          <ion-col size="12" size-md="6">
+            <ion-chip color="primary">
+              <ion-icon name="time-outline"></ion-icon>
+              <ion-label>Tank Level: {{ record.tank_level_timing }}</ion-label>
+            </ion-chip>
+          </ion-col>
+          <ion-col size="12" size-md="6">
+            <ion-chip color="tertiary">
+              <ion-icon name="flash-outline"></ion-icon>
+              <ion-label>Timing: {{ record.timing }}</ion-label>
+            </ion-chip>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12" size-md="6">
+            <ion-chip color="success">
+              <ion-icon name="water-outline"></ion-icon>
+              <ion-label>Ural: {{ record.ural_timing }}</ion-label>
+            </ion-chip>
+          </ion-col>
+          <ion-col size="12" size-md="6">
+            <ion-chip color="warning">
+              <ion-icon name="water-outline"></ion-icon>
+              <ion-label>Water: {{ record.water_release_timing }}</ion-label>
+            </ion-chip>
+          </ion-col>
+        </ion-row>
+        <p>Remarks: {{ record.remarks }}</p>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+
+
+  <ion-text color="medium" *ngIf="prestreamList.length === 0">
+    <p class="ion-padding">No prestreaming records found.</p>
+  </ion-text>
 </ion-content>

@@ -1,13 +1,60 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>streaming</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title>Streaming</ion-title>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/tabs/streaming/create']">
+        <ion-icon name="add-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">streaming</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-list *ngIf="streamingList.length > 0" style="background-color: var(--ion-color-background);">
+    <ion-card *ngFor="let stream of streamingList" class="stream-card animate__animated animate__fadeInUp">
+      <ion-card-header>
+        <ion-card-title>{{ stream.item_id.name }} - {{ stream.unit_id.name }}</ion-card-title>
+        <ion-card-subtitle>Batch: {{ stream.batch_number }}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-row>
+          <ion-col size="12" size-md="6">
+            <ion-chip color="primary">
+              <ion-icon name="time-outline"></ion-icon>
+              <ion-label>Streaming Time: {{ stream.streaming_timing }}</ion-label>
+            </ion-chip>
+          </ion-col>
+          <ion-col size="12" size-md="6">
+            <ion-chip color="secondary">
+              <ion-icon name="play-forward-outline"></ion-icon>
+              <ion-label>Start: {{ stream.stream_start_time }}</ion-label>
+            </ion-chip>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12" size-md="6">
+            <ion-chip color="tertiary">
+              <ion-icon name="stop-outline"></ion-icon>
+              <ion-label>End: {{ stream.streamend_time }}</ion-label>
+            </ion-chip>
+          </ion-col>
+          <ion-col size="12" size-md="6">
+            <ion-chip color="success">
+              <ion-icon name="hardware-chip-outline"></ion-icon>
+              <ion-label>Dryer: {{ stream.dryer_id.name }}</ion-label>
+            </ion-chip>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+
+  <ion-text color="medium" *ngIf="streamingList.length === 0" class="animate__animated animate__fadeIn">
+    <p class="ion-padding">No streaming records found.</p>
+  </ion-text>
+
+
+  <ion-text color="medium" *ngIf="streamingList.length === 0">
+    <p class="ion-padding">No streaming records found.</p>
+  </ion-text>
 </ion-content>

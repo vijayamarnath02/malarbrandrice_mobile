@@ -1,13 +1,49 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Dash Board</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title>Dashboard</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">daily-process</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6">
+        <ion-card button (click)="goTo('daily-process')">
+          <ion-card-header>
+            <ion-icon name="list-outline" class="dashboard-icon"></ion-icon>
+            <ion-card-title>Daily Process</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-card button (click)="goTo('prestreaming')">
+          <ion-card-header>
+            <ion-icon name="water-outline" class="dashboard-icon"></ion-icon>
+            <ion-card-title>Prestreaming</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="6">
+        <ion-card button (click)="goTo('streaming')">
+          <ion-card-header>
+            <ion-icon name="flash-outline" class="dashboard-icon"></ion-icon>
+            <ion-card-title>Streaming</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-card button (click)="goTo('admin')">
+          <ion-card-header>
+            <ion-icon name="shield-checkmark-outline" class="dashboard-icon"></ion-icon>
+            <ion-card-title>Admin</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

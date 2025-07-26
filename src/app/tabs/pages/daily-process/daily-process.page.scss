@@ -1,0 +1,12 @@
+ion-item {
+  --padding-start: 16px;
+  --inner-padding-end: 16px;
+}
+
+ion-toolbar ion-icon {
+  font-size: 1.4rem;
+}
+
+.process-card:hover {
+  transform: translateY(-4px) scale(1.01);
+}
