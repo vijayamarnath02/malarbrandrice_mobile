@@ -1,29 +1,53 @@
+.full-height-grid {
+  height: 100vh;
+}
+
+.full-height-row {
+  height: 100%;
+}
+
 ion-card {
   background-color: white;
   border-radius: 16px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  transform: scale(0.95);
   animation: fadeInCard 0.6s ease-out forwards;
   min-height: 480px;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+ion-card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.card-top,
+.card-middle,
+.card-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .logo-container {
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 
 .login-logo {
   width: 100%;
-  max-width: 100%; 
+  max-width: 100%;
   height: auto;
-  border-radius: 12px; 
+  border-radius: 12px;
   object-fit: contain;
 }
+
 @keyframes fadeInCard {
   from {
     opacity: 0;
@@ -35,6 +59,8 @@ ion-card {
     transform: scale(1) translateY(0);
   }
 }
-.login-tagline{
-color: var(--ion-color-primary);
+
+.login-tagline {
+  text-align: center;
+  color: var(--ion-color-primary);
 }
