@@ -10,6 +10,10 @@ export const routes: Routes = [
     loadComponent: () => import('./tabs/tab/tab.page').then(m => m.TabPage),
     children: [
       {
+        path: 'setting',
+        loadComponent: () => import('./tabs/pages/setting/setting.page').then(m => m.SettingPage)
+      },
+      {
         path: 'daily-process',
         loadComponent: () => import('./tabs/pages/daily-process/daily-process.page').then(m => m.DailyProcessPage),
       },
@@ -49,6 +53,7 @@ export const routes: Routes = [
     path: '',
     redirectTo: 'home',
     pathMatch: 'full',
-  },
+  }
+
 
 ];
