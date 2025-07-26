@@ -1,5 +1,5 @@
 {
-  "name": "my-app",
+  "name": "malarbrand",
   "version": "0.0.1",
   "author": "Ionic Framework",
   "homepage": "https://ionicframework.com/",
@@ -9,11 +9,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint",
-    "ionic:build:android": "ionic build && npx cap sync android && npx cap open android",
-    "ionic:run:android:live": "ionic cap run android -l --external",
-    "ionic:build:ios": "ionic build && npx cap sync ios && npx cap open ios",
-    "ionic:run:ios:live": "ionic cap run ios -l --external"
+    "lint": "ng lint"
   },
   "private": true,
   "dependencies": {
@@ -31,11 +27,10 @@
     "@capacitor/haptics": "7.0.1",
     "@capacitor/keyboard": "7.0.1",
     "@capacitor/status-bar": "7.0.1",
-    "@ionic/angular": "^8.0.0",
+    "@ionic/angular": "^8.6.5",
     "ionicons": "^7.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
-    "web-animations-js": "^2.3.2",
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
