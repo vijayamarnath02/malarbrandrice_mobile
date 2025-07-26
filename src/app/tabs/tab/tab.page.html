@@ -1,13 +1,29 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>tab</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-tabs>
+  <ion-tab-bar slot="bottom" color="primary">
+    <ion-tab-button tab="daily-process" [routerLink]="['/tabs/daily-process']">
+      <ion-icon name="list-outline"></ion-icon>
+      <ion-label>Daily</ion-label>
+    </ion-tab-button>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">tab</ion-title>
-    </ion-toolbar>
-  </ion-header>
-</ion-content>
+    <ion-tab-button tab="prestreaming" [routerLink]="['/tabs/prestreaming']">
+      <ion-icon name="water-outline"></ion-icon>
+      <ion-label>Prestream</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="dashboard" [routerLink]=" ['/tabs/dashboard']">
+      <ion-icon name="grid-outline"></ion-icon>
+      <ion-label>Dash Board</ion-label>
+    </ion-tab-button>
+
+
+    <ion-tab-button tab="streaming" [routerLink]="['/tabs/streaming']">
+      <ion-icon name="flash-outline"></ion-icon>
+      <ion-label>Streaming</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="admin" [routerLink]="['/tabs/admin']">
+      <ion-icon name="shield-checkmark-outline"></ion-icon>
+      <ion-label>Admin</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
