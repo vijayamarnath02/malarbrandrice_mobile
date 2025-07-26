@@ -1,2 +1,100 @@
-// For information on how to create your own theme, please see:
-// http://ionicframework.com/docs/theming/
+:root {
+  /** Primary color (Red/Pink tone for CTAs like "For Enquiry") */
+  --ion-color-primary: #e7332f; // Strong red-orange
+  --ion-color-primary-rgb: 231, 51, 47;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #cf2d2a;
+  --ion-color-primary-tint: #ec524e;
+
+  /** Secondary (Bright Yellow from Packaging) */
+  --ion-color-custom: #f9cb2f;
+  --ion-color-custom-rgb: 249, 203, 47;
+  --ion-color-custom-contrast: #000000;
+  --ion-color-custom-contrast-rgb: 0, 0, 0;
+  --ion-color-custom-shade: #d4b128;
+  --ion-color-custom-tint: #fbda5b;
+
+  /** Accent Red (used in buttons, icons, and labels) */
+  --ion-color-danger: #c41c2a;
+  --ion-color-danger-rgb: 196, 28, 42;
+  --ion-color-danger-contrast: #ffffff;
+  --ion-color-danger-contrast-rgb: 255, 255, 255;
+  --ion-color-danger-shade: #ac1925;
+  --ion-color-danger-tint: #cf3b4c;
+
+  /** Background color (yellow texture) */
+  --ion-color-background: #fff8e1;
+
+  /** Green (rice field and header tone) */
+  --ion-color-success: #185c25;
+  --ion-color-success-rgb: 24, 92, 37;
+  --ion-color-success-contrast: #ffffff;
+  --ion-color-success-contrast-rgb: 255, 255, 255;
+  --ion-color-success-shade: #144f20;
+  --ion-color-success-tint: #337346;
+
+  /** Secondary Text Grey */
+  --ion-color-medium: #6b6b6b;
+
+  /** Optional Toast/Tag Pink */
+  --ion-color-toster: #d1005a;
+  --ion-color-toster-rgb: 209, 0, 90;
+  --ion-color-toster-contrast: #ffffff;
+  --ion-color-toster-contrast-rgb: 255, 255, 255;
+  --ion-color-toster-shade: #b8004e;
+  --ion-color-toster-tint: #d92e74;
+}
+.ion-color-primary {
+  --ion-color-base: var(--ion-color-primary);
+  --ion-color-base-rgb: var(--ion-color-primary-rgb);
+  --ion-color-contrast: var(--ion-color-primary-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-primary-contrast-rgb);
+  --ion-color-shade: var(--ion-color-primary-shade);
+  --ion-color-tint: var(--ion-color-primary-tint);
+}
+
+.ion-color-custom {
+  --ion-color-base: var(--ion-color-custom);
+  --ion-color-base-rgb: var(--ion-color-custom-rgb);
+  --ion-color-contrast: var(--ion-color-custom-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-custom-contrast-rgb);
+  --ion-color-shade: var(--ion-color-custom-shade);
+  --ion-color-tint: var(--ion-color-custom-tint);
+}
+
+.ion-color-danger {
+  --ion-color-base: var(--ion-color-danger);
+  --ion-color-base-rgb: var(--ion-color-danger-rgb);
+  --ion-color-contrast: var(--ion-color-danger-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-danger-contrast-rgb);
+  --ion-color-shade: var(--ion-color-danger-shade);
+  --ion-color-tint: var(--ion-color-danger-tint);
+}
+
+.ion-color-success {
+  --ion-color-base: var(--ion-color-success);
+  --ion-color-base-rgb: var(--ion-color-success-rgb);
+  --ion-color-contrast: var(--ion-color-success-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-success-contrast-rgb);
+  --ion-color-shade: var(--ion-color-success-shade);
+  --ion-color-tint: var(--ion-color-success-tint);
+}
+
+.ion-color-medium {
+  --ion-color-base: var(--ion-color-medium);
+  --ion-color-base-rgb: var(--ion-color-medium-rgb, 107, 107, 107);
+  --ion-color-contrast: #ffffff;
+  --ion-color-contrast-rgb: 255, 255, 255;
+  --ion-color-shade: #5e5e5e;
+  --ion-color-tint: #818181;
+}
+
+.ion-color-toster {
+  --ion-color-base: var(--ion-color-toster);
+  --ion-color-base-rgb: var(--ion-color-toster-rgb);
+  --ion-color-contrast: var(--ion-color-toster-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-toster-contrast-rgb);
+  --ion-color-shade: var(--ion-color-toster-shade);
+  --ion-color-tint: var(--ion-color-toster-tint);
+}
