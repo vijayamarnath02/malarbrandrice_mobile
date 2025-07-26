@@ -7,6 +7,7 @@ import {
   Validators
 } from '@angular/forms';
 import { Router } from '@angular/router';
+
 import {
   IonButton,
   IonCol,
@@ -24,6 +25,7 @@ import {
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
+import { MalarService } from '../../services/malar.service';
 
 @Component({
   selector: 'app-newdailyprocess',
@@ -50,12 +52,12 @@ import {
 export class NewdailyprocessPage implements OnInit {
   dailyProcessForm!: FormGroup;
 
-  itemList = ['Paddy', 'Rice', 'Broken Rice'];
-  uralList = ['Godown A', 'Godown B'];
-  unitList = ['Unit 1', 'Unit 2'];
+  itemList: any;
+  uralList: any;
+  unitList: any;
   loggedInUser = 'admin@malarbrandrice.com';
 
-  constructor(private fb: FormBuilder, private router: Router) { }
+  constructor(private fb: FormBuilder, private router: Router, private malarService: MalarService) { }
 
   ngOnInit() {
     this.dailyProcessForm = this.fb.group({
@@ -71,7 +73,23 @@ export class NewdailyprocessPage implements OnInit {
       incharge: [{ value: this.loggedInUser, disabled: true }, Validators.required]
     });
   }
-
+  ionViewWillEnter() {
+    this.loadDropdowns();
+  }
+  loadDropdowns() {
+    this.malarService.getItems().subscribe({
+      next: res => this.itemList = res.map(i => i.name),
+      error: err => console.error('Item load failed', err),
+    });
+    this.malarService.getGodowns().subscribe({
+      next: res => this.uralList = res.map(g => g.name),
+      error: err => console.error('Godown load failed', err),
+    });
+    this.malarService.getUnits().subscribe({
+      next: res => this.unitList = res.map(u => u.name),
+      error: err => console.error('Unit load failed', err),
+    });
+  }
   isInvalid(field: string): boolean {
     const control = this.dailyProcessForm.get(field);
     return control?.invalid && (control.dirty || control.touched) || false;

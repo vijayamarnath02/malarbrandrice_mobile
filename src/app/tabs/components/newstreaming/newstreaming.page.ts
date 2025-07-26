@@ -12,6 +12,7 @@ import {
   IonRow,
   IonSelect, IonSelectOption, IonText, IonTitle, IonToolbar
 } from '@ionic/angular/standalone';
+import { MalarService } from '../../services/malar.service';
 
 @Component({
   selector: 'app-newstreaming',
@@ -27,12 +28,12 @@ import {
 })
 export class NewStreamingPage implements OnInit {
   streamingForm!: FormGroup;
-  itemList = ['Paddy', 'Boiled Rice', 'Raw Rice'];
-  unitList = ['Unit A', 'Unit B'];
+  itemList: any;
+  unitList: any;
   dryerList = ['Dryer 1', 'Dryer 2'];
   batchNumber = 'STRM-' + Math.floor(Math.random() * 100000);
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private malarService: MalarService) { }
 
   ngOnInit() {
     this.streamingForm = this.fb.group({
@@ -43,6 +44,23 @@ export class NewStreamingPage implements OnInit {
       streamStartTime: ['', Validators.required],
       endTime: ['', Validators.required],
       dryer: ['', Validators.required],
+    });
+  }
+  ionViewWillEnter() {
+    this.loadDropdowns();
+  }
+  loadDropdowns() {
+    this.malarService.getItems().subscribe({
+      next: res => this.itemList = res.map(i => i.name),
+      error: err => console.error('Item load failed', err),
+    });
+    this.malarService.getUnits().subscribe({
+      next: res => this.unitList = res.map(u => u.name),
+      error: err => console.error('Unit load failed', err),
+    });
+    this.malarService.getDryers().subscribe({
+      next: res => this.dryerList = res.map(u => u.name),
+      error: err => console.error('Unit load failed', err),
     });
   }
 

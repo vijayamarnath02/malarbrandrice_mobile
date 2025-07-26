@@ -12,6 +12,7 @@ import {
   IonRow,
   IonSelect, IonSelectOption, IonText, IonTextarea, IonTitle, IonToolbar
 } from '@ionic/angular/standalone';
+import { MalarService } from '../../services/malar.service';
 
 @Component({
   selector: 'app-newprestreaming',
@@ -32,7 +33,7 @@ export class NewPrestreamingPage implements OnInit {
   loggedInUser = 'admin@malarbrandrice.com';
   batchNumber = 'BATCH-' + Math.floor(Math.random() * 100000);
 
-  constructor(private fb: FormBuilder, private router: Router) { }
+  constructor(private fb: FormBuilder, private router: Router, private malarService: MalarService) { }
 
   ngOnInit() {
     this.prestreamingForm = this.fb.group({
@@ -47,7 +48,19 @@ export class NewPrestreamingPage implements OnInit {
       incharge: [{ value: this.loggedInUser, disabled: true }]
     });
   }
-
+  ionViewWillEnter() {
+    this.loadDropdowns();
+  }
+  loadDropdowns() {
+    this.malarService.getItems().subscribe({
+      next: res => this.itemList = res.map(i => i.name),
+      error: err => console.error('Item load failed', err),
+    });
+    this.malarService.getUnits().subscribe({
+      next: res => this.unitList = res.map(u => u.name),
+      error: err => console.error('Unit load failed', err),
+    });
+  }
   isInvalid(field: string): boolean {
     const control = this.prestreamingForm.get(field);
     return control?.invalid && (control?.touched || control?.dirty) || false;

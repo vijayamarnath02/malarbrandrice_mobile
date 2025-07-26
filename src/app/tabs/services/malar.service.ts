@@ -56,28 +56,28 @@ export class MalarService {
   // ✅ MASTER DATA
   // ------------------------
   getItems(): Observable<any[]> {
-    return this.http.get<any>(`${this.BASE_URL}/item`, this.getHeaders()).pipe(
+    return this.http.get<any>(`${this.BASE_URL}/list/items`, this.getHeaders()).pipe(
       map(res => res.response?.data),
       catchError(this.handleError)
     );
   }
 
   getUnits(): Observable<any[]> {
-    return this.http.get<any>(`${this.BASE_URL}/unit`, this.getHeaders()).pipe(
+    return this.http.get<any>(`${this.BASE_URL}/list/units`, this.getHeaders()).pipe(
       map(res => res.response?.data),
       catchError(this.handleError)
     );
   }
 
   getGodowns(): Observable<any[]> {
-    return this.http.get<any>(`${this.BASE_URL}/godown`, this.getHeaders()).pipe(
+    return this.http.get<any>(`${this.BASE_URL}/list/godown`, this.getHeaders()).pipe(
       map(res => res.response?.data),
       catchError(this.handleError)
     );
   }
 
   getDryers(): Observable<any[]> {
-    return this.http.get<any>(`${this.BASE_URL}/dryer`, this.getHeaders()).pipe(
+    return this.http.get<any>(`${this.BASE_URL}/list/dryer`, this.getHeaders()).pipe(
       map(res => res.response?.data),
       catchError(this.handleError)
     );
