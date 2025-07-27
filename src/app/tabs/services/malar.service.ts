@@ -57,6 +57,12 @@ export class MalarService {
       catchError(this.handleError)
     );
   }
+  createUserProfile(body: any): Observable<any> {
+    return this.http.post(`${this.BASE_URL}/auth/user`, body, this.getHeaders()).pipe(
+      map((res: any) => res.response),
+      catchError(this.handleError)
+    );
+  }
 
   // ------------------------
   // ✅ MASTER DATA
