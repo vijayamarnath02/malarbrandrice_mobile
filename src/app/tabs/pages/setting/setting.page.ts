@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import {
   IonButton,
   IonContent,
@@ -15,6 +16,7 @@ import {
   IonToggle,
   IonToolbar
 } from '@ionic/angular/standalone';
+import { MalarService } from '../../services/malar.service';
 
 @Component({
   selector: 'app-setting',
@@ -42,7 +44,7 @@ export class SettingPage implements OnInit {
   selectedLanguage = 'en';
   notificationsEnabled = true;
 
-  constructor() { }
+  constructor(private malarService: MalarService, private router: Router) { }
 
   ngOnInit() { }
 
@@ -52,7 +54,10 @@ export class SettingPage implements OnInit {
   }
 
   logout() {
-    console.log('Logout triggered');
+    localStorage.clear();
+    this.malarService.logout().subscribe((data) => {
+      this.router.navigate(['/']);
+    })
     // Implement logout logic
   }
 }
