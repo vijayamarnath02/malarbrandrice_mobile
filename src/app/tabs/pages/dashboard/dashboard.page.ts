@@ -26,6 +26,7 @@ import {
   shieldCheckmarkOutline,
   waterOutline
 } from 'ionicons/icons';
+import { MalarService } from '../../services/malar.service';
 
 
 @Component({
@@ -51,22 +52,30 @@ export class DashboardPage implements OnInit {
   prestreamingCount = 0;
   streamingCount = 0;
   adminUserCount = 0;
+  userListCount = 0;
 
-  constructor(private readonly router: Router) {
+  constructor(private readonly router: Router, private malarService: MalarService) {
     addIcons({ settingsOutline, listOutline, waterOutline, flashOutline, shieldCheckmarkOutline, peopleOutline, gridOutline });
   }
 
   ngOnInit() {
-    this.fetchCounts();
   }
   goTo(path: string) {
     this.router.navigate([`/tabs/${path}`]);
   }
+  ionViewWillEnter() {
+    this.fetchCounts();
+  }
   fetchCounts() {
-    // Replace this with actual API calls
-    this.dailyProcessCount = 12;
-    this.prestreamingCount = 5;
-    this.streamingCount = 8;
-    this.adminUserCount = 3;
+    this.malarService.getCounts().subscribe({
+      next: (counts: any) => {
+        this.dailyProcessCount = counts.daily;
+        this.prestreamingCount = counts.pre;
+        this.streamingCount = counts.stream;
+        this.adminUserCount = counts.pendingDailyProcess;
+        this.userListCount = counts.userCount
+      },
+      error: err => console.error('Count fetch failed', err)
+    });
   }
 }

@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, Observable, throwError } from 'rxjs';
+import { catchError, forkJoin, map, Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -180,4 +180,40 @@ export class MalarService {
       catchError(this.handleError)
     );
   }
+  getCounts(): Observable<{ daily: number; pre: number }> {
+    const dailyProcess$ = this.http.get<any>(`${this.BASE_URL}/daily-process`, this.getHeaders()).pipe(
+      map(res => res.response?.total || 0),
+      catchError(this.handleError)
+    );
+
+    const preStreaming$ = this.http.get<any>(`${this.BASE_URL}/pre-streaming`, this.getHeaders()).pipe(
+      map(res => res.response?.total || 0),
+      catchError(this.handleError)
+    );
+    const streaming$ = this.http.get<any>(`${this.BASE_URL}/streaming`, this.getHeaders()).pipe(
+      map((res: any) => res.response?.total || 0),
+      catchError(this.handleError)
+    );
+    const pendingDailyProcess$ = this.http.get<any>(`${this.BASE_URL}/daily-process`, this.getHeaders()).pipe(
+      map(res => {
+        const data = res.response?.data || [];
+        const pending = data.filter((item: any) => !item.approved_by);
+        return pending.length;
+      }),
+      catchError(this.handleError)
+    );
+    const userListCount$ = this.http.get(`${this.BASE_URL}/auth/users`, this.getHeaders()).pipe(
+      map((res: any) => res.response.total || 0),
+      catchError(this.handleError)
+    );
+
+    return forkJoin({
+      daily: dailyProcess$,
+      pre: preStreaming$,
+      stream: streaming$,
+      pendingDailyProcess: pendingDailyProcess$,
+      userCount: userListCount$
+    });
+  }
 }
+
