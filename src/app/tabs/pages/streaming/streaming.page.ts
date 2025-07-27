@@ -12,6 +12,7 @@ import {
   stopOutline,
   timeOutline
 } from 'ionicons/icons';
+import { MalarService } from '../../services/malar.service';
 @Component({
   selector: 'app-streaming',
   templateUrl: './streaming.page.html',
@@ -21,23 +22,21 @@ import {
 })
 export class StreamingPage implements OnInit {
   streamingList: any[] = [];
-  constructor() {
+  constructor(private malarService: MalarService) {
     addIcons({ settingsOutline, addOutline, timeOutline, playForwardOutline, stopOutline, hardwareChipOutline });
   }
-
   ngOnInit() {
-    this.streamingList = [
-      {
-        _id: '6880844df92600be5480457c',
-        item_id: { _id: '68803bc5d47113e593c12b46', name: 'JSR' },
-        unit_id: { _id: '68803bc5d47113e593c12b61', name: 'UNIT-1' },
-        batch_number: '000001',
-        streaming_timing: '30 mins',
-        stream_start_time: '2pm',
-        streamend_time: '30 mins',
-        dryer_id: { _id: '688082f834e9109cfbd8e15b', name: 'Bed-1' },
-      }
-    ];
+  }
+  ionViewWillEnter() {
+    this.loadDropdowns();
+  }
+
+  loadDropdowns() {
+    this.malarService.getStreamings().subscribe({
+      next: res => this.streamingList = res.map(i => i),
+      error: err => console.error('Item load failed', err),
+    });
+
   }
 
 }
