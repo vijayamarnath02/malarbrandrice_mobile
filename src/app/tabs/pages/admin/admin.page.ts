@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { IonButton, IonButtons, IonContent, IonHeader, IonIcon, IonItem, IonLabel, IonList, IonSegment, IonSegmentButton, IonText, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { MalarService } from '../../services/malar.service';
 
 @Component({
   selector: 'app-admin',
@@ -13,38 +14,20 @@ import { IonButton, IonButtons, IonContent, IonHeader, IonIcon, IonItem, IonLabe
 })
 export class AdminPage implements OnInit {
   filter: 'pending' | 'approved' = 'pending';
-  dailyProcesses = [
-    {
-      _id: '68805ee189a28eaf90362515',
-      item_id: { name: 'JSR' },
-      unit_id: { name: 'UNIT-1' },
-      date: '2025-07-23',
-      lot_number: '000001',
-      bags: 24,
-      approved_by: null, // Set to non-null to simulate "approved"
-    },
-    {
-      _id: '68805ee189a28eaf90362516',
-      item_id: { name: 'Ponni' },
-      unit_id: { name: 'UNIT-2' },
-      date: '2025-07-24',
-      lot_number: '000002',
-      bags: 30,
-      approved_by: { name: 'admin' }, // Already approved
-    }
-  ];
+  dailyProcesses: any;
   get filteredProcesses() {
-    return this.dailyProcesses.filter((process: any) =>
+    return this.dailyProcesses?.filter((process: any) =>
       this.filter === 'pending' ? !process.approved_by : !!process.approved_by
-    );
+    ) || [];
   }
 
-  constructor() { }
+  constructor(private malarService: MalarService) { }
   approveProcess(process: any) {
     process.approved_by = { name: 'admin' };
   }
+
   rejectProcess(process: any) {
-    const index = this.dailyProcesses.findIndex(p => p._id === process._id);
+    const index = this.dailyProcesses.findIndex((p: any) => p._id === process._id);
     if (index > -1) {
       this.dailyProcesses.splice(index, 1);
     }
@@ -59,5 +42,15 @@ export class AdminPage implements OnInit {
   }
   ngOnInit() {
   }
+  ionViewWillEnter() {
+    this.loadDropdowns();
+  }
+  loadDropdowns() {
+    this.malarService.getDailyProcesses().subscribe({
+      next: res => this.dailyProcesses = res.map(i => i),
+      error: err => console.error('Item load failed', err),
+    });
+  }
+
 
 }
