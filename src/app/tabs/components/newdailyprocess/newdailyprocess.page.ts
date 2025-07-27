@@ -98,8 +98,16 @@ export class NewdailyprocessPage implements OnInit {
   submitForm() {
     if (this.dailyProcessForm.valid) {
       const formValue = this.dailyProcessForm.getRawValue(); // includes disabled fields
-      console.log('Form Submitted:', formValue);
-      // Make API call here
+      this.malarService.createDailyProcess(formValue).subscribe({
+        next: res => {
+          this.router.navigate(['/tabs/daily-process']); // navigate after success
+        },
+        error: err => {
+          console.error('Item load failed', err);
+          // Optionally show a toast or alert here
+        }
+      });
+
     }
   }
   onCancel() {
