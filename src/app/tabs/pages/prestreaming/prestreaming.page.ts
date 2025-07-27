@@ -13,6 +13,7 @@ import {
   timeOutline,
   waterOutline
 } from 'ionicons/icons';
+import { MalarService } from '../../services/malar.service';
 @Component({
   selector: 'app-prestreaming',
   templateUrl: './prestreaming.page.html',
@@ -22,49 +23,22 @@ import {
 })
 export class PrestreamingPage implements OnInit {
   prestreamList: any[] = [];
-  constructor() {
+  constructor(private malarService: MalarService) {
     addIcons({ settingsOutline, addOutline, timeOutline, flashOutline, waterOutline, gridOutline, listOutline, shieldCheckmarkOutline });
   }
 
   ngOnInit() {
-    this.prestreamList = [
-      {
-        _id: '68851ffc668b1266ea75f955',
-        item_id: { _id: '68803bc5d47113e593c12b46', name: 'JSR' },
-        unit_id: { _id: '68803bc5d47113e593c12b61', name: 'UNIT-1' },
-        batch_number: '000002',
-        tank_level_timing: '15',
-        incharge: '687640b719ac4a3d8f6c0140',
-        timing: '15',
-        ural_timing: '2pm-4pm',
-        water_release_timing: '4pm',
-        remarks: 'Smooth',
-      },
-      {
-        _id: '68851ffc668b1266ea75f955',
-        item_id: { _id: '68803bc5d47113e593c12b46', name: 'JSR' },
-        unit_id: { _id: '68803bc5d47113e593c12b61', name: 'UNIT-1' },
-        batch_number: '000002',
-        tank_level_timing: '15',
-        incharge: '687640b719ac4a3d8f6c0140',
-        timing: '15',
-        ural_timing: '2pm-4pm',
-        water_release_timing: '4pm',
-        remarks: 'Smooth',
-      },
-      {
-        _id: '68851ffc668b1266ea75f955',
-        item_id: { _id: '68803bc5d47113e593c12b46', name: 'JSR' },
-        unit_id: { _id: '68803bc5d47113e593c12b61', name: 'UNIT-1' },
-        batch_number: '000002',
-        tank_level_timing: '15',
-        incharge: '687640b719ac4a3d8f6c0140',
-        timing: '15',
-        ural_timing: '2pm-4pm',
-        water_release_timing: '4pm',
-        remarks: 'Smooth',
-      },
-    ];
+  }
+
+  ionViewWillEnter() {
+    this.loadDropdowns();
+  }
+
+  loadDropdowns() {
+    this.malarService.getPrestreamings().subscribe({
+      next: res => this.prestreamList = res.map(i => i),
+      error: err => console.error('Item load failed', err),
+    });
   }
 
 }

@@ -125,21 +125,21 @@ export class MalarService {
   // ✅ PRESTREAMING
   // ------------------------
   getPrestreamings(): Observable<any[]> {
-    return this.http.get<any>(`${this.BASE_URL}/prestreaming`, this.getHeaders()).pipe(
+    return this.http.get<any>(`${this.BASE_URL}/pre-streaming`, this.getHeaders()).pipe(
       map(res => res.response?.data),
       catchError(this.handleError)
     );
   }
 
   createPrestreaming(data: any): Observable<any> {
-    return this.http.post(`${this.BASE_URL}/prestreaming`, data, this.getHeaders()).pipe(
+    return this.http.post(`${this.BASE_URL}/pre-streaming`, data, this.getHeaders()).pipe(
       map(res => res),
       catchError(this.handleError)
     );
   }
 
   getPrestreamingById(id: string): Observable<any> {
-    return this.http.get(`${this.BASE_URL}/prestreaming/${id}`, this.getHeaders()).pipe(
+    return this.http.get(`${this.BASE_URL}/pre-streaming/${id}`, this.getHeaders()).pipe(
       map((res: any) => res.response),
       catchError(this.handleError)
     );
