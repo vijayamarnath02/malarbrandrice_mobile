@@ -28,8 +28,8 @@ import { MalarService } from '../../services/malar.service';
 })
 export class NewPrestreamingPage implements OnInit {
   prestreamingForm!: FormGroup;
-  itemList = ['Paddy', 'Boiled Rice', 'Raw Rice'];
-  unitList = ['Unit A', 'Unit B'];
+  itemList: any;
+  unitList: any;
   loggedInUser = 'admin@malarbrandrice.com';
   batchNumber = 'BATCH-' + Math.floor(Math.random() * 100000);
 
@@ -53,11 +53,11 @@ export class NewPrestreamingPage implements OnInit {
   }
   loadDropdowns() {
     this.malarService.getItems().subscribe({
-      next: res => this.itemList = res.map(i => i.name),
+      next: res => this.itemList = res.map(i => i),
       error: err => console.error('Item load failed', err),
     });
     this.malarService.getUnits().subscribe({
-      next: res => this.unitList = res.map(u => u.name),
+      next: res => this.unitList = res.map(u => u),
       error: err => console.error('Unit load failed', err),
     });
   }
@@ -68,9 +68,24 @@ export class NewPrestreamingPage implements OnInit {
 
   submitForm() {
     if (this.prestreamingForm.valid) {
-      const formValue = this.prestreamingForm.getRawValue(); // Includes disabled fields
-      console.log('Prestreaming Submitted:', formValue);
-      // Send to API here
+      const formValue = this.prestreamingForm.getRawValue();
+      const data = {
+        item_id: formValue.item,
+        unit_id: formValue.unit,
+        tank_level_timing: formValue.tankLevelTiming,
+        timing: formValue.timing,
+        ural_timing: formValue.uralTiming,
+        water_release_timing: formValue.waterReleaseTiming,
+        remarks: formValue.remarks,
+      }
+      this.malarService.createPrestreaming(data).subscribe({
+        next: res => {
+          this.router.navigate(['/tabs/prestreaming']); // navigate after success
+        },
+        error: err => {
+          console.error('Item load failed', err);
+        }
+      });
     }
   }
 

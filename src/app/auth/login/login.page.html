@@ -21,7 +21,7 @@
               <!-- Card Middle: Inputs -->
               <div class="card-middle">
                 <ion-item lines="inset">
-                  <ion-input placeholder="Username" formControlName="username" type="text"></ion-input>
+                  <ion-input placeholder="Enter Your Email" formControlName="username" type="text"></ion-input>
                 </ion-item>
                 <ion-text color="danger" *ngIf="
                     loginForm.get('username')?.touched &&
@@ -45,8 +45,7 @@
 
               <!-- Card Bottom: Button -->
               <div class="card-bottom">
-                <ion-button expand="block" type="submit" [disabled]="loginForm.invalid" [routerLink]="'/tabs/dashboard'"
-                  color="primary">
+                <ion-button expand="block" type="submit" [disabled]="loginForm.invalid" color="primary">
                   Log In
                 </ion-button>
               </div>

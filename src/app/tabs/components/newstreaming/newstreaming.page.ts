@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import {
   IonButton,
   IonCol,
@@ -30,10 +31,10 @@ export class NewStreamingPage implements OnInit {
   streamingForm!: FormGroup;
   itemList: any;
   unitList: any;
-  dryerList = ['Dryer 1', 'Dryer 2'];
+  dryerList: any;
   batchNumber = 'STRM-' + Math.floor(Math.random() * 100000);
 
-  constructor(private fb: FormBuilder, private malarService: MalarService) { }
+  constructor(private fb: FormBuilder, private malarService: MalarService, private router: Router) { }
 
   ngOnInit() {
     this.streamingForm = this.fb.group({
@@ -51,15 +52,15 @@ export class NewStreamingPage implements OnInit {
   }
   loadDropdowns() {
     this.malarService.getItems().subscribe({
-      next: res => this.itemList = res.map(i => i.name),
+      next: res => this.itemList = res.map(i => i),
       error: err => console.error('Item load failed', err),
     });
     this.malarService.getUnits().subscribe({
-      next: res => this.unitList = res.map(u => u.name),
+      next: res => this.unitList = res.map(u => u),
       error: err => console.error('Unit load failed', err),
     });
     this.malarService.getDryers().subscribe({
-      next: res => this.dryerList = res.map(u => u.name),
+      next: res => this.dryerList = res.map(u => u),
       error: err => console.error('Unit load failed', err),
     });
   }
@@ -72,8 +73,24 @@ export class NewStreamingPage implements OnInit {
   submitForm() {
     if (this.streamingForm.valid) {
       const formValue = this.streamingForm.getRawValue();
-      console.log('Streaming Submitted:', formValue);
-      // Implement submission logic here (API call, etc.)
+      const data = {
+        item_id: formValue.item,
+        unit_id: formValue.unit,
+        streaming_timing: formValue.streamingTiming,
+        stream_start_time: formValue.streamStartTime,
+        stream_end_time: formValue.endTime,
+        streamend_time: " 30 mins",
+        dryer_id: formValue.dryer
+
+      }
+      this.malarService.createStreaming(data).subscribe({
+        next: res => {
+          this.router.navigate(['/tabs/streaming']);
+        },
+        error: err => {
+          console.error('Item load failed', err);
+        }
+      });
     } else {
       this.streamingForm.markAllAsTouched();
     }
@@ -83,5 +100,6 @@ export class NewStreamingPage implements OnInit {
     this.streamingForm.reset({
       batchNumber: this.batchNumber
     });
+    this.router.navigate(['/tabs/streaming']);
   }
 }

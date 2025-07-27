@@ -78,15 +78,15 @@ export class NewdailyprocessPage implements OnInit {
   }
   loadDropdowns() {
     this.malarService.getItems().subscribe({
-      next: res => this.itemList = res.map(i => i.name),
+      next: res => this.itemList = res.map(i => i),
       error: err => console.error('Item load failed', err),
     });
     this.malarService.getGodowns().subscribe({
-      next: res => this.uralList = res.map(g => g.name),
+      next: res => this.uralList = res.map(g => g),
       error: err => console.error('Godown load failed', err),
     });
     this.malarService.getUnits().subscribe({
-      next: res => this.unitList = res.map(u => u.name),
+      next: res => this.unitList = res.map(u => u),
       error: err => console.error('Unit load failed', err),
     });
   }
@@ -97,8 +97,19 @@ export class NewdailyprocessPage implements OnInit {
 
   submitForm() {
     if (this.dailyProcessForm.valid) {
-      const formValue = this.dailyProcessForm.getRawValue(); // includes disabled fields
-      this.malarService.createDailyProcess(formValue).subscribe({
+      const formValue = this.dailyProcessForm.getRawValue();
+      const data = {
+        item_id: formValue.item,
+        date: new Date(formValue.date).toISOString().split('T')[0],
+        godown_id: formValue.ural,
+        unit_id: formValue.unit,
+        bags: formValue.bags,
+        weight: formValue.weight,
+        lot_number: formValue.lotNumber,
+        vehicle_number: formValue.vehicleNumber,
+        moisture: formValue.moisture,
+      }
+      this.malarService.createDailyProcess(data).subscribe({
         next: res => {
           this.router.navigate(['/tabs/daily-process']); // navigate after success
         },

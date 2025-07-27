@@ -28,8 +28,8 @@ export class MalarService {
   // ------------------------
   // ✅ AUTH
   // ------------------------
-  login(credentials: { username: string; password: string }): Observable<string> {
-    return this.http.post<any>(`${this.BASE_URL}/auth/login`, credentials).pipe(
+  login(data: any): Observable<string> {
+    return this.http.post<any>(`${this.BASE_URL}/auth/login`, data).pipe(
       map(res => res.response?.token),
       catchError(this.handleError)
     );
@@ -77,7 +77,7 @@ export class MalarService {
   }
 
   getDryers(): Observable<any[]> {
-    return this.http.get<any>(`${this.BASE_URL}/list/dryer`, this.getHeaders()).pipe(
+    return this.http.get<any>(`${this.BASE_URL}/list/dryers`, this.getHeaders()).pipe(
       map(res => res.response?.data),
       catchError(this.handleError)
     );

@@ -12,7 +12,7 @@
       <ion-item>
         <ion-label position="floating">Item</ion-label>
         <ion-select formControlName="item" placeholder="Select Item">
-          <ion-select-option *ngFor="let item of itemList" [value]="item">{{ item }}</ion-select-option>
+          <ion-select-option *ngFor="let item of itemList" [value]="item._id">{{ item.name }}</ion-select-option>
         </ion-select>
       </ion-item>
       <ion-text color="danger" *ngIf="isInvalid('item')"><small>Item is required</small></ion-text>
@@ -21,7 +21,7 @@
       <ion-item>
         <ion-label position="floating">Unit</ion-label>
         <ion-select formControlName="unit" placeholder="Select Unit">
-          <ion-select-option *ngFor="let unit of unitList" [value]="unit">{{ unit }}</ion-select-option>
+          <ion-select-option *ngFor="let unit of unitList" [value]="unit._id">{{ unit.name }}</ion-select-option>
         </ion-select>
       </ion-item>
       <ion-text color="danger" *ngIf="isInvalid('unit')"><small>Unit is required</small></ion-text>
@@ -58,7 +58,7 @@
       <ion-item>
         <ion-label position="floating">Dryer</ion-label>
         <ion-select formControlName="dryer" placeholder="Select Dryer">
-          <ion-select-option *ngFor="let dryer of dryerList" [value]="dryer">{{ dryer }}</ion-select-option>
+          <ion-select-option *ngFor="let dryer of dryerList" [value]="dryer._id">{{ dryer.name }}</ion-select-option>
         </ion-select>
       </ion-item>
       <ion-text color="danger" *ngIf="isInvalid('dryer')"><small>Dryer is required</small></ion-text>
