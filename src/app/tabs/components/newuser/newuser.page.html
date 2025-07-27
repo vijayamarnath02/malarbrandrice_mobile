@@ -1,0 +1,74 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>Create User</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <form [formGroup]="newUserForm" (ngSubmit)="submitForm()">
+
+    <!-- Name -->
+    <ion-item>
+      <ion-label position="floating">Name</ion-label>
+      <ion-input formControlName="name"></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="newUserForm.get('name')?.touched && newUserForm.get('name')?.invalid">
+      <small *ngIf="newUserForm.get('name')?.errors?.['required']">Name is required.</small>
+    </ion-text>
+
+    <!-- Email -->
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input formControlName="email" type="email"></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="newUserForm.get('email')?.touched && newUserForm.get('email')?.invalid">
+      <small *ngIf="newUserForm.get('email')?.errors?.['required']">Email is required.</small>
+      <small *ngIf="newUserForm.get('email')?.errors?.['email']">Enter a valid email.</small>
+    </ion-text>
+
+    <!-- Phone -->
+    <ion-item>
+      <ion-label position="floating">Phone</ion-label>
+      <ion-input formControlName="phone" type="tel"></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="newUserForm.get('phone')?.touched && newUserForm.get('phone')?.invalid">
+      <small *ngIf="newUserForm.get('phone')?.errors?.['required']">Phone number is required.</small>
+      <small *ngIf="newUserForm.get('phone')?.errors?.['pattern']">Enter a valid phone number.</small>
+    </ion-text>
+
+    <!-- Country Code -->
+    <ion-item>
+      <ion-label position="floating">Country Code</ion-label>
+      <ion-input formControlName="country_code" type="text"></ion-input>
+    </ion-item>
+    <ion-text color="danger"
+      *ngIf="newUserForm.get('country_code')?.touched && newUserForm.get('country_code')?.invalid">
+      <small *ngIf="newUserForm.get('country_code')?.errors?.['required']">Country code is required.</small>
+    </ion-text>
+
+    <!-- User Type -->
+    <ion-item>
+      <ion-label position="floating">User Type</ion-label>
+      <ion-input formControlName="user_type" type="number" readonly></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="newUserForm.get('user_type')?.touched && newUserForm.get('user_type')?.invalid">
+      <small *ngIf="newUserForm.get('user_type')?.errors?.['required']">User type is required.</small>
+    </ion-text>
+
+    <!-- Buttons -->
+    <ion-grid style="margin-top: 24px;">
+      <ion-row class="ion-justify-content-between ion-align-items-center">
+        <ion-col size="6">
+          <ion-button expand="block" color="medium" fill="outline" type="button" (click)="cancel()">
+            Cancel
+          </ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button expand="block" type="submit" [disabled]="newUserForm.invalid" color="primary" fill="solid">
+            Submit <ion-icon slot="end" name="checkmark-done-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

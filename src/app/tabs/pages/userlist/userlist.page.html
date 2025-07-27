@@ -1,0 +1,40 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>User List</ion-title>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/tabs/setting']">
+        <ion-icon name="settings-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="10"></ion-col>
+      <ion-col size="2" style="text-align: end;">
+        <ion-button [routerLink]="['/tabs/userlist/create']">
+          <ion-icon name="add-outline" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-list style="background-color: var(--ion-color-background);">
+    <ion-item *ngFor="let user of userList">
+      <ion-avatar slot="start">
+        <ion-icon name="person-circle-outline" size="large"></ion-icon>
+      </ion-avatar>
+      <ion-label>
+        <h2>{{ user.name | titlecase }}</h2>
+        <p>{{ user.email }}</p>
+        <ion-text color="medium">
+          <small *ngIf="user.phone">📞 +{{ user.country_code }} {{ user.phone }}</small><br>
+          <small>Created on: {{ user.created_at | date: 'mediumDate' }}</small>
+        </ion-text>
+      </ion-label>
+      <ion-badge [color]="user.is_active ? 'success' : 'danger'" slot="end">
+        {{ user.is_active ? 'Active' : 'Inactive' }}
+      </ion-badge>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -21,6 +21,7 @@ import {
   flashOutline,
   gridOutline,
   listOutline,
+  peopleOutline,
   settingsOutline,
   shieldCheckmarkOutline,
   waterOutline
@@ -46,14 +47,26 @@ import {
     IonIcon, CommonModule, FormsModule]
 })
 export class DashboardPage implements OnInit {
+  dailyProcessCount = 0;
+  prestreamingCount = 0;
+  streamingCount = 0;
+  adminUserCount = 0;
 
   constructor(private readonly router: Router) {
-    addIcons({ settingsOutline, listOutline, waterOutline, flashOutline, shieldCheckmarkOutline, gridOutline });
+    addIcons({ settingsOutline, listOutline, waterOutline, flashOutline, shieldCheckmarkOutline, peopleOutline, gridOutline });
   }
 
   ngOnInit() {
+    this.fetchCounts();
   }
   goTo(path: string) {
     this.router.navigate([`/tabs/${path}`]);
+  }
+  fetchCounts() {
+    // Replace this with actual API calls
+    this.dailyProcessCount = 12;
+    this.prestreamingCount = 5;
+    this.streamingCount = 8;
+    this.adminUserCount = 3;
   }
 }

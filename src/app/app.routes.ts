@@ -33,6 +33,10 @@ export const routes: Routes = [
         loadComponent: () => import('./tabs/pages/dashboard/dashboard.page').then(m => m.DashboardPage)
       },
       {
+        path: 'userlist',
+        loadComponent: () => import('./tabs/pages/userlist/userlist.page').then(m => m.UserlistPage)
+      },
+      {
         path: 'daily-process/create',
         loadComponent: () => import('./tabs/components/newdailyprocess/newdailyprocess.page').then(m => m.NewdailyprocessPage)
       },
@@ -43,6 +47,10 @@ export const routes: Routes = [
       {
         path: 'streaming/create',
         loadComponent: () => import('./tabs/components/newstreaming/newstreaming.page').then(m => m.NewStreamingPage)
+      },
+      {
+        path: 'userlist/create',
+        loadComponent: () => import('./tabs/components/newuser/newuser.page').then(m => m.NewuserPage)
       },
 
 
