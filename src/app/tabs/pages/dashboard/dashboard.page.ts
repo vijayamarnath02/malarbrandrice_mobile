@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import {
+  IonButtons,
   IonCard,
   IonCardHeader,
   IonCardTitle,
@@ -20,6 +21,7 @@ import {
   flashOutline,
   gridOutline,
   listOutline,
+  settingsOutline,
   shieldCheckmarkOutline,
   waterOutline
 } from 'ionicons/icons';
@@ -30,7 +32,7 @@ import {
   templateUrl: './dashboard.page.html',
   styleUrls: ['./dashboard.page.scss'],
   standalone: true,
-  imports: [RouterModule,
+  imports: [IonButtons, RouterModule,
     IonContent,
     IonHeader,
     IonTitle,
@@ -46,7 +48,7 @@ import {
 export class DashboardPage implements OnInit {
 
   constructor(private readonly router: Router) {
-    addIcons({ listOutline, waterOutline, gridOutline, flashOutline, shieldCheckmarkOutline });
+    addIcons({ settingsOutline, listOutline, waterOutline, flashOutline, shieldCheckmarkOutline, gridOutline });
   }
 
   ngOnInit() {

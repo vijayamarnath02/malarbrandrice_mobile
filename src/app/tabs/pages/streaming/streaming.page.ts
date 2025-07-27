@@ -2,12 +2,14 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonChip, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonLabel, IonList, IonRow, IonText, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { IonButton, IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonChip, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonLabel, IonList, IonRow, IonText, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import {
   addOutline,
   hardwareChipOutline,
-  playForwardOutline, stopOutline,
+  playForwardOutline,
+  settingsOutline,
+  stopOutline,
   timeOutline
 } from 'ionicons/icons';
 @Component({
@@ -15,12 +17,12 @@ import {
   templateUrl: './streaming.page.html',
   styleUrls: ['./streaming.page.scss'],
   standalone: true,
-  imports: [IonGrid, IonChip, IonCol, IonRow, IonCardContent, IonCardSubtitle, IonCardTitle, IonCardHeader, IonCard, IonButton, IonIcon, IonList, IonLabel, IonText, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, RouterModule]
+  imports: [IonButtons, IonGrid, IonChip, IonCol, IonRow, IonCardContent, IonCardSubtitle, IonCardTitle, IonCardHeader, IonCard, IonButton, IonIcon, IonList, IonLabel, IonText, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, RouterModule]
 })
 export class StreamingPage implements OnInit {
   streamingList: any[] = [];
   constructor() {
-    addIcons({ addOutline, timeOutline, playForwardOutline, stopOutline, hardwareChipOutline });
+    addIcons({ settingsOutline, addOutline, timeOutline, playForwardOutline, stopOutline, hardwareChipOutline });
   }
 
   ngOnInit() {
