@@ -6,7 +6,7 @@ import {
   ReactiveFormsModule,
   Validators
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import {
   IonButton,
@@ -56,8 +56,9 @@ export class NewdailyprocessPage implements OnInit {
   uralList: any;
   unitList: any;
   loggedInUser = 'admin@malarbrandrice.com';
-
-  constructor(private fb: FormBuilder, private router: Router, private malarService: MalarService) { }
+  processId: string | null = null;
+  originalFormValue: any;
+  constructor(private fb: FormBuilder, private router: Router, private malarService: MalarService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.dailyProcessForm = this.fb.group({
@@ -70,11 +71,15 @@ export class NewdailyprocessPage implements OnInit {
       bags: ['', Validators.required],
       weight: ['', Validators.required],
       moisture: ['', Validators.required],
-      incharge: [{ value: this.loggedInUser, disabled: true }, Validators.required]
+      incharge: [this.loggedInUser || '', Validators.required]
     });
   }
   ionViewWillEnter() {
+    this.processId = this.route.snapshot.paramMap.get('id') || null;
     this.loadDropdowns();
+    if (this.processId && this.processId != null) {
+      this.getDailyProcessById();
+    }
   }
   loadDropdowns() {
     this.malarService.getItems().subscribe({
@@ -94,9 +99,30 @@ export class NewdailyprocessPage implements OnInit {
     const control = this.dailyProcessForm.get(field);
     return control?.invalid && (control.dirty || control.touched) || false;
   }
+  getDailyProcessById() {
+    this.malarService.getDailyProcessById(this.processId || "0").subscribe({
+      next: res => {
+        this.dailyProcessForm.patchValue({
+          item: res.item_id._id,
+          date: res.date,
+          ural: res.godown_id._id,
+          unit: res.unit_id._id,
+          lotNumber: res.lot_number,
+          vehicleNumber: res.vehicle_number,
+          bags: res.bags,
+          weight: res.weight,
+          moisture: res.moisture,
+          incharge: res.incharge.name
+        })
+        this.originalFormValue = JSON.stringify(this.dailyProcessForm.value);
+        this.dailyProcessForm.markAsPristine();
+      },
+      error: err => console.error('Unit load failed', err),
+    });
+  }
 
   submitForm() {
-    if (this.dailyProcessForm.valid) {
+    if (this.dailyProcessForm.valid && this.processId === null) {
       const formValue = this.dailyProcessForm.getRawValue();
       const data = {
         item_id: formValue.item,
@@ -120,6 +146,30 @@ export class NewdailyprocessPage implements OnInit {
       });
 
     }
+    else if (this.dailyProcessForm.valid && this.processId !== null) {
+      const formValue = this.dailyProcessForm.getRawValue();
+      const data = {
+        item_id: formValue.item,
+        date: new Date(formValue.date).toISOString().split('T')[0],
+        godown_id: formValue.ural,
+        unit_id: formValue.unit,
+        bags: formValue.bags,
+        weight: formValue.weight,
+        lot_number: formValue.lotNumber,
+        vehicle_number: formValue.vehicleNumber,
+        moisture: formValue.moisture,
+      }
+      this.malarService.putDailyProcessById(this.processId, data).subscribe({
+        next: res => {
+          this.router.navigate(['/tabs/daily-process']); // navigate after success
+        },
+        error: err => {
+          console.error('Item load failed', err);
+          // Optionally show a toast or alert here
+        }
+      });
+
+    }
   }
   onCancel() {
     this.dailyProcessForm.reset({
@@ -127,5 +177,8 @@ export class NewdailyprocessPage implements OnInit {
       incharge: this.loggedInUser,
     });
     this.router.navigate(['/tabs/daily-process']);
+  }
+  isFormUnchanged(): boolean {
+    return JSON.stringify(this.dailyProcessForm.value) === this.originalFormValue;
   }
 }

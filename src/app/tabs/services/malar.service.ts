@@ -115,6 +115,16 @@ export class MalarService {
       .pipe(map((res: any) => res.response));
     return this.withLoader(obs, 'Fetching process details...');
   }
+  putDailyProcessById(id: any, data: any): Observable<any> {
+    const obs = this.http.put(`${this.BASE_URL}/daily-process/${id}`, data, this.getHeaders())
+      .pipe(map((res: any) => res.response));
+    return this.withLoader(obs, 'Fetching process details...');
+  }
+  deleteDailyProcessById(id: any): Observable<any> {
+    const obs = this.http.delete(`${this.BASE_URL}/daily-process/${id}`, this.getHeaders())
+      .pipe(map((res: any) => res.response));
+    return this.withLoader(obs, 'Deleting process details...');
+  }
 
   approveDailyProcess(id: string): Observable<any> {
     const obs = this.http.put(`${this.BASE_URL}/daily-process/${id}/approve`, {}, this.getHeaders())
