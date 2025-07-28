@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
-    <ion-title>Streaming</ion-title>
+    <ion-title>Steaming</ion-title>
     <ion-buttons slot="end">
       <ion-button [routerLink]="['/tabs/setting']">
         <ion-icon name="settings-outline" slot="icon-only"></ion-icon>
@@ -32,7 +32,7 @@
           <ion-col size="12" size-md="6">
             <ion-chip color="primary">
               <ion-icon name="time-outline"></ion-icon>
-              <ion-label>Streaming Time: {{ stream.streaming_timing }}</ion-label>
+              <ion-label>Steam Time: {{ stream.streaming_timing }}</ion-label>
             </ion-chip>
           </ion-col>
           <ion-col size="12" size-md="6">
@@ -61,7 +61,7 @@
   </ion-list>
 
   <ion-text color="medium" *ngIf="streamingList.length === 0" class="animate__animated animate__fadeIn">
-    <p class="ion-padding">No streaming records found.</p>
+    <p class="ion-padding">No steaming records found.</p>
   </ion-text>
 
 </ion-content>

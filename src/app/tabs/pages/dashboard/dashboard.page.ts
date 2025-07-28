@@ -53,6 +53,7 @@ export class DashboardPage implements OnInit {
   streamingCount = 0;
   adminUserCount = 0;
   userListCount = 0;
+  userRole: string | null = localStorage.getItem('userrole');
 
   constructor(private readonly router: Router, private malarService: MalarService) {
     addIcons({ settingsOutline, listOutline, waterOutline, flashOutline, shieldCheckmarkOutline, peopleOutline, gridOutline });
@@ -67,15 +68,28 @@ export class DashboardPage implements OnInit {
     this.fetchCounts();
   }
   fetchCounts() {
-    this.malarService.getCounts().subscribe({
-      next: (counts: any) => {
-        this.dailyProcessCount = counts.daily;
-        this.prestreamingCount = counts.pre;
-        this.streamingCount = counts.stream;
-        this.adminUserCount = counts.pendingDailyProcess;
-        this.userListCount = counts.userCount
-      },
-      error: err => console.error('Count fetch failed', err)
-    });
+
+    if (this.userRole === '1') {
+      this.malarService.getCounts().subscribe({
+        next: (counts: any) => {
+          this.dailyProcessCount = counts.daily;
+          this.prestreamingCount = counts.pre;
+          this.streamingCount = counts.stream;
+          this.adminUserCount = counts.pendingDailyProcess;
+          this.userListCount = counts.userCount
+        },
+        error: err => console.error('Count fetch failed', err)
+      });
+    }
+    else {
+      this.malarService.getUserCounts().subscribe({
+        next: (counts: any) => {
+          this.dailyProcessCount = counts.daily;
+          this.prestreamingCount = counts.pre;
+          this.streamingCount = counts.stream;
+        },
+        error: err => console.error('Count fetch failed', err)
+      });
+    }
   }
 }

@@ -28,7 +28,7 @@
         <ion-card button (click)="goTo('prestreaming')">
           <ion-card-header>
             <ion-icon name="water-outline" class="dashboard-icon"></ion-icon>
-            <ion-card-title>Prestreaming</ion-card-title>
+            <ion-card-title>Pre-steaming</ion-card-title>
             <div class="dashboard-count">{{ prestreamingCount }} entries</div>
           </ion-card-header>
         </ion-card>
@@ -36,17 +36,17 @@
     </ion-row>
 
     <ion-row>
-      <ion-col size="6">
+      <ion-col [size]="userRole==='1' ? 6 : 12">
         <ion-card button (click)="goTo('streaming')">
           <ion-card-header>
             <ion-icon name="flash-outline" class="dashboard-icon"></ion-icon>
-            <ion-card-title>Streaming</ion-card-title>
+            <ion-card-title>Steaming</ion-card-title>
             <div class="dashboard-count">{{ streamingCount }} entries</div>
           </ion-card-header>
         </ion-card>
       </ion-col>
 
-      <ion-col size="6">
+      <ion-col size="6" *ngIf="userRole === '1'">
         <ion-card button (click)="goTo('admin')">
           <ion-card-header>
             <ion-icon name="shield-checkmark-outline" class="dashboard-icon"></ion-icon>
@@ -57,7 +57,7 @@
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col>
+      <ion-col *ngIf="userRole === '1'">
         <ion-card button (click)="goTo('userlist')">
           <ion-card-header>
             <ion-icon name="people-outline" class="dashboard-icon"></ion-icon>

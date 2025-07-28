@@ -61,6 +61,10 @@ export const routes: Routes = [
     path: '',
     redirectTo: 'home',
     pathMatch: 'full',
+  },
+  {
+    path: 'loaderscreen',
+    loadComponent: () => import('./loaderscreen/loaderscreen.page').then( m => m.LoaderscreenPage)
   }
 
 

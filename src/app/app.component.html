@@ -1,3 +1,4 @@
 <ion-app>
   <ion-router-outlet></ion-router-outlet>
+  <app-loader [visible]="(visible$ | async) ?? false" [message]="(message$ | async) ?? 'Please wait...'"></app-loader>
 </ion-app>

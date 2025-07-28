@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, forkJoin, map, Observable, throwError } from 'rxjs';
+import { LoaderServiceService } from 'src/app/loader-service.service';
 
 @Injectable({
   providedIn: 'root',
@@ -8,10 +9,10 @@ import { catchError, forkJoin, map, Observable, throwError } from 'rxjs';
 export class MalarService {
   private BASE_URL = 'https://dev.nexafuze.com/malar-app-api/v1';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private loader: LoaderServiceService) { }
 
   private getHeaders(): { headers: HttpHeaders } {
-    const token = localStorage.getItem('token') || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NzY0MGI3MTlhYzRhM2Q4ZjZjMDE0MCIsInR5cGUiOiJzdXBlcl9hZG1pbiIsIm5hbWUiOiJhZG1pbiIsImlhdCI6MTc1MzIzNDU1NywiZXhwIjoxNzU2MzQ0OTU3fQ.nJBv94HmUDRhMZLM0XVjDo2uixFCXRYwB9C-Skf89d4';
+    const token = localStorage.getItem('token');
     return {
       headers: new HttpHeaders({
         Authorization: `Bearer ${token}`,
@@ -30,7 +31,7 @@ export class MalarService {
   // ------------------------
   login(data: any): Observable<string> {
     return this.http.post<any>(`${this.BASE_URL}/auth/login`, data).pipe(
-      map(res => res.response?.token),
+      map(res => res),
       catchError(this.handleError)
     );
   }
@@ -215,5 +216,41 @@ export class MalarService {
       userCount: userListCount$
     });
   }
+  getUserCounts(): Observable<{ daily: number; pre: number }> {
+    const dailyProcess$ = this.http.get<any>(`${this.BASE_URL}/daily-process`, this.getHeaders()).pipe(
+      map(res => res.response?.total || 0),
+      catchError(this.handleError)
+    );
+
+    const preStreaming$ = this.http.get<any>(`${this.BASE_URL}/pre-streaming`, this.getHeaders()).pipe(
+      map(res => res.response?.total || 0),
+      catchError(this.handleError)
+    );
+    const streaming$ = this.http.get<any>(`${this.BASE_URL}/streaming`, this.getHeaders()).pipe(
+      map((res: any) => res.response?.total || 0),
+      catchError(this.handleError)
+    );
+
+    return forkJoin({
+      daily: dailyProcess$,
+      pre: preStreaming$,
+      stream: streaming$,
+    });
+  }
+
+  private withLoader<T>(obs: Observable<T>, message: string = 'Loading...'): Observable<T> {
+    this.loader.show(message);
+    return obs.pipe(
+      map((res: T) => {
+        this.loader.hide();
+        return res;
+      }),
+      catchError(err => {
+        this.loader.hide();
+        return this.handleError(err);
+      })
+    );
+  }
+
 }
 

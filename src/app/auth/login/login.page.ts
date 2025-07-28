@@ -29,13 +29,20 @@ export class LoginPage implements OnInit {
         email: this.loginForm.value.username,
         password: this.loginForm.value.password
       }
-      console.log(this.loginForm.value)
       this.malarService.login(data).subscribe({
-        next: res => {
-          this.router.navigate(['/tabs/dashboard']); // navigate after success
+        next: (res: any) => {
+          if (res.statusCode == 200) {
+            console.log(res);
+            localStorage.setItem('token', res?.response?.token);
+            localStorage.setItem('userrole', res?.response?.user_type)
+            setTimeout(() => {
+              this.router.navigate(['/tabs/dashboard']);
+            }, 2000)
+
+          }
         },
         error: err => {
-          this.router.navigate(['/tabs/dashboard']);
+          alert('login failed.')
           console.error('Item load failed', err);
         }
       });
