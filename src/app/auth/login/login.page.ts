@@ -35,6 +35,7 @@ export class LoginPage implements OnInit {
           this.router.navigate(['/tabs/dashboard']); // navigate after success
         },
         error: err => {
+          this.router.navigate(['/tabs/dashboard']);
           console.error('Item load failed', err);
         }
       });
