@@ -3,8 +3,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { IonButton, IonButtons, IonContent, IonHeader, IonIcon, IonItem, IonLabel, IonList, IonSegment, IonSegmentButton, IonText, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { addIcons } from 'ionicons';
+import {
+  checkmarkCircleOutline, closeCircleOutline,
+  eyeOutline,
+  settingsOutline,
+  trashOutline
+} from 'ionicons/icons';
 import { MalarService } from '../../services/malar.service';
-
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.page.html',
@@ -21,22 +27,36 @@ export class AdminPage implements OnInit {
     ) || [];
   }
 
-  constructor(private malarService: MalarService) { }
-  approveProcess(process: any) {
-    process.approved_by = { name: 'admin' };
+  constructor(private malarService: MalarService) {
+    addIcons({ settingsOutline, eyeOutline, checkmarkCircleOutline, closeCircleOutline, trashOutline });
   }
+  approveProcess(process: any) {
+    this.malarService.approveDailyProcess(process._id).subscribe({
+      next: () => {
+        this.loadDropdowns();
+      },
+      error: err => {
+        console.error('Approval failed:', err);
+      }
+    });
+  }
+
 
   rejectProcess(process: any) {
-    const index = this.dailyProcesses.findIndex((p: any) => p._id === process._id);
-    if (index > -1) {
-      this.dailyProcesses.splice(index, 1);
-    }
+    this.malarService.deleteDailyProcessById(process._id).subscribe({
+      next: () => {
+        this.loadDropdowns();
+      },
+      error: err => {
+        console.error('Approval failed:', err);
+      }
+    });
   }
 
-  viewProcess(process: any) {
-    console.log('Viewing', process);
-    // Optional: Open modal or route to detail page
-  }
+  // viewProcess(process: any) {
+  //   console.log('Viewing', process);
+  //   // Optional: Open modal or route to detail page
+  // }
   switchData(event: any) {
     this.filter = event.target.value
   }

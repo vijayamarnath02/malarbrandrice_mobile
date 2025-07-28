@@ -31,10 +31,6 @@
       </ion-label>
 
       <ion-buttons slot="end">
-        <ion-button fill="clear" color="medium" (click)="viewProcess(process)">
-          <ion-icon slot="icon-only" name="eye-outline"></ion-icon>
-        </ion-button>
-
         <ng-container *ngIf="filter === 'pending'">
           <ion-button color="success" (click)="approveProcess(process)">
             <ion-icon slot="icon-only" name="checkmark-circle-outline"></ion-icon>
@@ -42,6 +38,12 @@
           <ion-button color="danger" (click)="rejectProcess(process)">
             <ion-icon slot="icon-only" name="close-circle-outline"></ion-icon>
           </ion-button>
+        </ng-container>
+        <ng-container *ngIf="filter === 'approved'">
+          <ion-button color="success">
+            <ion-icon slot="icon-only" name="checkmark-circle-outline"></ion-icon>
+          </ion-button>
+
         </ng-container>
       </ion-buttons>
     </ion-item>

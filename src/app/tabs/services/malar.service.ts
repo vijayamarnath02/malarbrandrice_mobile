@@ -147,7 +147,7 @@ export class MalarService {
   }
 
   approveDailyProcess(id: string): Observable<any> {
-    const obs = this.http.put(`${this.BASE_URL}/daily-process/${id}/approve`, {}, this.getHeaders())
+    const obs = this.http.post(`${this.BASE_URL}/daily-process/approve/${id}`, {}, this.getHeaders())
       .pipe(map(res => res));
     return this.withLoader(obs, 'Approving process...');
   }
