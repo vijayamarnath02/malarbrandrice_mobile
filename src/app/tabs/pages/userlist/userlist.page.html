@@ -8,33 +8,51 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
+
 <ion-content [fullscreen]="true">
   <ion-grid>
     <ion-row>
       <ion-col size="10"></ion-col>
-      <ion-col size="2" style="text-align: end;">
-        <ion-button [routerLink]="['/tabs/userlist/create']">
+      <ion-col size="2" class="ion-text-end">
+        <ion-button [routerLink]="['/tabs/userlist/create']" color="primary" shape="round">
           <ion-icon name="add-outline" slot="icon-only"></ion-icon>
         </ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
+
   <ion-list style="background-color: var(--ion-color-background);">
-    <ion-item *ngFor="let user of userList">
-      <ion-avatar slot="start">
+    <ion-item *ngFor="let user of userList" lines="full" class="ion-align-items-start">
+      <ion-avatar slot="start" style="margin-top: 6px;">
         <ion-icon name="person-circle-outline" size="large"></ion-icon>
       </ion-avatar>
+
       <ion-label>
-        <h2>{{ user.name | titlecase }}</h2>
+        <h2 class="ion-text-capitalize">{{ user.name }}</h2>
         <p>{{ user.email }}</p>
         <ion-text color="medium">
-          <small *ngIf="user.phone">📞 +{{ user.country_code }} {{ user.phone }}</small><br>
-          <small>Created on: {{ user.created_at | date: 'mediumDate' }}</small>
+          <p *ngIf="user.phone" style="margin: 2px 0;">📞 +{{ user.country_code }} {{ user.phone }}</p>
+          <p style="margin: 2px 0;">🗓️ Created: {{ user.created_at | date: 'mediumDate' }}</p>
         </ion-text>
       </ion-label>
-      <ion-badge [color]="user.is_active ? 'success' : 'danger'" slot="end">
-        {{ user.is_active ? 'Active' : 'Inactive' }}
-      </ion-badge>
+
+      <div slot="end" class="ion-text-end"
+        style="display: flex; flex-direction: column; align-items: flex-end; gap: 6px;">
+        <ion-badge [color]="user.is_active ? 'success' : 'danger'" style="margin-bottom: 20%x;margin-top:4px;">
+          {{ user.is_active ? 'Active' : 'Inactive' }}
+        </ion-badge>
+        <div style="display: flex; gap: 6px;">
+          <ion-button color="medium" size="small" fill="clear" (click)="editProcess(user)">
+            <ion-icon name="create-outline" slot="icon-only"></ion-icon>
+          </ion-button>
+          <ion-button color="danger" size="small" fill="clear" (click)="setOpen(true,user)">
+            <ion-icon name="trash-outline" slot="icon-only"></ion-icon>
+          </ion-button>
+        </div>
+      </div>
     </ion-item>
   </ion-list>
+  <ion-action-sheet [isOpen]="isActionSheetOpen" header="Actions" [buttons]="actionSheetButtons"
+    (didDismiss)="logResult($event)">
+  </ion-action-sheet>
 </ion-content>

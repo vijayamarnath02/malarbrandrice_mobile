@@ -54,11 +54,9 @@ export class SettingPage implements OnInit {
   }
 
   logout() {
-
     this.malarService.logout().subscribe((data) => {
       localStorage.clear();
       this.router.navigate(['/']);
     })
-    // Implement logout logic
   }
 }

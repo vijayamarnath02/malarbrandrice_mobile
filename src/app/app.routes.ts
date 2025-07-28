@@ -64,6 +64,10 @@ export const routes: Routes = [
         path: 'userlist/create',
         loadComponent: () => import('./tabs/components/newuser/newuser.page').then(m => m.NewuserPage)
       },
+      {
+        path: 'userlist/edit/:id',
+        loadComponent: () => import('./tabs/components/newuser/newuser.page').then(m => m.NewuserPage)
+      },
 
 
     ]

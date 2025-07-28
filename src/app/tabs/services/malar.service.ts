@@ -65,11 +65,26 @@ export class MalarService {
       .pipe(map((res: any) => res.response));
     return this.withLoader(obs, 'Fetching all users...');
   }
+  getUserProfileId(id: string): Observable<any> {
+    const obs = this.http.get(`${this.BASE_URL}/auth/user/${id}`, this.getHeaders())
+      .pipe(map((res: any) => res.response));
+    return this.withLoader(obs, 'User detail details...');
+  }
 
   createUserProfile(body: any): Observable<any> {
     const obs = this.http.post(`${this.BASE_URL}/auth/user`, body, this.getHeaders())
       .pipe(map((res: any) => res.response));
     return this.withLoader(obs, 'Creating user...');
+  }
+  deleteUserProfile(id: any): Observable<any> {
+    const obs = this.http.delete(`${this.BASE_URL}/auth/user/${id}`, this.getHeaders())
+      .pipe(map((res: any) => res.response));
+    return this.withLoader(obs, 'Deleting user profile details...');
+  }
+  putUserProfileId(id: any, data: any): Observable<any> {
+    const obs = this.http.put(`${this.BASE_URL}/auth/user/${id}`, data, this.getHeaders())
+      .pipe(map((res: any) => res.response));
+    return this.withLoader(obs, 'Updateing user details...');
   }
 
   // ✅ MASTER DATA
