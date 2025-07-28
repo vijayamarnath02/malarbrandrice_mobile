@@ -1,16 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { IonButton, IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonChip, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonLabel, IonList, IonRow, IonText, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import {
-  addOutline, flashOutline,
+  addOutline,
+  createOutline,
+  flashOutline,
   gridOutline,
   listOutline,
   settingsOutline,
   shieldCheckmarkOutline,
   timeOutline,
+  trashOutline,
   waterOutline
 } from 'ionicons/icons';
 import { MalarService } from '../../services/malar.service';
@@ -23,8 +26,8 @@ import { MalarService } from '../../services/malar.service';
 })
 export class PrestreamingPage implements OnInit {
   prestreamList: any[] = [];
-  constructor(private malarService: MalarService) {
-    addIcons({ settingsOutline, addOutline, timeOutline, flashOutline, waterOutline, gridOutline, listOutline, shieldCheckmarkOutline });
+  constructor(private malarService: MalarService, private readonly router: Router) {
+    addIcons({ settingsOutline, addOutline, timeOutline, flashOutline, waterOutline, createOutline, trashOutline, gridOutline, listOutline, shieldCheckmarkOutline });
   }
 
   ngOnInit() {
@@ -40,5 +43,9 @@ export class PrestreamingPage implements OnInit {
       error: err => console.error('Item load failed', err),
     });
   }
+  editProcess(process: any) {
+    this.router.navigate(['/tabs/daily-process/edit', process._id]);
+  }
+
 
 }

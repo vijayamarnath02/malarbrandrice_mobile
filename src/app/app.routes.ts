@@ -41,11 +41,23 @@ export const routes: Routes = [
         loadComponent: () => import('./tabs/components/newdailyprocess/newdailyprocess.page').then(m => m.NewdailyprocessPage)
       },
       {
+        path: 'daily-process/edit/:id',
+        loadComponent: () => import('./tabs/components/newdailyprocess/newdailyprocess.page').then(m => m.NewdailyprocessPage)
+      },
+      {
         path: 'prestreaming/create',
         loadComponent: () => import('./tabs/components/newprestreaming/newprestreaming.page').then(m => m.NewPrestreamingPage)
       },
       {
+        path: 'prestreaming/edit/:id',
+        loadComponent: () => import('./tabs/components/newprestreaming/newprestreaming.page').then(m => m.NewPrestreamingPage)
+      },
+      {
         path: 'streaming/create',
+        loadComponent: () => import('./tabs/components/newstreaming/newstreaming.page').then(m => m.NewStreamingPage)
+      },
+      {
+        path: 'streaming/edit/:id',
         loadComponent: () => import('./tabs/components/newstreaming/newstreaming.page').then(m => m.NewStreamingPage)
       },
       {

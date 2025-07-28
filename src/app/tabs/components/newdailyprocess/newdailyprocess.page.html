@@ -20,7 +20,8 @@
       <!-- Date (Disabled) -->
       <ion-item>
         <ion-label position="floating">Date</ion-label>
-        <ion-input [value]="dailyProcessForm.get('date')?.value | date: 'yyyy-MM-dd'" readonly></ion-input>
+        <ion-input [value]="dailyProcessForm.get('date')?.value | date: 'yyyy-MM-dd'" placeholder="2025-07-23"
+          readonly></ion-input>
       </ion-item>
 
       <!-- Ural / Godown -->
@@ -44,35 +45,35 @@
       <!-- Lot Number -->
       <ion-item>
         <ion-label position="floating">Lot Number</ion-label>
-        <ion-input formControlName="lotNumber" type="text"></ion-input>
+        <ion-input formControlName="lotNumber" type="text" placeholder="000001"></ion-input>
       </ion-item>
       <ion-text color="danger" *ngIf="isInvalid('lotNumber')">Lot Number is required</ion-text>
 
       <!-- Vehicle Number -->
       <ion-item>
         <ion-label position="floating">Vehicle Number</ion-label>
-        <ion-input formControlName="vehicleNumber" type="text"></ion-input>
+        <ion-input formControlName="vehicleNumber" type="text" placeholder="TN 09 E 1431"></ion-input>
       </ion-item>
       <ion-text color="danger" *ngIf="isInvalid('vehicleNumber')">Vehicle Number is required</ion-text>
 
       <!-- Bags -->
       <ion-item>
         <ion-label position="floating">Bags</ion-label>
-        <ion-input formControlName="bags" type="number"></ion-input>
+        <ion-input formControlName="bags" type="number" placeholder="24"></ion-input>
       </ion-item>
       <ion-text color="danger" *ngIf="isInvalid('bags')">Bags are required</ion-text>
 
       <!-- Weight -->
       <ion-item>
         <ion-label position="floating">Weight</ion-label>
-        <ion-input formControlName="weight" type="number"></ion-input>
+        <ion-input formControlName="weight" type="number" placeholder="76"></ion-input>
       </ion-item>
       <ion-text color="danger" *ngIf="isInvalid('weight')">Weight is required</ion-text>
 
       <!-- Moisture -->
       <ion-item>
         <ion-label position="floating">Moisture</ion-label>
-        <ion-input formControlName="moisture" type="number"></ion-input>
+        <ion-input formControlName="moisture" type="number" placeholder="12.0"></ion-input>
       </ion-item>
       <ion-text color="danger" *ngIf="isInvalid('moisture')">Moisture is required</ion-text>
 

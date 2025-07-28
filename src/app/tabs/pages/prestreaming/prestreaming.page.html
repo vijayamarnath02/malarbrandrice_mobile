@@ -54,8 +54,20 @@
               <ion-label>Water: {{ record.water_release_timing }}</ion-label>
             </ion-chip>
           </ion-col>
+          <ion-col>
+            <p>Remarks: {{ record.remarks }}</p>
+          </ion-col>
+
+          <ion-col size="6" style="display: flex;justify-content: end;align-items: center;">
+            <ion-button color="medium" size="small">
+              <ion-icon name="create-outline" slot="icon-only"></ion-icon>
+            </ion-button>
+            <ion-button color="danger" size="small" (click)="editProcess(record)">
+              <ion-icon name="trash-outline" slot="icon-only"></ion-icon>
+            </ion-button>
+          </ion-col>
         </ion-row>
-        <p>Remarks: {{ record.remarks }}</p>
+
       </ion-card-content>
     </ion-card>
   </ion-list>

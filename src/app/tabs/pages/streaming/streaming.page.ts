@@ -1,16 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { IonButton, IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonChip, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonLabel, IonList, IonRow, IonText, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import {
   addOutline,
+  createOutline,
   hardwareChipOutline,
   playForwardOutline,
   settingsOutline,
   stopOutline,
-  timeOutline
+  timeOutline,
+  trashOutline
 } from 'ionicons/icons';
 import { MalarService } from '../../services/malar.service';
 @Component({
@@ -22,8 +24,8 @@ import { MalarService } from '../../services/malar.service';
 })
 export class StreamingPage implements OnInit {
   streamingList: any[] = [];
-  constructor(private malarService: MalarService) {
-    addIcons({ settingsOutline, addOutline, timeOutline, playForwardOutline, stopOutline, hardwareChipOutline });
+  constructor(private malarService: MalarService, private readonly router: Router) {
+    addIcons({ settingsOutline, addOutline, timeOutline, playForwardOutline, stopOutline, hardwareChipOutline, createOutline, trashOutline });
   }
   ngOnInit() {
   }
@@ -38,5 +40,9 @@ export class StreamingPage implements OnInit {
     });
 
   }
+  editProcess(process: any) {
+    this.router.navigate(['/tabs/daily-process/edit', process._id]);
+  }
+
 
 }
