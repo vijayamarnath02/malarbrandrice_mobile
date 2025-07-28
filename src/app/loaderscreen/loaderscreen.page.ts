@@ -9,7 +9,7 @@ import { IonSpinner } from '@ionic/angular/standalone';
   imports: [CommonModule, IonSpinner],
   template: `
     <div *ngIf="visible" class="loader-overlay">
-      <ion-spinner name="crescent"></ion-spinner>
+      <ion-spinner name="crescent" color="primary"></ion-spinner>
       <p>{{ message }}</p>
     </div>
   `,
