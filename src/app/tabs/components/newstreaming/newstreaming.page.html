@@ -49,10 +49,16 @@
 
       <!-- End Time -->
       <ion-item>
+        <ion-label position="floating">Stream End Time</ion-label>
+        <ion-input formControlName="streamEndTime" type="text" autocomplete="off"></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="isInvalid('streamEndTime')"><small>Stream End Time is required</small></ion-text>
+
+      <ion-item>
         <ion-label position="floating">End Time</ion-label>
         <ion-input formControlName="endTime" type="text" autocomplete="off"></ion-input>
       </ion-item>
-      <ion-text color="danger" *ngIf="isInvalid('endTime')"><small>End Time is required</small></ion-text>
+      <ion-text color="danger" *ngIf="isInvalid('endTime')"><small>Stream End Time is required</small></ion-text>
 
       <!-- Dryer -->
       <ion-item>

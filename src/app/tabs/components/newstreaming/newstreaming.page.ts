@@ -44,6 +44,7 @@ export class NewStreamingPage implements OnInit {
       streamingTiming: ['', Validators.required],
       streamStartTime: ['', Validators.required],
       endTime: ['', Validators.required],
+      streamEndTime: ['', Validators.required],
       dryer: ['', Validators.required],
     });
   }
@@ -78,8 +79,8 @@ export class NewStreamingPage implements OnInit {
         unit_id: formValue.unit,
         streaming_timing: formValue.streamingTiming,
         stream_start_time: formValue.streamStartTime,
-        stream_end_time: formValue.endTime,
-        streamend_time: " 30 mins",
+        stream_end_time: formValue.streamEndTime,
+        streamend_time: formValue.endTime,
         dryer_id: formValue.dryer
 
       }
