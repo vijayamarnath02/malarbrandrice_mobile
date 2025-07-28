@@ -103,6 +103,11 @@ export class MalarService {
       .pipe(map(res => res.response?.data));
     return this.withLoader(obs, 'Fetching daily processes...');
   }
+  loginTokenCheck(): Observable<any[]> {
+    const obs = this.http.get<any>(`${this.BASE_URL}/daily-process`, this.getHeaders())
+      .pipe(map(res => res.response?.data));
+    return this.withLoader(obs, 'Checking user processes...');
+  }
 
   createDailyProcess(data: any): Observable<any> {
     const obs = this.http.post(`${this.BASE_URL}/daily-process`, data, this.getHeaders())

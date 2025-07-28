@@ -23,7 +23,28 @@ export class LoginPage implements OnInit {
       password: ['', Validators.required],
     });
   }
+  ionViewWillEnter() {
+    let Token = localStorage.getItem('token');
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.malarService.loginTokenCheck().subscribe({
+        next: (data: any) => {
+          this.router.navigate(['/tabs/dashboard']);
+        },
+        error: (err) => {
+
+          console.error('Session expired or error:', err);
+          localStorage.clear();
+          this.router.navigate(['/']);
+        }
+      });
+    }
+    else {
+      this.router.navigate(['/']);
+    }
+  }
   onLogin() {
+
     if (this.loginForm.valid) {
       const data = {
         email: this.loginForm.value.username,
@@ -49,6 +70,9 @@ export class LoginPage implements OnInit {
     } else {
       this.loginForm.markAllAsTouched();
     }
+  }
+  ionViewDidLeave() {
+    this.loginForm.reset();
   }
 
 }
