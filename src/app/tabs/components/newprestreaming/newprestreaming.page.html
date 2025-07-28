@@ -84,7 +84,7 @@
       <!-- Incharge (read-only) -->
       <ion-item>
         <ion-label position="floating">Incharge</ion-label>
-        <ion-input [value]="loggedInUser" readonly></ion-input>
+        <ion-input formControlName="incharge" readonly></ion-input>
       </ion-item>
     </ion-list>
     <ion-grid>
@@ -95,8 +95,12 @@
           </ion-button>
         </ion-col>
         <ion-col size="6">
-          <ion-button expand="block" type="submit" [disabled]="prestreamingForm.invalid">
+          <ion-button expand="block" type="submit" [disabled]="prestreamingForm.invalid " *ngIf="processId === null">
             Submit
+          </ion-button>
+          <ion-button expand="block" type="submit" [disabled]="prestreamingForm.invalid || isFormUnchanged()"
+            *ngIf="processId !== null">
+            Update
           </ion-button>
         </ion-col>
       </ion-row>

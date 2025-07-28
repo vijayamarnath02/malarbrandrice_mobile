@@ -59,10 +59,10 @@
           </ion-col>
 
           <ion-col size="6" style="display: flex;justify-content: end;align-items: center;">
-            <ion-button color="medium" size="small">
+            <ion-button color="medium" size="small" (click)="editProcess(record)">
               <ion-icon name="create-outline" slot="icon-only"></ion-icon>
             </ion-button>
-            <ion-button color="danger" size="small" (click)="editProcess(record)">
+            <ion-button color="danger" size="small" (click)="setOpen(true,record)">
               <ion-icon name="trash-outline" slot="icon-only"></ion-icon>
             </ion-button>
           </ion-col>
@@ -76,4 +76,7 @@
   <ion-text color="medium" *ngIf="prestreamList.length === 0">
     <p class="ion-padding">No pre-straming records found.</p>
   </ion-text>
+  <ion-action-sheet [isOpen]="isActionSheetOpen" header="Actions" [buttons]="actionSheetButtons"
+    (didDismiss)="logResult($event)">
+  </ion-action-sheet>
 </ion-content>

@@ -150,6 +150,17 @@ export class MalarService {
       .pipe(map(res => res));
     return this.withLoader(obs, 'Creating prestreaming...');
   }
+  putPrestreaming(id: any, data: any): Observable<any> {
+    const obs = this.http.put(`${this.BASE_URL}/pre-streaming/${id}`, data, this.getHeaders())
+      .pipe(map(res => res));
+    return this.withLoader(obs, 'Creating prestreaming...');
+  }
+  deletePrestreaming(id: any): Observable<any> {
+    const obs = this.http.delete(`${this.BASE_URL}/pre-streaming/${id}`, this.getHeaders())
+      .pipe(map((res: any) => res.response));
+    return this.withLoader(obs, 'Deleting prestreaming details...');
+  }
+
 
   getPrestreamingById(id: string): Observable<any> {
     const obs = this.http.get(`${this.BASE_URL}/pre-streaming/${id}`, this.getHeaders())
@@ -175,7 +186,16 @@ export class MalarService {
       .pipe(map((res: any) => res.response));
     return this.withLoader(obs, 'Getting streaming details...');
   }
-
+  deletestreaming(id: any): Observable<any> {
+    const obs = this.http.delete(`${this.BASE_URL}/streaming/${id}`, this.getHeaders())
+      .pipe(map((res: any) => res.response));
+    return this.withLoader(obs, 'Deleting streaming details...');
+  }
+  putStreaming(id: any, data: any): Observable<any> {
+    const obs = this.http.put(`${this.BASE_URL}/streaming/${id}`, data, this.getHeaders())
+      .pipe(map(res => res));
+    return this.withLoader(obs, 'Creating prestreaming...');
+  }
   getCounts(): Observable<any> {
     const dailyProcess$ = this.http.get<any>(`${this.BASE_URL}/daily-process`, this.getHeaders())
       .pipe(map(res => res.response?.total || 0), catchError(this.handleError));

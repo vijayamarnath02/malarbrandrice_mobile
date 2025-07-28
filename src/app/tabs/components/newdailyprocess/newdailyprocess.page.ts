@@ -141,7 +141,6 @@ export class NewdailyprocessPage implements OnInit {
         },
         error: err => {
           console.error('Item load failed', err);
-          // Optionally show a toast or alert here
         }
       });
 

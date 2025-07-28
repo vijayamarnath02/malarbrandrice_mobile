@@ -78,8 +78,13 @@
           </ion-button>
         </ion-col>
         <ion-col size="6">
-          <ion-button expand="block" type="submit" [disabled]="streamingForm.invalid" color="primary" fill="solid">
+          <ion-button expand="block" type="submit" [disabled]="streamingForm.invalid" color="primary" fill="solid"
+            *ngIf="processId === null">
             Submit <ion-icon slot="end" name="checkmark-done-outline"></ion-icon>
+          </ion-button>
+          <ion-button expand="block" type="submit" [disabled]="streamingForm.invalid || isFormUnchanged()"
+            *ngIf="processId !== null">
+            Update
           </ion-button>
         </ion-col>
       </ion-row>

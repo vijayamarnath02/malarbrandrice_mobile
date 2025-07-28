@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   IonButton,
   IonCol,
@@ -33,14 +33,15 @@ export class NewStreamingPage implements OnInit {
   unitList: any;
   dryerList: any;
   batchNumber = 'STRM-' + Math.floor(Math.random() * 100000);
-
-  constructor(private fb: FormBuilder, private malarService: MalarService, private router: Router) { }
+  processId: string | null = null;
+  originalFormValue: any;
+  constructor(private fb: FormBuilder, private malarService: MalarService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.streamingForm = this.fb.group({
       item: ['', Validators.required],
       unit: ['', Validators.required],
-      batchNumber: [{ value: this.batchNumber, disabled: true }],
+      batchNumber: ['', Validators.required],
       streamingTiming: ['', Validators.required],
       streamStartTime: ['', Validators.required],
       endTime: ['', Validators.required],
@@ -49,7 +50,11 @@ export class NewStreamingPage implements OnInit {
     });
   }
   ionViewWillEnter() {
+    this.processId = this.route.snapshot.paramMap.get('id') || null;
     this.loadDropdowns();
+    if (this.processId !== null) {
+      this.getDailyProcessById();
+    }
   }
   loadDropdowns() {
     this.malarService.getItems().subscribe({
@@ -66,13 +71,34 @@ export class NewStreamingPage implements OnInit {
     });
   }
 
+  getDailyProcessById() {
+    this.malarService.getStreamingById(this.processId || "0").subscribe({
+      next: res => {
+        this.streamingForm.patchValue({
+          item: res.item_id._id,
+          unit: res.unit_id._id,
+          batchNumber: res.batch_number,
+          streamingTiming: res.streamend_time,
+          streamStartTime: res.stream_start_time,
+          endTime: res.streamend_time,
+          streamEndTime: res.streamend_time,
+          dryer: res.dryer_id._id,
+        })
+        this.originalFormValue = JSON.stringify(this.streamingForm.value);
+        this.streamingForm.markAsPristine();
+      },
+      error: err => console.error('Unit load failed', err),
+    });
+  }
   isInvalid(field: string): boolean {
     const control = this.streamingForm.get(field);
     return control?.invalid && (control?.touched || control?.dirty) || false;
   }
-
+  isFormUnchanged(): boolean {
+    return JSON.stringify(this.streamingForm.value) === this.originalFormValue;
+  }
   submitForm() {
-    if (this.streamingForm.valid) {
+    if (this.streamingForm.valid && this.processId === null) {
       const formValue = this.streamingForm.getRawValue();
       const data = {
         item_id: formValue.item,
@@ -85,6 +111,27 @@ export class NewStreamingPage implements OnInit {
 
       }
       this.malarService.createStreaming(data).subscribe({
+        next: res => {
+          this.router.navigate(['/tabs/streaming']);
+        },
+        error: err => {
+          console.error('Item load failed', err);
+        }
+      });
+    }
+    else if (this.streamingForm.valid && this.processId !== null) {
+      const formValue = this.streamingForm.getRawValue();
+      const data = {
+        item_id: formValue.item,
+        unit_id: formValue.unit,
+        streaming_timing: formValue.streamingTiming,
+        stream_start_time: formValue.streamStartTime,
+        stream_end_time: formValue.streamEndTime,
+        streamend_time: formValue.endTime,
+        dryer_id: formValue.dryer
+
+      }
+      this.malarService.putStreaming(this.processId, data).subscribe({
         next: res => {
           this.router.navigate(['/tabs/streaming']);
         },
