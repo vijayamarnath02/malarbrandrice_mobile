@@ -3,7 +3,7 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { IonApp, IonRouterOutlet, ModalController, Platform } from '@ionic/angular/standalone';
-import { filter } from 'rxjs/operators';
+import { filter, take } from 'rxjs/operators';
 import { LoaderServiceService } from './loader-service.service';
 import { LoaderComponent } from './loaderscreen/loaderscreen.page';
 
@@ -43,20 +43,33 @@ export class AppComponent {
 
   handleBackButton() {
     this.platform.backButton.subscribeWithPriority(10, async () => {
+
+      // 🔐 1. Block back if loader is visible
+      const isLoaderVisible = await this.loaderService.isVisible$.pipe(take(1)).toPromise();
+      if (isLoaderVisible) {
+        return; // ❌ Ignore back button
+      }
+
+      // 🔍 2. Check if a modal is open
       const topModal = await this.modalCtrl.getTop();
       if (topModal) {
         await topModal.dismiss();
         return;
       }
-      if (this.currentUrl === '/tabs/dashboard' || this.currentUrl === '/tabs/daily-process' || this.currentUrl === '/' || this.currentUrl === '') {
+
+      // 🧭 3. App exit logic
+      if (
+        this.currentUrl === '/tabs/dashboard' ||
+        this.currentUrl === '/tabs/daily-process' ||
+        this.currentUrl === '/' ||
+        this.currentUrl === ''
+      ) {
         const timeNow = new Date().getTime();
         if (timeNow - this.lastTimeBackPress < this.timePeriodToExit) {
           (window.navigator as any).app.exitApp();
-        }
-        else if (this.currentUrl.includes('/tabs/setting')) {
+        } else if (this.currentUrl.includes('/tabs/setting')) {
           this.router.navigate(['tabs/dashboard']);
-        }
-        else {
+        } else {
           this.lastTimeBackPress = timeNow;
           if (!this.isToastVisible) {
             this.isToastVisible = true;
@@ -64,7 +77,6 @@ export class AppComponent {
               message: 'Press back again to exit.',
               duration: 2000,
               position: 'bottom',
-              cssClass: 'custom-exit-toast',
               buttons: [
                 {
                   text: 'Exit',
@@ -86,8 +98,9 @@ export class AppComponent {
           }
         }
       } else {
-        this.location.back(); // default back
+        this.location.back();
       }
     });
   }
+
 }

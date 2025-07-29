@@ -38,12 +38,14 @@
   --ion-color-medium: #6b6b6b;
 
   /** Optional Toast/Tag Pink */
-  --ion-color-toster: #d1005a;
-  --ion-color-toster-rgb: 209, 0, 90;
-  --ion-color-toster-contrast: #ffffff;
+  --ion-color-toster: #000000; // Background color: black
+  --ion-color-toster-rgb: 0, 0, 0;
+
+  --ion-color-toster-contrast: #ffffff; // Text color: white
   --ion-color-toster-contrast-rgb: 255, 255, 255;
-  --ion-color-toster-shade: #b8004e;
-  --ion-color-toster-tint: #d92e74;
+
+  --ion-color-toster-shade: #1a1a1a; // Slightly lighter shade for effects
+  --ion-color-toster-tint: #333333; // Slightly lighter tint
 }
 .ion-color-primary {
   --ion-color-base: var(--ion-color-primary);
