@@ -1,4 +1,4 @@
-package io.ionic.starter;
+package com.malar.riceapp;
 
 import com.getcapacitor.BridgeActivity;
 

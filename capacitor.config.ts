@@ -1,7 +1,7 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 import { KeyboardResize, KeyboardStyle } from '@capacitor/keyboard';
 const config: CapacitorConfig = {
-  appId: 'com.malar.riceApp',
+  appId: 'com.malar.riceapp',
   appName: 'malarbrand',
   webDir: 'www',
   plugins: {
