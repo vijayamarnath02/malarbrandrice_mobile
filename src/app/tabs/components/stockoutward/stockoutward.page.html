@@ -1,13 +1,77 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>stockoutward</ion-title>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Stock Outward</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">stockoutward</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <form [formGroup]="stockOutForm" (ngSubmit)="onSubmit()">
+    <ion-list lines="full">
+
+      <ion-item>
+        <ion-label>Date</ion-label>
+        <ion-datetime presentation="date" formControlName="date"></ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Incharge</ion-label>
+        <ion-input formControlName="incharge"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Item</ion-label>
+        <ion-input formControlName="item"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Godown Name</ion-label>
+        <ion-input formControlName="godownName"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Lot</ion-label>
+        <ion-input formControlName="lot"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Bags</ion-label>
+        <ion-input type="number" formControlName="bags"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Weight</ion-label>
+        <ion-input type="number" formControlName="weight"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Transfer To</ion-label>
+        <ion-input formControlName="transferTo"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Bin</ion-label>
+        <ion-input formControlName="bin"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Stack</ion-label>
+        <ion-input formControlName="stack"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Vehicle Number</ion-label>
+        <ion-input formControlName="vehicleNumber"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Remarks</ion-label>
+        <ion-input formControlName="remarks"></ion-input>
+      </ion-item>
+
+    </ion-list>
+
+    <div class="ion-padding">
+      <ion-button expand="block" type="submit" color="primary">Submit</ion-button>
+    </div>
+  </form>
 </ion-content>

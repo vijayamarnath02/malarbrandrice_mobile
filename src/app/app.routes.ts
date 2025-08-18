@@ -75,7 +75,12 @@ export const routes: Routes = [
       {
         path: 'samplepage',
         loadComponent: () => import('./tabs/components/samplepage/samplepage.page').then(m => m.SamplepagePage)
-      }
+      },
+      {
+        path: 'stockoutward',
+        loadComponent: () => import('./tabs/components/stockoutward/stockoutward.page').then(m => m.StockoutwardPage)
+      },
+
 
 
     ]
@@ -85,10 +90,6 @@ export const routes: Routes = [
     path: '',
     redirectTo: 'home',
     pathMatch: 'full',
-  },
-  {
-    path: 'stockoutward',
-    loadComponent: () => import('./tabs/components/stockoutward/stockoutward.page').then(m => m.StockoutwardPage)
   },
 
 
