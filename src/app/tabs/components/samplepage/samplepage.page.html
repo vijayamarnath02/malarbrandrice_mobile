@@ -1,13 +1,193 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>samplepage</ion-title>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Daily Process Entry</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">samplepage</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <form [formGroup]="processForm" (ngSubmit)="onSubmit()">
+    <ion-list lines="full">
+
+      <!-- Date -->
+      <ion-item>
+        <ion-label position="floating">Date</ion-label>
+        <ion-datetime formControlName="date" presentation="date"></ion-datetime>
+      </ion-item>
+      <ion-text color="danger" *ngIf="submitted && f['date'].errors?.['required']">
+        Date is required
+      </ion-text>
+
+      <!-- Load Number -->
+      <ion-item>
+        <ion-label position="floating">Load Number</ion-label>
+        <ion-input type="text" formControlName="loadNumber"></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="submitted && f['loadNumber'].errors?.['required']">
+        Load Number is required
+      </ion-text>
+
+      <!-- Vehicle Number -->
+      <ion-item>
+        <ion-label position="floating">Vehicle Number</ion-label>
+        <ion-input type="text" formControlName="vehicleNumber"></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="submitted && f['vehicleNumber'].errors?.['required']">
+        Vehicle Number is required
+      </ion-text>
+
+      <!-- Driver Name -->
+      <ion-item>
+        <ion-label position="floating">Driver Name</ion-label>
+        <ion-input type="text" formControlName="driverName"></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="submitted && f['driverName'].errors?.['required']">
+        Driver Name is required
+      </ion-text>
+
+      <!-- Cell Number -->
+      <ion-item>
+        <ion-label position="floating">Cell Number</ion-label>
+        <ion-input type="tel" formControlName="cellNumber"></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="submitted && f['cellNumber'].errors?.['required']">
+        Cell Number is required
+      </ion-text>
+
+      <!-- Party Name -->
+      <ion-item>
+        <ion-label position="floating">Party Name</ion-label>
+        <ion-input type="text" formControlName="partyName"></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="submitted && f['partyName'].errors?.['required']">
+        Party Name is required
+      </ion-text>
+
+      <!-- Bill No/Date -->
+      <ion-item>
+        <ion-label position="floating">Bill No / Date</ion-label>
+        <ion-input type="text" formControlName="billNoDt"></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="submitted && f['billNoDt'].errors?.['required']">
+        Bill No / Date is required
+      </ion-text>
+
+      <!-- Broker Name (optional, so no error) -->
+      <ion-item>
+        <ion-label position="floating">Broker Name</ion-label>
+        <ion-input type="text" formControlName="brokerName"></ion-input>
+      </ion-item>
+
+      <!-- Item -->
+      <ion-item>
+        <ion-label position="floating">Item</ion-label>
+        <ion-input type="text" formControlName="item"></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="submitted && f['item'].errors?.['required']">
+        Item is required
+      </ion-text>
+
+      <!-- Moisture (optional, no error) -->
+      <ion-item>
+        <ion-label position="floating">Moisture</ion-label>
+        <ion-input type="number" formControlName="moisture"></ion-input>
+      </ion-item>
+
+      <!-- Raw/Dried -->
+      <ion-item>
+        <ion-label position="floating">Raw/Dried Paddy</ion-label>
+        <ion-input type="text" formControlName="rawOrDried"></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="submitted && f['rawOrDried'].errors?.['required']">
+        Raw/Dried Paddy is required
+      </ion-text>
+
+      <!-- Bags -->
+      <ion-item>
+        <ion-label position="floating">Bags</ion-label>
+        <ion-input type="number" formControlName="bags"></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="submitted && f['bags'].errors?.['required']">
+        Bags are required
+      </ion-text>
+
+      <!-- Weight -->
+      <ion-item>
+        <ion-label position="floating">Weight</ion-label>
+        <ion-input type="number" formControlName="weight"></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="submitted && f['weight'].errors?.['required']">
+        Weight is required
+      </ion-text>
+
+      <!-- Sample Taken By (optional, no error) -->
+      <ion-item>
+        <ion-label position="floating">Sample Taken By</ion-label>
+        <ion-input type="text" formControlName="sampleTakenBy"></ion-input>
+      </ion-item>
+
+      <!-- Rice -->
+      <ion-item>
+        <ion-label position="floating">Rice</ion-label>
+        <ion-input type="number" formControlName="rice"></ion-input>
+      </ion-item>
+
+      <!-- Broken -->
+      <ion-item>
+        <ion-label position="floating">Broken</ion-label>
+        <ion-input type="number" formControlName="broken"></ion-input>
+      </ion-item>
+
+      <!-- Bran -->
+      <ion-item>
+        <ion-label position="floating">Bran</ion-label>
+        <ion-input type="number" formControlName="bran"></ion-input>
+      </ion-item>
+
+      <!-- Total Percentage -->
+      <ion-item>
+        <ion-label position="floating">Total Percentage</ion-label>
+        <ion-input type="number" formControlName="totalPercentage"></ion-input>
+      </ion-item>
+
+      <!-- Accept / Reject -->
+      <ion-item>
+        <ion-label position="floating">Accept / Reject</ion-label>
+        <ion-select formControlName="acceptReject">
+          <ion-select-option value="Ok">Ok</ion-select-option>
+          <ion-select-option value="Reject">Reject</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-text color="danger" *ngIf="submitted && f['acceptReject'].errors?.['required']">
+        Accept / Reject selection is required
+      </ion-text>
+
+      <!-- Reason (optional, no error) -->
+      <ion-item>
+        <ion-label position="floating">Reason</ion-label>
+        <ion-input type="text" formControlName="reason"></ion-input>
+      </ion-item>
+
+      <!-- Delivery At (optional, no error) -->
+      <ion-item>
+        <ion-label position="floating">Delivery At</ion-label>
+        <ion-input type="text" formControlName="deliveryAt"></ion-input>
+      </ion-item>
+
+    </ion-list>
+
+    <ion-grid>
+      <ion-row class="ion-justify-content-between">
+        <ion-col size="6">
+          <ion-button expand="block" type="button" color="medium" fill="outline" (click)="onCancel()">
+            Cancel
+          </ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button expand="block" type="submit" [disabled]="processForm.invalid">
+            Submit
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
 </ion-content>

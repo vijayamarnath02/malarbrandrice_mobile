@@ -68,6 +68,14 @@ export const routes: Routes = [
         path: 'userlist/edit/:id',
         loadComponent: () => import('./tabs/components/newuser/newuser.page').then(m => m.NewuserPage)
       },
+      {
+        path: 'stockinward',
+        loadComponent: () => import('./tabs/components/stockinward/stockinward.page').then(m => m.StockinwardPage)
+      },
+      {
+        path: 'samplepage',
+        loadComponent: () => import('./tabs/components/samplepage/samplepage.page').then(m => m.SamplepagePage)
+      }
 
 
     ]
@@ -79,20 +87,9 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'paddyinward',
-    loadComponent: () => import('./tabs/components/paddyinward/paddyinward.page').then( m => m.PaddyinwardPage)
+    path: 'stockoutward',
+    loadComponent: () => import('./tabs/components/stockoutward/stockoutward.page').then(m => m.StockoutwardPage)
   },
-  {
-    path: 'paddyoutward',
-    loadComponent: () => import('./tabs/components/paddyoutward/paddyoutward.page').then( m => m.PaddyoutwardPage)
-  },
-  {
-    path: 'stockinward',
-    loadComponent: () => import('./tabs/components/stockinward/stockinward.page').then( m => m.StockinwardPage)
-  },
-  {
-    path: 'samplepage',
-    loadComponent: () => import('./tabs/components/samplepage/samplepage.page').then( m => m.SamplepagePage)
-  }
+
 
 ];

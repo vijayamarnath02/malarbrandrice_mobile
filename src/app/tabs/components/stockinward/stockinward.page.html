@@ -1,13 +1,101 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>stockinward</ion-title>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Stock Inward</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">stockinward</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <form [formGroup]="stockForm" (ngSubmit)="onSubmit()">
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked">Date</ion-label>
+        <ion-datetime formControlName="date" presentation="date"></ion-datetime>
+      </ion-item>
+
+      <ion-text *ngIf="stockForm.get('date')?.touched && stockForm.get('date')?.invalid">
+        Date is required
+      </ion-text>
+
+      <ion-item>
+        <ion-label position="floating">Item</ion-label>
+        <ion-input type="text" formControlName="item"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Party Name</ion-label>
+        <ion-input type="text" formControlName="partyName"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Direct Load Stake</ion-label>
+        <ion-input type="text" formControlName="directLoadStake"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Moisture</ion-label>
+        <ion-input type="number" formControlName="moisture"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Dried At</ion-label>
+        <ion-input type="text" formControlName="driedAt"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Godown Name</ion-label>
+        <ion-input type="text" formControlName="godownName"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Bin</ion-label>
+        <ion-input type="text" formControlName="bin"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Lot</ion-label>
+        <ion-input type="text" formControlName="lot"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Bags</ion-label>
+        <ion-input type="number" formControlName="bags"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Weight</ion-label>
+        <ion-input type="number" formControlName="weight"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Vehicle Number</ion-label>
+        <ion-input type="text" formControlName="vehicleNumber"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Incharge</ion-label>
+        <ion-input type="text" formControlName="incharge"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Remark</ion-label>
+        <ion-input type="text" formControlName="remark"></ion-input>
+      </ion-item>
+
+    </ion-list>
+
+    <ion-grid>
+      <ion-row class="ion-justify-content-between">
+        <ion-col size="6">
+          <ion-button expand="block" type="button" color="medium" fill="outline" (click)="onCancel()">
+            Cancel
+          </ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button expand="block" type="submit" [disabled]="stockForm.invalid">
+            Submit
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
 </ion-content>
