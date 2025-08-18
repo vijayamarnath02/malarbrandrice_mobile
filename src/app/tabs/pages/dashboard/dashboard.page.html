@@ -45,6 +45,33 @@
           </ion-card-header>
         </ion-card>
       </ion-col>
+      <ion-col [size]="userRole==='1' ? 6 : 12">
+        <ion-card button (click)="goTo('samplepage')">
+          <ion-card-header>
+            <ion-icon name="flash-outline" class="dashboard-icon"></ion-icon>
+            <ion-card-title>Sample Report</ion-card-title>
+            <div class="dashboard-count">{{ streamingCount }} entries</div>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+      <ion-col [size]="userRole==='1' ? 6 : 12">
+        <ion-card button (click)="goTo('stockinward')">
+          <ion-card-header>
+            <ion-icon name="flash-outline" class="dashboard-icon"></ion-icon>
+            <ion-card-title>Paddy Inward</ion-card-title>
+            <div class="dashboard-count">{{ streamingCount }} entries</div>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+      <ion-col [size]="userRole==='1' ? 6 : 12">
+        <ion-card button (click)="goTo('stockoutward')">
+          <ion-card-header>
+            <ion-icon name="flash-outline" class="dashboard-icon"></ion-icon>
+            <ion-card-title>Paddy Outward</ion-card-title>
+            <div class="dashboard-count">{{ streamingCount }} entries</div>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
 
       <ion-col size="6" *ngIf="userRole === '1'">
         <ion-card button (click)="goTo('admin')">
@@ -55,14 +82,21 @@
           </ion-card-header>
         </ion-card>
       </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col *ngIf="userRole === '1'">
+      <ion-col size="6" *ngIf="userRole === '1'">
         <ion-card button (click)="goTo('userlist')">
           <ion-card-header>
             <ion-icon name="people-outline" class="dashboard-icon"></ion-icon>
             <ion-card-title>User List</ion-card-title>
             <div class="dashboard-count">{{ userListCount }} users</div>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+      <ion-col size="12" *ngIf="userRole === '1'">
+        <ion-card button (click)="goTo('wetpaddy')">
+          <ion-card-header>
+            <ion-icon name="people-outline" class="dashboard-icon"></ion-icon>
+            <ion-card-title>Wet Paddy</ion-card-title>
+            <div class="dashboard-count">{{ userListCount }} entries</div>
           </ion-card-header>
         </ion-card>
       </ion-col>

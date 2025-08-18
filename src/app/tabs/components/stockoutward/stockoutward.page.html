@@ -8,70 +8,133 @@
   <form [formGroup]="stockOutForm" (ngSubmit)="onSubmit()">
     <ion-list lines="full">
 
+      <!-- Date -->
       <ion-item>
         <ion-label>Date</ion-label>
-        <ion-datetime presentation="date" formControlName="date"></ion-datetime>
+        <ion-datetime presentation="date" formControlName="date">
+        </ion-datetime>
       </ion-item>
+      <ion-note color="danger" *ngIf="stockOutForm.get('date')?.touched && stockOutForm.get('date')?.invalid">
+        Date is required
+      </ion-note>
 
+      <!-- Incharge -->
       <ion-item>
         <ion-label position="floating">Incharge</ion-label>
         <ion-input formControlName="incharge"></ion-input>
       </ion-item>
+      <ion-note color="danger" *ngIf="stockOutForm.get('incharge')?.touched && stockOutForm.get('incharge')?.invalid">
+        Incharge is required
+      </ion-note>
 
+      <!-- Item -->
       <ion-item>
         <ion-label position="floating">Item</ion-label>
         <ion-input formControlName="item"></ion-input>
       </ion-item>
+      <ion-note color="danger" *ngIf="stockOutForm.get('item')?.touched && stockOutForm.get('item')?.invalid">
+        Item is required
+      </ion-note>
 
+      <!-- Godown Name -->
       <ion-item>
         <ion-label position="floating">Godown Name</ion-label>
         <ion-input formControlName="godownName"></ion-input>
       </ion-item>
+      <ion-note color="danger"
+        *ngIf="stockOutForm.get('godownName')?.touched && stockOutForm.get('godownName')?.invalid">
+        Godown Name is required
+      </ion-note>
 
+      <!-- Lot -->
       <ion-item>
         <ion-label position="floating">Lot</ion-label>
         <ion-input formControlName="lot"></ion-input>
       </ion-item>
+      <ion-note color="danger" *ngIf="stockOutForm.get('lot')?.touched && stockOutForm.get('lot')?.invalid">
+        Lot is required
+      </ion-note>
 
+      <!-- Bags -->
       <ion-item>
         <ion-label position="floating">Bags</ion-label>
         <ion-input type="number" formControlName="bags"></ion-input>
       </ion-item>
+      <ion-note color="danger" *ngIf="stockOutForm.get('bags')?.touched && stockOutForm.get('bags')?.invalid">
+        Enter number of bags
+      </ion-note>
 
+      <!-- Weight -->
       <ion-item>
         <ion-label position="floating">Weight</ion-label>
         <ion-input type="number" formControlName="weight"></ion-input>
       </ion-item>
+      <ion-note color="danger" *ngIf="stockOutForm.get('weight')?.touched && stockOutForm.get('weight')?.invalid">
+        Enter weight
+      </ion-note>
 
+      <!-- Transfer To -->
       <ion-item>
         <ion-label position="floating">Transfer To</ion-label>
         <ion-input formControlName="transferTo"></ion-input>
       </ion-item>
+      <ion-note color="danger"
+        *ngIf="stockOutForm.get('transferTo')?.touched && stockOutForm.get('transferTo')?.invalid">
+        Transfer To is required
+      </ion-note>
 
+      <!-- Bin -->
       <ion-item>
         <ion-label position="floating">Bin</ion-label>
         <ion-input formControlName="bin"></ion-input>
       </ion-item>
+      <ion-note color="danger" *ngIf="stockOutForm.get('bin')?.touched && stockOutForm.get('bin')?.invalid">
+        Bin is required
+      </ion-note>
 
+      <!-- Stack -->
       <ion-item>
         <ion-label position="floating">Stack</ion-label>
         <ion-input formControlName="stack"></ion-input>
       </ion-item>
+      <ion-note color="danger" *ngIf="stockOutForm.get('stack')?.touched && stockOutForm.get('stack')?.invalid">
+        Stack is required
+      </ion-note>
 
+      <!-- Vehicle Number -->
       <ion-item>
         <ion-label position="floating">Vehicle Number</ion-label>
         <ion-input formControlName="vehicleNumber"></ion-input>
       </ion-item>
+      <ion-note color="danger"
+        *ngIf="stockOutForm.get('vehicleNumber')?.touched && stockOutForm.get('vehicleNumber')?.invalid">
+        Vehicle Number is required
+      </ion-note>
 
+      <!-- Remarks -->
       <ion-item>
         <ion-label position="floating">Remarks</ion-label>
         <ion-input formControlName="remarks"></ion-input>
       </ion-item>
+      <ion-note color="danger" *ngIf="stockOutForm.get('remarks')?.touched && stockOutForm.get('remarks')?.invalid">
+        Remarks are required
+      </ion-note>
 
     </ion-list>
 
-    <div class="ion-padding">
-      <ion-button expand="block" type="submit" color="primary">Submit</ion-button>
-    </div>
+    <ion-grid>
+      <ion-row class="ion-justify-content-between">
+        <ion-col size="6">
+          <ion-button expand="block" type="button" color="medium" fill="outline" (click)="onCancel()">
+            Cancel
+          </ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button expand="block" type="submit" [disabled]="stockOutForm.invalid">
+            Submit
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </form>
 </ion-content>

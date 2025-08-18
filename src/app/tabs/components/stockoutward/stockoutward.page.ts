@@ -1,15 +1,20 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import {
   IonButton,
+  IonCol,
   IonContent,
   IonDatetime,
+  IonGrid,
   IonHeader,
   IonInput,
   IonItem,
   IonLabel,
   IonList,
+  IonNote,
+  IonRow,
   IonSelect,
   IonSelectOption,
   IonTitle,
@@ -21,7 +26,7 @@ import {
   templateUrl: './stockoutward.page.html',
   styleUrls: ['./stockoutward.page.scss'],
   standalone: true,
-  imports: [
+  imports: [IonNote, IonGrid, IonRow, IonCol,
     CommonModule,
     ReactiveFormsModule,
     IonContent,
@@ -43,7 +48,7 @@ export class StockoutwardPage implements OnInit {
   stockOutForm!: FormGroup;
   submitted = false;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private router: Router) { }
 
   ngOnInit() {
     this.stockOutForm = this.fb.group({
@@ -70,5 +75,8 @@ export class StockoutwardPage implements OnInit {
     this.submitted = true;
     if (this.stockOutForm.invalid) return;
     console.log('Stock Outward Data:', this.stockOutForm.value);
+  }
+  onCancel() {
+    this.router.navigate(['/tabs/dashboard']);
   }
 }

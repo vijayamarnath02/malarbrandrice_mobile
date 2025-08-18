@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import {
   IonButton,
   IonCol,
@@ -38,7 +39,7 @@ export class SamplepagePage implements OnInit {
   processForm!: FormGroup;
   submitted = false;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private router: Router) { }
 
   ngOnInit() {
     this.processForm = this.fb.group({
@@ -79,5 +80,8 @@ export class SamplepagePage implements OnInit {
   }
   onCancel() {
     this.processForm.reset();
+
+    this.router.navigate(['/tabs/dashboard']);
+
   }
 }

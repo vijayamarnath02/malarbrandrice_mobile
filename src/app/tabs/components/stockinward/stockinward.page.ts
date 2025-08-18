@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import {
   IonButton,
   IonCol,
@@ -32,7 +33,7 @@ export class StockinwardPage implements OnInit {
   stockForm!: FormGroup;
   submitted = false;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private router: Router) { }
 
   ngOnInit() {
     this.stockForm = this.fb.group({
@@ -65,6 +66,6 @@ export class StockinwardPage implements OnInit {
     console.log('Form submitted:', this.stockForm.value);
   }
   onCancel() {
-
+    this.router.navigate(['/tabs/dashboard']);
   }
 }

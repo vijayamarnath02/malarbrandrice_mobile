@@ -80,8 +80,10 @@ export const routes: Routes = [
         path: 'stockoutward',
         loadComponent: () => import('./tabs/components/stockoutward/stockoutward.page').then(m => m.StockoutwardPage)
       },
-
-
+      {
+        path: 'wetpaddy',
+        loadComponent: () => import('./tabs/components/wetpaddy/wetpaddy.page').then(m => m.WetpaddyPage)
+      },
 
     ]
   },
@@ -91,6 +93,7 @@ export const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full',
   },
+
 
 
 ];
