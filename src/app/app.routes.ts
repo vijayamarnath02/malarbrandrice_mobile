@@ -89,6 +89,10 @@ export const routes: Routes = [
   {
     path: 'stockinward',
     loadComponent: () => import('./tabs/components/stockinward/stockinward.page').then( m => m.StockinwardPage)
+  },
+  {
+    path: 'samplepage',
+    loadComponent: () => import('./tabs/components/samplepage/samplepage.page').then( m => m.SamplepagePage)
   }
 
 ];
