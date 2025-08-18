@@ -77,6 +77,18 @@ export const routes: Routes = [
     path: '',
     redirectTo: 'home',
     pathMatch: 'full',
+  },
+  {
+    path: 'paddyinward',
+    loadComponent: () => import('./tabs/components/paddyinward/paddyinward.page').then( m => m.PaddyinwardPage)
+  },
+  {
+    path: 'paddyoutward',
+    loadComponent: () => import('./tabs/components/paddyoutward/paddyoutward.page').then( m => m.PaddyoutwardPage)
+  },
+  {
+    path: 'stockinward',
+    loadComponent: () => import('./tabs/components/stockinward/stockinward.page').then( m => m.StockinwardPage)
   }
 
 ];
