@@ -1,13 +1,12 @@
 <ion-tabs>
   <ion-tab-bar slot="bottom" color="primary">
+    <ion-tab-button tab="samplepage" [routerLink]=" ['/tabs/samplepage']">
+      <ion-icon name="stats-chart-outline"></ion-icon>
+      <ion-label>Sample Reports</ion-label>
+    </ion-tab-button>
     <ion-tab-button tab="daily-process" [routerLink]="['/tabs/daily-process']">
       <ion-icon name="list-outline"></ion-icon>
       <ion-label>Daily</ion-label>
-    </ion-tab-button>
-
-    <ion-tab-button tab="prestreaming" [routerLink]="['/tabs/prestreaming']">
-      <ion-icon name="water-outline"></ion-icon>
-      <ion-label>Pre-steam</ion-label>
     </ion-tab-button>
 
     <ion-tab-button tab="dashboard" [routerLink]=" ['/tabs/dashboard']">
@@ -15,10 +14,16 @@
       <ion-label>Dashboard</ion-label>
     </ion-tab-button>
 
+    <ion-tab-button tab="prestreaming" [routerLink]="['/tabs/prestreaming']">
+      <ion-icon name="water-outline"></ion-icon>
+      <ion-label>Pre-steam</ion-label>
+    </ion-tab-button>
+
 
     <ion-tab-button tab="streaming" [routerLink]="['/tabs/streaming']">
       <ion-icon name="flash-outline"></ion-icon>
       <ion-label>Steaming</ion-label>
     </ion-tab-button>
+
   </ion-tab-bar>
 </ion-tabs>

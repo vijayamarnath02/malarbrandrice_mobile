@@ -269,4 +269,13 @@ export class MalarService {
       'Loading dashboard counts...'
     );
   }
+  createReport(data: any): Observable<any> {
+    const obs = this.http.post(`${this.BASE_URL}/sample-report`, data);
+    return this.withLoader(obs, 'Creating report...');
+  }
+  getReport(): Observable<any[]> {
+    const obs = this.http.get<any>(`${this.BASE_URL}/sample-report/`, this.getHeaders())
+      .pipe(map((res: any) => res.response?.data));
+    return this.withLoader(obs, 'Fetching sample-report...');
+  }
 }

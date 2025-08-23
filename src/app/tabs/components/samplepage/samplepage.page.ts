@@ -20,6 +20,7 @@ import {
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
+import { MalarService } from '../../services/malar.service';
 
 @Component({
   selector: 'app-samplepage',
@@ -39,11 +40,18 @@ export class SamplepagePage implements OnInit {
   processForm!: FormGroup;
   submitted = false;
 
-  constructor(private fb: FormBuilder, private router: Router) { }
+  constructor(private fb: FormBuilder, private router: Router, private malarService: MalarService) { }
 
   ngOnInit() {
+    // Format date as 'YYYY-MM-DD'
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const dd = String(today.getDate()).padStart(2, '0');
+    const formattedDate = `${yyyy}-${mm}-${dd}`;
+
     this.processForm = this.fb.group({
-      date: ['', Validators.required],
+      date: [formattedDate, Validators.required],
       loadNumber: ['', Validators.required],
       vehicleNumber: ['', Validators.required],
       driverName: ['', Validators.required],
@@ -70,13 +78,51 @@ export class SamplepagePage implements OnInit {
   get f() {
     return this.processForm.controls;
   }
+  ionViewWillEnter() {
+
+  }
 
   onSubmit() {
     this.submitted = true;
     if (this.processForm.invalid) {
+      this.processForm.markAllAsTouched();
       return;
     }
-    console.log(this.processForm.value);
+    else {
+      const payload = {
+        date: this.processForm.value.date,
+        load_number: this.processForm.value.loadNumber,
+        vehicle_number: this.processForm.value.vehicleNumber,
+        driver_name: this.processForm.value.driverName,
+        cell_number: this.processForm.value.cellNumber,
+        party_name: this.processForm.value.partyName,
+        bill_number: this.processForm.value.billNoDt,
+        bill_date: this.processForm.value.date, // You may separate billNo and billDate
+        broker_name: this.processForm.value.brokerName,
+        item_id: this.processForm.value.item, // maybe from dropdown later
+        moisture: this.processForm.value.moisture,
+        paddy_type: this.processForm.value.rawOrDried,
+        bags: this.processForm.value.bags,
+        weight: this.processForm.value.weight,
+        sample_taken_by: this.processForm.value.sampleTakenBy,
+        rice: this.processForm.value.rice,
+        broken: this.processForm.value.broken,
+        bran: this.processForm.value.bran,
+        total_percentage: this.processForm.value.totalPercentage,
+        status: this.processForm.value.acceptReject === 'Ok' ? 1 : 0,
+        reason: this.processForm.value.reason,
+        delivered_at: this.processForm.value.deliveryAt,
+      };
+      this.malarService.createReport(payload).subscribe({
+        next: res => {
+          this.processForm.reset();
+          this.router.navigate(['/tabs/userlist']);
+        },
+        error: err => {
+          console.error('Item load failed', err);
+        }
+      });
+    }
   }
   onCancel() {
     this.processForm.reset();

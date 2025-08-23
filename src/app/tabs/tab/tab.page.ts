@@ -9,6 +9,7 @@ import {
   gridOutline,
   listOutline,
   shieldCheckmarkOutline,
+  statsChartOutline,
   waterOutline
 } from 'ionicons/icons';
 
@@ -22,7 +23,7 @@ import {
 export class TabPage implements OnInit {
 
   constructor() {
-    addIcons({ listOutline, waterOutline, gridOutline, flashOutline, shieldCheckmarkOutline });
+    addIcons({ statsChartOutline, listOutline, gridOutline, waterOutline, flashOutline, shieldCheckmarkOutline });
   }
 
   ngOnInit() {
