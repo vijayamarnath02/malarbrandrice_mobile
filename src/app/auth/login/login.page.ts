@@ -2,9 +2,9 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 import { IonButton, IonCard, IonCardContent, IonCol, IonContent, IonGrid, IonInput, IonInputPasswordToggle, IonItem, IonRow, IonText } from '@ionic/angular/standalone';
 import { MalarService } from 'src/app/tabs/services/malar.service';
-
 
 @Component({
   selector: 'app-login',
@@ -15,7 +15,7 @@ import { MalarService } from 'src/app/tabs/services/malar.service';
 })
 export class LoginPage implements OnInit {
   loginForm!: FormGroup;
-  constructor(private fb: FormBuilder, private malarService: MalarService, private router: Router) { }
+  constructor(private fb: FormBuilder, private malarService: MalarService, private router: Router, private toastController: ToastController) { }
 
   ngOnInit() {
     this.loginForm = this.fb.group({
@@ -56,6 +56,7 @@ export class LoginPage implements OnInit {
             console.log(res);
             localStorage.setItem('token', res?.response?.token);
             localStorage.setItem('userrole', res?.response?.user_type)
+            this.presentToast('Login successful!', 'success');
             setTimeout(() => {
               this.router.navigate(['/tabs/dashboard']);
             }, 2000)
@@ -63,16 +64,27 @@ export class LoginPage implements OnInit {
           }
         },
         error: err => {
-          alert('login failed.')
+          this.presentToast('Login failed. Please try again.', 'danger');
           console.error('Item load failed', err);
         }
       });
     } else {
+
       this.loginForm.markAllAsTouched();
     }
   }
   ionViewDidLeave() {
     this.loginForm.reset();
+  }
+
+  async presentToast(message: string, color: 'success' | 'danger' | 'warning' = 'danger') {
+    const toast = await this.toastController.create({
+      message,
+      duration: 3000,
+      position: 'bottom',
+      color
+    });
+    await toast.present();
   }
 
 }

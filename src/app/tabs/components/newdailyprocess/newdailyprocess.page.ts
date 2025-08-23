@@ -10,7 +10,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import {
   IonButton,
-  IonButtons,
   IonCol,
   IonContent,
   IonGrid,
@@ -33,7 +32,7 @@ import { MalarService } from '../../services/malar.service';
   templateUrl: './newdailyprocess.page.html',
   styleUrls: ['./newdailyprocess.page.scss'],
   standalone: true,
-  imports: [IonButtons, IonGrid, IonRow, IonCol,
+  imports: [IonGrid, IonRow, IonCol,
     CommonModule,
     ReactiveFormsModule,
     IonHeader,

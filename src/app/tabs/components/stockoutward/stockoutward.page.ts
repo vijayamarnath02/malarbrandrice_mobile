@@ -15,8 +15,6 @@ import {
   IonList,
   IonNote,
   IonRow,
-  IonSelect,
-  IonSelectOption,
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
@@ -39,8 +37,6 @@ import {
     IonList,
     IonDatetime,
     IonButton,
-    IonSelect,
-    IonSelectOption,
     IonDatetime
   ]
 })
