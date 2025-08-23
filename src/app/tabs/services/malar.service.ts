@@ -270,12 +270,31 @@ export class MalarService {
     );
   }
   createReport(data: any): Observable<any> {
-    const obs = this.http.post(`${this.BASE_URL}/sample-report`, data);
+    const obs = this.http.post(`${this.BASE_URL}/sample-report`, data, this.getHeaders());
     return this.withLoader(obs, 'Creating report...');
   }
+
   getReport(): Observable<any[]> {
     const obs = this.http.get<any>(`${this.BASE_URL}/sample-report/`, this.getHeaders())
       .pipe(map((res: any) => res.response?.data));
-    return this.withLoader(obs, 'Fetching sample-report...');
+    return this.withLoader(obs, 'Fetching sample reports...');
+  }
+
+  getReportById(id: string): Observable<any> {
+    const obs = this.http.get(`${this.BASE_URL}/sample-report/${id}`, this.getHeaders())
+      .pipe(map((res: any) => res.response));
+    return this.withLoader(obs, 'Fetching report details...');
+  }
+
+  updateReport(id: string, data: any): Observable<any> {
+    const obs = this.http.put(`${this.BASE_URL}/sample-report/${id}`, data, this.getHeaders())
+      .pipe(map((res: any) => res.response));
+    return this.withLoader(obs, 'Updating report...');
+  }
+
+  deleteReport(id: string): Observable<any> {
+    const obs = this.http.delete(`${this.BASE_URL}/sample-report/${id}`, this.getHeaders())
+      .pipe(map((res: any) => res.response));
+    return this.withLoader(obs, 'Deleting report...');
   }
 }
