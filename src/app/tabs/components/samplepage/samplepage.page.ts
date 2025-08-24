@@ -48,7 +48,7 @@ export class SamplepagePage implements OnInit {
   submitted = false;
   editMode = false;
   recordId: string | null = null;
-
+  itemList: any;
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -98,6 +98,15 @@ export class SamplepagePage implements OnInit {
       this.loadReport(this.recordId);
     }
   }
+  ionViewWillEnter() {
+    this.loadDropdowns();
+  }
+  loadDropdowns() {
+    this.malarService.getItems().subscribe({
+      next: res => this.itemList = res.map(i => i),
+      error: err => console.error('Item load failed', err),
+    });
+  }
 
   loadReport(id: string) {
     this.malarService.getReportById(id).subscribe({
@@ -117,7 +126,7 @@ export class SamplepagePage implements OnInit {
           rawOrDried: res.paddy_type || '',
           bags: res.bags || '',
           weight: res.weight || '',
-          sampleTakenBy: res.sample_taken_by || '',
+          sampleTakenBy: res.sample_taken_by || 'new',
           rice: res.rice || '',
           broken: res.broken || '',
           bran: res.bran || '',
@@ -153,7 +162,7 @@ export class SamplepagePage implements OnInit {
       paddy_type: this.processForm.value.rawOrDried,
       bags: this.processForm.value.bags,
       weight: this.processForm.value.weight,
-      sample_taken_by: this.processForm.value.sampleTakenBy,
+      sample_taken_by: this.processForm.value.sampleTakenBy || 'new',
       rice: this.processForm.value.rice,
       broken: this.processForm.value.broken,
       bran: this.processForm.value.bran,
