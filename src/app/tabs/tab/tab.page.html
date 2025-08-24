@@ -1,29 +1,38 @@
 <ion-tabs>
   <ion-tab-bar slot="bottom" color="primary">
-    <ion-tab-button tab="samplepage" [routerLink]=" ['/tabs/samplepage']">
+    <ion-tab-button tab="samplepage" [routerLink]=" ['/tabs/samplepage']" (click)="onTabClick(1)">
       <ion-icon name="stats-chart-outline"></ion-icon>
+      @if (index === 1) {
       <ion-label>Sample Reports</ion-label>
+      }
     </ion-tab-button>
-    <ion-tab-button tab="daily-process" [routerLink]="['/tabs/daily-process']">
+
+    <ion-tab-button tab="daily-process" [routerLink]="['/tabs/daily-process']" (click)="onTabClick(2)">
       <ion-icon name="list-outline"></ion-icon>
-      <ion-label>Daily</ion-label>
+      @if (index === 2) {
+      <ion-label>Daily Reports</ion-label>
+      }
     </ion-tab-button>
 
-    <ion-tab-button tab="dashboard" [routerLink]=" ['/tabs/dashboard']">
+    <ion-tab-button tab="dashboard" [routerLink]=" ['/tabs/dashboard']" (click)="onTabClick(3)">
       <ion-icon name="grid-outline"></ion-icon>
+      @if (index === 3) {
       <ion-label>Dashboard</ion-label>
+      }
     </ion-tab-button>
 
-    <ion-tab-button tab="prestreaming" [routerLink]="['/tabs/prestreaming']">
+    <ion-tab-button tab="prestreaming" [routerLink]="['/tabs/prestreaming']" (click)="onTabClick(4)">
       <ion-icon name="water-outline"></ion-icon>
-      <ion-label>Pre-steam</ion-label>
+      @if (index === 4) {
+      <ion-label>Pre-streaming</ion-label>
+      }
     </ion-tab-button>
 
-
-    <ion-tab-button tab="streaming" [routerLink]="['/tabs/streaming']">
+    <ion-tab-button tab="streaming" [routerLink]="['/tabs/streaming']" (click)="onTabClick(5)">
       <ion-icon name="flash-outline"></ion-icon>
-      <ion-label>Steaming</ion-label>
+      @if (index === 5) {
+      <ion-label>Streaming</ion-label>
+      }
     </ion-tab-button>
-
   </ion-tab-bar>
 </ion-tabs>

@@ -21,11 +21,14 @@ import {
   imports: [IonTabs, IonTabBar, IonLabel, IonIcon, IonTabButton, CommonModule, FormsModule, RouterModule]
 })
 export class TabPage implements OnInit {
+  index: number = 3;
 
   constructor() {
     addIcons({ statsChartOutline, listOutline, gridOutline, waterOutline, flashOutline, shieldCheckmarkOutline });
   }
-
+  onTabClick(tabName: number) {
+    this.index = tabName;
+  }
   ngOnInit() {
   }
 

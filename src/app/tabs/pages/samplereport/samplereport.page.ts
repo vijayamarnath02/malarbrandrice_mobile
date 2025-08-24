@@ -78,91 +78,11 @@ export class SamplereportPage implements OnInit {
       error: (err) => {
         console.error('Failed to load sample reports:', err);
         this.showToast('Failed to load sample reports', 'danger');
-        // Fallback to dummy data for demonstration
-        this.loadDummyData();
       },
     });
   }
 
-  private loadDummyData() {
-    this.sampleReportList = [
-      {
-        _id: '1',
-        party_name: "ABC Traders",
-        item_id: { _id: '68a1a9688cb013e1b9f1a35e', name: "Paddy" },
-        bill_number: "BN12345",
-        bill_date: "2024-06-01",
-        date: "2024-06-01",
-        load_number: "LN67890",
-        vehicle_number: "TN01AB1234",
-        driver_name: "Ramesh Kumar",
-        cell_number: "9876543210",
-        broker_name: "Suresh",
-        delivered_at: "Chennai",
-        moisture: 14,
-        paddy_type: 1,
-        bags: 50,
-        weight: 2500,
-        sample_taken_by: "Vijay",
-        rice: 65,
-        broken: 5,
-        bran: 8,
-        total_percentage: 78,
-        status: 1,
-        reason: "Good quality"
-      },
-      {
-        _id: '2',
-        party_name: "XYZ Mills",
-        item_id: { _id: '68a1a9688cb013e1b9f1a35e', name: "Paddy" },
-        bill_number: "BN54321",
-        bill_date: "2024-06-02",
-        date: "2024-06-02",
-        load_number: "LN09876",
-        vehicle_number: "TN02CD5678",
-        driver_name: "Arun Kumar",
-        cell_number: "9123456780",
-        broker_name: "Mani",
-        delivered_at: "Madurai",
-        moisture: 13,
-        paddy_type: 2,
-        bags: 40,
-        weight: 2000,
-        sample_taken_by: "Karthik",
-        rice: 62,
-        broken: 6,
-        bran: 7,
-        total_percentage: 75,
-        status: 1,
-        reason: "Satisfactory"
-      },
-      {
-        _id: '3',
-        party_name: "LMN Agencies",
-        item_id: { _id: '68a1a9688cb013e1b9f1a35e', name: "Paddy" },
-        bill_number: "BN67890",
-        bill_date: "2024-06-03",
-        date: "2024-06-03",
-        load_number: "LN11223",
-        vehicle_number: "TN03EF9012",
-        driver_name: "Selvam",
-        cell_number: "9988776655",
-        broker_name: "Ravi",
-        delivered_at: "Coimbatore",
-        moisture: 15,
-        paddy_type: 1,
-        bags: 60,
-        weight: 3000,
-        sample_taken_by: "Prakash",
-        rice: 68,
-        broken: 4,
-        bran: 9,
-        total_percentage: 81,
-        status: 2,
-        reason: "High moisture"
-      }
-    ];
-  }
+
 
   async editReport(report: SampleReport) {
     if (report._id) {
