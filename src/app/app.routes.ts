@@ -77,11 +77,15 @@ export const routes: Routes = [
         loadComponent: () => import('./tabs/components/samplepage/samplepage.page').then(m => m.SamplepagePage)
       },
       {
+        path: 'newsamplereport',
+        loadComponent: () => import('./tabs/components/samplepage/samplepage.page').then(m => m.SamplepagePage)
+      },
+      {
         path: 'stockoutward',
         loadComponent: () => import('./tabs/components/stockoutward/stockoutward.page').then(m => m.StockoutwardPage)
       },
       {
-        path: 'wetpaddy',
+        path: 'newwetpaddy',
         loadComponent: () => import('./tabs/components/wetpaddy/wetpaddy.page').then(m => m.WetpaddyPage)
       },
       {
@@ -96,6 +100,14 @@ export const routes: Routes = [
     path: '',
     redirectTo: 'home',
     pathMatch: 'full',
+  },
+  {
+    path: 'newstockinward',
+    loadComponent: () => import('./tabs/components/newstockinward/newstockinward.page').then(m => m.NewstockinwardPage)
+  },
+  {
+    path: 'newstockoutward',
+    loadComponent: () => import('./tabs/components/newstockoutward/newstockoutward.page').then(m => m.NewstockoutwardPage)
   },
 
 

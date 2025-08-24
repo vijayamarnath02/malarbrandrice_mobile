@@ -4,85 +4,73 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="false" class="ion-padding">
   <form [formGroup]="wetpaddyForm" (ngSubmit)="onSubmit()">
-    <ion-list lines="full">
+    <ion-item>
+      <ion-label position="floating">Date</ion-label>
+      <ion-datetime formControlName="date" presentation="date" readonly></ion-datetime>
+    </ion-item>
+    <small class="error" *ngIf="wetpaddyForm.get('date')?.touched && wetpaddyForm.get('date')?.invalid">
+      Date is required
+    </small>
 
-      <!-- Date -->
-      <ion-item>
-        <ion-label>Date</ion-label>
-        <ion-datetime presentation="date" formControlName="date"></ion-datetime>
-      </ion-item>
-      <ion-note color="danger" *ngIf="wetpaddyForm.get('date')?.touched && wetpaddyForm.get('date')?.invalid">
-        Date is required
-      </ion-note>
+    <!-- Party Name -->
+    <ion-item>
+      <ion-label position="floating">Party Name</ion-label>
+      <ion-input formControlName="partyName"></ion-input>
+    </ion-item>
+    <small class="error" *ngIf="wetpaddyForm.get('partyName')?.touched && wetpaddyForm.get('partyName')?.invalid">
+      Party name is required
+    </small>
 
-      <!-- Item -->
-      <ion-item>
-        <ion-label position="floating">Item</ion-label>
-        <ion-input formControlName="item"></ion-input>
-      </ion-item>
-      <ion-note color="danger" *ngIf="wetpaddyForm.get('item')?.touched && wetpaddyForm.get('item')?.invalid">
-        Item is required
-      </ion-note>
+    <!-- Vehicle Number -->
+    <ion-item>
+      <ion-label position="floating">Vehicle Number</ion-label>
+      <ion-input formControlName="vehicleNumber"></ion-input>
+    </ion-item>
+    <small class="error"
+      *ngIf="wetpaddyForm.get('vehicleNumber')?.touched && wetpaddyForm.get('vehicleNumber')?.invalid">
+      Vehicle number is required
+    </small>
 
-      <!-- Dried At -->
-      <ion-item>
-        <ion-label position="floating">Dried At</ion-label>
-        <ion-input formControlName="driedAt"></ion-input>
-      </ion-item>
-      <ion-note color="danger" *ngIf="wetpaddyForm.get('driedAt')?.touched && wetpaddyForm.get('driedAt')?.invalid">
-        Dried At is required
-      </ion-note>
+    <!-- Item Dropdown -->
+    <ion-item>
+      <ion-label position="floating">Item</ion-label>
+      <ion-select formControlName="item" placeholder="Select Item">
+        <ion-select-option *ngFor="let item of itemList" [value]="item._id">{{ item.name }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-text color="danger" *ngIf="wetpaddyForm.get('itemId')?.touched && wetpaddyForm.get('itemId')?.invalid">Item is
+      required</ion-text>
 
-      <!-- Delivery At -->
-      <ion-item>
-        <ion-label position="floating">Delivery At</ion-label>
-        <ion-input formControlName="deliveryAt"></ion-input>
-      </ion-item>
-      <ion-note color="danger"
-        *ngIf="wetpaddyForm.get('deliveryAt')?.touched && wetpaddyForm.get('deliveryAt')?.invalid">
-        Delivery At is required
-      </ion-note>
+    <!-- Moisture -->
+    <ion-item>
+      <ion-label position="floating">Moisture</ion-label>
+      <ion-input type="number" formControlName="moisture"></ion-input>
+    </ion-item>
+    <small class="error" *ngIf="wetpaddyForm.get('moisture')?.touched && wetpaddyForm.get('moisture')?.invalid">
+      Moisture is required
+    </small>
 
-      <!-- Moisture -->
-      <ion-item>
-        <ion-label position="floating">Moisture</ion-label>
-        <ion-input type="number" formControlName="moisture"></ion-input>
-      </ion-item>
-      <ion-note color="danger" *ngIf="wetpaddyForm.get('moisture')?.touched && wetpaddyForm.get('moisture')?.invalid">
-        Enter valid moisture value
-      </ion-note>
+    <!-- Bags -->
+    <ion-item>
+      <ion-label position="floating">Bags</ion-label>
+      <ion-input type="number" formControlName="bags"></ion-input>
+    </ion-item>
+    <small class="error" *ngIf="wetpaddyForm.get('bags')?.touched && wetpaddyForm.get('bags')?.invalid">
+      Bags are required
+    </small>
 
-      <!-- Bags -->
-      <ion-item>
-        <ion-label position="floating">Bags</ion-label>
-        <ion-input type="number" formControlName="bags"></ion-input>
-      </ion-item>
-      <ion-note color="danger" *ngIf="wetpaddyForm.get('bags')?.touched && wetpaddyForm.get('bags')?.invalid">
-        Enter valid number of bags
-      </ion-note>
+    <!-- Weight -->
+    <ion-item>
+      <ion-label position="floating">Weight</ion-label>
+      <ion-input type="number" formControlName="weight"></ion-input>
+    </ion-item>
+    <small class="error" *ngIf="wetpaddyForm.get('weight')?.touched && wetpaddyForm.get('weight')?.invalid">
+      Weight is required
+    </small>
 
-      <!-- Weight -->
-      <ion-item>
-        <ion-label position="floating">Weight</ion-label>
-        <ion-input type="number" formControlName="weight"></ion-input>
-      </ion-item>
-      <ion-note color="danger" *ngIf="wetpaddyForm.get('weight')?.touched && wetpaddyForm.get('weight')?.invalid">
-        Enter valid weight
-      </ion-note>
 
-      <!-- Vehicle Number -->
-      <ion-item>
-        <ion-label position="floating">Vehicle Number</ion-label>
-        <ion-input formControlName="vehicleNumber"></ion-input>
-      </ion-item>
-      <ion-note color="danger"
-        *ngIf="wetpaddyForm.get('vehicleNumber')?.touched && wetpaddyForm.get('vehicleNumber')?.invalid">
-        Vehicle Number is required
-      </ion-note>
-
-    </ion-list>
     <ion-grid>
       <ion-row class="ion-justify-content-between">
         <ion-col size="6">
@@ -90,13 +78,17 @@
             Cancel
           </ion-button>
         </ion-col>
-        <ion-col size="6">
+        <ion-col size="6" *ngIf="recordId === null">
           <ion-button expand="block" type="submit" [disabled]="wetpaddyForm.invalid">
             Submit
           </ion-button>
         </ion-col>
+        <ion-col size="6" *ngIf="recordId !== null">
+          <ion-button expand="block" type="submit" [disabled]="wetpaddyForm.invalid">
+            Update
+          </ion-button>
+        </ion-col>
       </ion-row>
     </ion-grid>
-
   </form>
 </ion-content>

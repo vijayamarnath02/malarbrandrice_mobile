@@ -86,7 +86,7 @@ export class SamplepagePage implements OnInit {
       broken: [''],
       bran: [''],
       totalPercentage: [''],
-      acceptReject: ['', Validators.required],
+      acceptReject: [1, Validators.required],
       reason: [''],
       deliveryAt: [''],
     });
@@ -131,7 +131,7 @@ export class SamplepagePage implements OnInit {
           broken: res.broken || '',
           bran: res.bran || '',
           totalPercentage: res.total_percentage || '',
-          acceptReject: res.status === 1 ? 'Ok' : 'Reject',
+          acceptReject: res.status,
           reason: res.reason || '',
           deliveryAt: res.delivered_at || '',
         });
@@ -167,7 +167,7 @@ export class SamplepagePage implements OnInit {
       broken: this.processForm.value.broken,
       bran: this.processForm.value.bran,
       total_percentage: this.processForm.value.totalPercentage,
-      status: this.processForm.value.acceptReject === 'Ok' ? 1 : 0,
+      status: this.processForm.value.acceptReject,
       reason: this.processForm.value.reason,
       delivered_at: this.processForm.value.deliveryAt,
     };
@@ -191,6 +191,6 @@ export class SamplepagePage implements OnInit {
 
   onCancel() {
     this.processForm.reset();
-    this.router.navigate(['/tabs/dashboard']);
+    this.router.navigate(['/tabs/samplepage']);
   }
 }
