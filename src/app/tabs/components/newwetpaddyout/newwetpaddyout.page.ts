@@ -33,7 +33,7 @@ export class NewwetpaddyoutPage implements OnInit {
 
     this.wetpaddyOutForm = this.fb.group({
       date: [formattedDate, Validators.required],
-      itemId: ['', Validators.required],
+      item: ['', Validators.required],
       driedAt: [''],
       deliveryAt: [''],
       moisture: ['', Validators.required],
@@ -64,7 +64,7 @@ export class NewwetpaddyoutPage implements OnInit {
       next: (data) => {
         this.wetpaddyOutForm.patchValue({
           date: data.date,
-          itemId: data.item_id,
+          item: data.item_id,
           driedAt: data.dried_at,
           deliveryAt: data.delivery_at,
           moisture: data.moisture,
