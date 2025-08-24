@@ -4,84 +4,88 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="false" class="ion-padding">
   <form [formGroup]="stockForm" (ngSubmit)="onSubmit()">
-    <ion-list>
-      <ion-item>
-        <ion-label position="stacked">Date</ion-label>
-        <ion-datetime formControlName="date" presentation="date"></ion-datetime>
-      </ion-item>
+    <ion-item>
+      <ion-label position="floating">Date</ion-label>
+      <ion-datetime formControlName="date" presentation="date" readonly></ion-datetime>
+    </ion-item>
+    <ion-text color="danger" *ngIf="submitted && f['date'].errors?.['required']">
+      Date is required
+    </ion-text>
 
-      <ion-text *ngIf="stockForm.get('date')?.touched && stockForm.get('date')?.invalid">
-        Date is required
-      </ion-text>
+    <ion-text *ngIf="stockForm.get('date')?.touched && stockForm.get('date')?.invalid">
+      Date is required
+    </ion-text>
 
-      <ion-item>
-        <ion-label position="floating">Item</ion-label>
-        <ion-input type="text" formControlName="item"></ion-input>
-      </ion-item>
+    <ion-item>
+      <ion-label position="floating">Item</ion-label>
+      <ion-select formControlName="item" placeholder="Select Item">
+        <ion-select-option *ngFor="let item of itemList" [value]="item._id">{{ item.name }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-text color="danger" *ngIf="submitted && f['item'].errors?.['required']">Item is required</ion-text>
 
-      <ion-item>
-        <ion-label position="floating">Party Name</ion-label>
-        <ion-input type="text" formControlName="partyName"></ion-input>
-      </ion-item>
 
-      <ion-item>
-        <ion-label position="floating">Direct Load Stake</ion-label>
-        <ion-input type="text" formControlName="directLoadStake"></ion-input>
-      </ion-item>
+    <ion-item>
+      <ion-label position="floating">Party Name</ion-label>
+      <ion-input type="text" formControlName="partyName"></ion-input>
+    </ion-item>
 
-      <ion-item>
-        <ion-label position="floating">Moisture</ion-label>
-        <ion-input type="number" formControlName="moisture"></ion-input>
-      </ion-item>
+    <ion-item>
+      <ion-label position="floating">Direct Load Stake</ion-label>
+      <ion-input type="text" formControlName="directLoadStake"></ion-input>
+    </ion-item>
 
-      <ion-item>
-        <ion-label position="floating">Dried At</ion-label>
-        <ion-input type="text" formControlName="driedAt"></ion-input>
-      </ion-item>
+    <ion-item>
+      <ion-label position="floating">Moisture</ion-label>
+      <ion-input type="number" formControlName="moisture"></ion-input>
+    </ion-item>
 
-      <ion-item>
-        <ion-label position="floating">Godown Name</ion-label>
-        <ion-input type="text" formControlName="godownName"></ion-input>
-      </ion-item>
+    <ion-item>
+      <ion-label position="floating">Dried At</ion-label>
+      <ion-input type="text" formControlName="driedAt"></ion-input>
+    </ion-item>
 
-      <ion-item>
-        <ion-label position="floating">Bin</ion-label>
-        <ion-input type="text" formControlName="bin"></ion-input>
-      </ion-item>
+    <ion-item>
+      <ion-label position="floating">Godown Name</ion-label>
+      <ion-input type="text" formControlName="godownName"></ion-input>
+    </ion-item>
 
-      <ion-item>
-        <ion-label position="floating">Lot</ion-label>
-        <ion-input type="text" formControlName="lot"></ion-input>
-      </ion-item>
+    <ion-item>
+      <ion-label position="floating">Bin</ion-label>
+      <ion-input type="text" formControlName="bin"></ion-input>
+    </ion-item>
 
-      <ion-item>
-        <ion-label position="floating">Bags</ion-label>
-        <ion-input type="number" formControlName="bags"></ion-input>
-      </ion-item>
+    <ion-item>
+      <ion-label position="floating">Lot</ion-label>
+      <ion-input type="text" formControlName="lot"></ion-input>
+    </ion-item>
 
-      <ion-item>
-        <ion-label position="floating">Weight</ion-label>
-        <ion-input type="number" formControlName="weight"></ion-input>
-      </ion-item>
+    <ion-item>
+      <ion-label position="floating">Bags</ion-label>
+      <ion-input type="number" formControlName="bags"></ion-input>
+    </ion-item>
 
-      <ion-item>
-        <ion-label position="floating">Vehicle Number</ion-label>
-        <ion-input type="text" formControlName="vehicleNumber"></ion-input>
-      </ion-item>
+    <ion-item>
+      <ion-label position="floating">Weight</ion-label>
+      <ion-input type="number" formControlName="weight"></ion-input>
+    </ion-item>
 
-      <ion-item>
-        <ion-label position="floating">Incharge</ion-label>
-        <ion-input type="text" formControlName="incharge"></ion-input>
-      </ion-item>
+    <ion-item>
+      <ion-label position="floating">Vehicle Number</ion-label>
+      <ion-input type="text" formControlName="vehicleNumber"></ion-input>
+    </ion-item>
 
-      <ion-item>
-        <ion-label position="floating">Remark</ion-label>
-        <ion-input type="text" formControlName="remark"></ion-input>
-      </ion-item>
+    <ion-item>
+      <ion-label position="floating">Incharge</ion-label>
+      <ion-input type="text" formControlName="incharge"></ion-input>
+    </ion-item>
 
-    </ion-list>
+    <ion-item>
+      <ion-label position="floating">Remark</ion-label>
+      <ion-input type="text" formControlName="remark"></ion-input>
+    </ion-item>
 
     <ion-grid>
       <ion-row class="ion-justify-content-between">

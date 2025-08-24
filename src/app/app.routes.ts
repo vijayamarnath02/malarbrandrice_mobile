@@ -101,6 +101,14 @@ export const routes: Routes = [
         loadComponent: () => import('./tabs/components/newwetpaddyout/newwetpaddyout.page').then(m => m.NewwetpaddyoutPage)
       },
       {
+        path: 'stockinward',
+        loadComponent: () => import('./tabs/components/stockinward/stockinward.page').then(m => m.StockinwardPage)
+      },
+      {
+        path: 'stockinward/:id',
+        loadComponent: () => import('./tabs/components/stockinward/stockinward.page').then(m => m.StockinwardPage)
+      },
+      {
         path: 'samplepage',
         loadComponent: () => import('./tabs/pages/samplereport/samplereport.page').then(m => m.SamplereportPage)
       },
