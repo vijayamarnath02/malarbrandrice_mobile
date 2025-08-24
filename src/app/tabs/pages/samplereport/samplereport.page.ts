@@ -4,10 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AlertController, ToastController } from '@ionic/angular';
 import {
+  IonActionSheet,
   IonButton, IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle,
   IonChip, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonLabel, IonList, IonRow, IonText,
   IonTitle, IonToolbar
 } from '@ionic/angular/standalone';
+import { OverlayEventDetail } from '@ionic/core';
 import { addIcons } from 'ionicons';
 import { addOutline, createOutline, flashOutline, gridOutline, listOutline, settingsOutline, shieldCheckmarkOutline, timeOutline, trashOutline, waterOutline } from 'ionicons/icons';
 import { MalarService } from '../../services/malar.service';
@@ -43,7 +45,7 @@ interface SampleReport {
   templateUrl: './samplereport.page.html',
   styleUrls: ['./samplereport.page.scss'],
   standalone: true,
-  imports: [
+  imports: [IonActionSheet,
     IonText, IonLabel, IonChip, IonCardContent, IonCardSubtitle, IonCardTitle, IonCardHeader,
     IonCard, IonList, IonCol, IonRow, IonGrid, IonIcon, IonButton, IonButtons, IonContent,
     IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, RouterModule
@@ -51,6 +53,24 @@ interface SampleReport {
 })
 export class SamplereportPage implements OnInit {
   sampleReportList: SampleReport[] = [];
+  isActionSheetOpen: boolean = false;
+  public actionSheetButtons = [
+    {
+      text: 'Delete',
+      role: 'destructive',
+      data: {
+        action: 'delete',
+      },
+    },
+    {
+      text: 'Cancel',
+      role: 'cancel',
+      data: {
+        action: 'cancel',
+      },
+    },
+  ];
+  deleteId: any;
 
   constructor(
     private router: Router,
@@ -114,6 +134,12 @@ export class SamplereportPage implements OnInit {
     await alert.present();
   }
 
+  setOpen(isOpen: boolean, id?: any) {
+    if (id) {
+      this.deleteId = id;
+    }
+    this.isActionSheetOpen = isOpen;
+  }
   private performDelete(report: SampleReport) {
     if (report._id) {
       this.malarService.deleteReport(report._id).subscribe({
@@ -157,5 +183,17 @@ export class SamplereportPage implements OnInit {
   // Helper method to format dates
   formatDate(date: string | Date): string {
     return new Date(date).toLocaleDateString();
+  }
+  logResult(event: CustomEvent<OverlayEventDetail>) {
+    this.setOpen(false);
+    if (event.detail.role === 'destructive') {
+      this.deleteProcess(this.deleteId)
+    }
+  }
+  deleteProcess(process: any) {
+    this.malarService.deleteReport(process).subscribe(() => {
+      this.loadSampleReports();
+    });
+
   }
 }
