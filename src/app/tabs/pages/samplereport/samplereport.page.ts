@@ -106,7 +106,7 @@ export class SamplereportPage implements OnInit {
 
   async editReport(report: SampleReport) {
     if (report._id) {
-      this.router.navigate(['/tabs/samplereport/edit', report._id]);
+      this.router.navigate(['/tabs/newsamplereport', report._id]);
     } else {
       this.showToast('Cannot edit report: ID not found', 'warning');
     }
