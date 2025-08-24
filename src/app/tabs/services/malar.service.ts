@@ -315,6 +315,21 @@ export class MalarService {
       .pipe(map((res: any) => res.response));
     return this.withLoader(obs, 'Creating wet paddy...');
   }
+  getWetPaddyOutById(id: string): Observable<any> {
+    const obs = this.http.get(`${this.BASE_URL}/wet-paddy-outward/${id}`, this.getHeaders())
+      .pipe(map((res: any) => res.response));
+    return this.withLoader(obs, 'Fetching wet paddy outward details...');
+  }
 
+  createWetPaddyOut(data: any): Observable<any> {
+    const obs = this.http.post(`${this.BASE_URL}/wet-paddy-outward`, data, this.getHeaders())
+      .pipe(map((res: any) => res.response));
+    return this.withLoader(obs, 'Creating wet paddy outward...');
+  }
 
+  updateWetPaddyOut(id: string, data: any): Observable<any> {
+    const obs = this.http.put(`${this.BASE_URL}/wet-paddy-outward/${id}`, data, this.getHeaders())
+      .pipe(map((res: any) => res.response));
+    return this.withLoader(obs, 'Updating wet paddy outward...');
+  }
 }

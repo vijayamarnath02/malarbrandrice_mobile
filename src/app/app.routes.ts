@@ -86,7 +86,19 @@ export const routes: Routes = [
       },
       {
         path: 'newwetpaddy',
-        loadComponent: () => import('./tabs/components/wetpaddy/wetpaddy.page').then(m => m.WetpaddyPage)
+        loadComponent: () => import('./tabs/components/wetpaddyin/wetpaddy.page').then(m => m.WetpaddyPage)
+      },
+      {
+        path: 'newwetpaddy/:id',
+        loadComponent: () => import('./tabs/components/wetpaddyin/wetpaddy.page').then(m => m.WetpaddyPage)
+      },
+      {
+        path: 'newwetpaddyout/:id',
+        loadComponent: () => import('./tabs/components/newwetpaddyout/newwetpaddyout.page').then(m => m.NewwetpaddyoutPage)
+      },
+      {
+        path: 'newwetpaddyout',
+        loadComponent: () => import('./tabs/components/newwetpaddyout/newwetpaddyout.page').then(m => m.NewwetpaddyoutPage)
       },
       {
         path: 'samplepage',
@@ -109,6 +121,7 @@ export const routes: Routes = [
     path: 'newstockoutward',
     loadComponent: () => import('./tabs/components/newstockoutward/newstockoutward.page').then(m => m.NewstockoutwardPage)
   },
+
 
 
 

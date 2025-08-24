@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Wet Paddy Out</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="false" class="ion-padding">
+  <form [formGroup]="wetpaddyOutForm" (ngSubmit)="onSubmit()">
+
+    <ion-item>
+      <ion-label position="floating">Date</ion-label>
+      <ion-datetime presentation="date" formControlName="date"></ion-datetime>
+    </ion-item>
+    <ion-text color="danger" *ngIf="wetpaddyOutForm.get('date')?.touched && wetpaddyOutForm.get('date')?.invalid">
+      Date is required
+    </ion-text>
+
+    <ion-item>
+      <ion-label position="floating">Item</ion-label>
+      <ion-select formControlName="item" placeholder="Select Item">
+        <ion-select-option *ngFor="let item of itemList" [value]="item._id">{{ item.name }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-text color="danger" class="error"
+      *ngIf="wetpaddyOutForm.get('itemId')?.touched && wetpaddyOutForm.get('itemId')?.invalid">
+      Please select an item
+    </ion-text>
+
+    <ion-item>
+      <ion-label position="floating">Dried At</ion-label>
+      <ion-input formControlName="driedAt"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Delivery At</ion-label>
+      <ion-input formControlName="deliveryAt"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Moisture</ion-label>
+      <ion-input type="number" formControlName="moisture"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Bags</ion-label>
+      <ion-input type="number" formControlName="bags"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Weight</ion-label>
+      <ion-input type="number" formControlName="weight"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Vehicle Number</ion-label>
+      <ion-input formControlName="vehicleNumber"></ion-input>
+    </ion-item>
+
+    <ion-grid>
+      <ion-row class="ion-justify-content-between">
+        <ion-col size="6">
+          <ion-button expand="block" color="medium" fill="outline" type="button" (click)="onCancel()">
+            Cancel
+          </ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button expand="block" type="submit" [disabled]="wetpaddyOutForm.invalid">
+            {{ recordId ? 'Update' : 'Submit' }}
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </form>
+</ion-content>
