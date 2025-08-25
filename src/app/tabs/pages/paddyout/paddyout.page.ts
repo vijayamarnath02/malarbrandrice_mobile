@@ -28,6 +28,7 @@ export class PaddyoutPage implements OnInit {
   ngOnInit() {
   }
   ionViewWillEnter() {
+    localStorage.removeItem('paddyOutProcessId');
     this.loadSampleReports();
   }
   loadSampleReports() {

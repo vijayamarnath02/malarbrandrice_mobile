@@ -28,6 +28,7 @@ export class PaddyinPage implements OnInit {
 
   }
   ionViewWillEnter() {
+    localStorage.removeItem('paddyInProcessId');
     this.loadSampleReports();
   }
 
