@@ -12,9 +12,6 @@
       <ion-label position="floating">Date</ion-label>
       <ion-datetime formControlName="date" presentation="date" readonly></ion-datetime>
     </ion-item>
-    <ion-text color="danger" *ngIf="f['date'].errors?.['required']">
-      Date is required
-    </ion-text>
 
     <!-- Load Number -->
     <ion-item>
@@ -96,13 +93,13 @@
     <!-- Moisture (optional, no error) -->
     <ion-item>
       <ion-label position="floating">Moisture</ion-label>
-      <ion-input type="number" formControlName="moisture"></ion-input>
+      <ion-input type="number" formControlName="moisture" (ionChange)="calculateTotalPercentage()"></ion-input>
     </ion-item>
 
     <!-- Raw/Dried -->
     <ion-item>
       <ion-label position="floating">Raw/Dried Paddy</ion-label>
-      <ion-select formControlName="rawOrDried" placeholder="Select Type">
+      <ion-select formControlName="rawOrDried" placeholder="Select Type" readonly>
         <ion-select-option [value]="1">Dry Paddy</ion-select-option>
         <ion-select-option [value]="2">Wet Paddy</ion-select-option>
       </ion-select>

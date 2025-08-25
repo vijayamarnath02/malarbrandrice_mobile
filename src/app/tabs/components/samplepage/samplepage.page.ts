@@ -55,12 +55,9 @@ export class SamplepagePage implements OnInit {
     private route: ActivatedRoute,
     private malarService: MalarService
   ) { }
-  get f() {
-    return this.processForm.controls;
-  }
+
 
   ngOnInit() {
-    // Build the form
     const today = new Date();
     const yyyy = today.getFullYear();
     const mm = String(today.getMonth() + 1).padStart(2, '0');
@@ -91,15 +88,20 @@ export class SamplepagePage implements OnInit {
       deliveryAt: [''],
     });
 
+  }
+  ionViewWillEnter() {
+
+
     // Get ID from route
     this.recordId = this.route.snapshot.paramMap.get('id');
     if (this.recordId) {
       this.editMode = true;
       this.loadReport(this.recordId);
     }
-  }
-  ionViewWillEnter() {
     this.loadDropdowns();
+  }
+  get f() {
+    return this.processForm.controls;
   }
   loadDropdowns() {
     this.malarService.getItems().subscribe({
@@ -192,5 +194,12 @@ export class SamplepagePage implements OnInit {
   onCancel() {
     this.processForm.reset();
     this.router.navigate(['/tabs/samplepage']);
+  }
+  calculateTotalPercentage() {
+    const moistureValue = parseFloat(this.processForm.value.moisture);
+    if (!isNaN(moistureValue)) {
+      const paddyType = moistureValue >= 10 ? 2 : 1;
+      this.processForm.patchValue({ rawOrDried: paddyType });
+    }
   }
 }
