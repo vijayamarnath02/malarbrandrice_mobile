@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
+  FormsModule,
   ReactiveFormsModule,
   Validators
 } from '@angular/forms';
@@ -46,7 +47,8 @@ import { MalarService } from '../../services/malar.service';
     IonSelect,
     IonSelectOption,
     IonText,
-    IonButton
+    IonButton,
+    FormsModule
   ]
 })
 export class NewdailyprocessPage implements OnInit {

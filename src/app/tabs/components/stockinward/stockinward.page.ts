@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IonicModule } from "@ionic/angular";
 import { MalarService } from '../../services/malar.service';
@@ -12,7 +12,7 @@ import { MalarService } from '../../services/malar.service';
   standalone: true,
   imports: [
     CommonModule, ReactiveFormsModule,
-    IonicModule]
+    IonicModule, FormsModule]
 })
 export class StockinwardPage implements OnInit {
   stockForm!: FormGroup;

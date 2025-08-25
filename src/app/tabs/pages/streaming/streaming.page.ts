@@ -54,7 +54,9 @@ export class StreamingPage implements OnInit {
 
   loadDropdowns() {
     this.malarService.getStreamings().subscribe({
-      next: res => this.streamingList = res.map(i => i),
+      next: (res: any) => {
+        this.streamingList = res.response.data.map((i: any) => i);
+      },
       error: err => console.error('Item load failed', err),
     });
 

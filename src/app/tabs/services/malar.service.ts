@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, forkJoin, map, Observable, throwError } from 'rxjs';
+import { catchError, finalize, forkJoin, map, Observable, throwError } from 'rxjs';
 import { LoaderServiceService } from 'src/app/loader-service.service';
 
 @Injectable({
@@ -29,18 +29,16 @@ export class MalarService {
   private withLoader<T>(obs: Observable<T>, message: string = 'Loading...'): Observable<T> {
     this.loader.show(message);
     return obs.pipe(
-      map((res: T) => {
-        setTimeout(() => {
-          this.loader.hide();
-        }, 1000)
-        return res;
-      }),
+      map((res: T) => res),
       catchError(err => {
-        this.loader.hide();
         return this.handleError(err);
+      }),
+      finalize(() => {
+        this.loader.hide();
       })
     );
   }
+
 
   // ✅ AUTH
   login(data: any): Observable<string> {
@@ -191,7 +189,7 @@ export class MalarService {
   // ✅ STREAMING
   getStreamings(): Observable<any[]> {
     const obs = this.http.get<any>(`${this.BASE_URL}/streaming`, this.getHeaders())
-      .pipe(map((res: any) => res.response?.data));
+      .pipe(map((res: any) => res));
     return this.withLoader(obs, 'Fetching streamings...');
   }
 

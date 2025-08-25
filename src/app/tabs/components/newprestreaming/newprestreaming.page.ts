@@ -8,7 +8,7 @@ import {
   IonContent,
   IonGrid,
   IonHeader,
-  IonInput, IonItem, IonLabel, IonList,
+  IonInput, IonItem, IonLabel,
   IonRow,
   IonSelect, IonSelectOption, IonText, IonTextarea, IonTitle, IonToolbar
 } from '@ionic/angular/standalone';
@@ -22,8 +22,9 @@ import { MalarService } from '../../services/malar.service';
   imports: [IonCol, IonRow, IonGrid,
     CommonModule, FormsModule, ReactiveFormsModule,
     IonHeader, IonToolbar, IonTitle, IonContent,
-    IonList, IonItem, IonLabel, IonInput, IonSelect, IonSelectOption,
-    IonButton, IonText, IonTextarea
+    IonItem, IonLabel, IonInput, IonSelect, IonSelectOption,
+    IonButton, IonText, IonTextarea,
+
   ]
 })
 export class NewPrestreamingPage implements OnInit {

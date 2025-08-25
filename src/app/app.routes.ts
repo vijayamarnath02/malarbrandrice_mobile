@@ -148,23 +148,6 @@ export const routes: Routes = [
     path: '',
     redirectTo: 'home',
     pathMatch: 'full',
-  },
-  {
-    path: 'newstockinward',
-    loadComponent: () => import('./tabs/components/newstockinward/newstockinward.page').then(m => m.NewstockinwardPage)
-  },
-  {
-    path: 'newstockoutward',
-    loadComponent: () => import('./tabs/components/newstockoutward/newstockoutward.page').then(m => m.NewstockoutwardPage)
-  },
-
-
-
-
-
-
-
-
-
+  }
 
 ];

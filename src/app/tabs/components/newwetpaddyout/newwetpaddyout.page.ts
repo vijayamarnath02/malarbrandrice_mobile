@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { MalarService } from '../../services/malar.service';
@@ -10,7 +10,7 @@ import { MalarService } from '../../services/malar.service';
   templateUrl: './newwetpaddyout.page.html',
   styleUrls: ['./newwetpaddyout.page.scss'],
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, IonicModule],
+  imports: [CommonModule, ReactiveFormsModule, IonicModule, FormsModule],
 })
 export class NewwetpaddyoutPage implements OnInit {
   wetpaddyOutForm!: FormGroup;

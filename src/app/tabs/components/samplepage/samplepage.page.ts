@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IonicModule } from "@ionic/angular";
 import { MalarService } from '../../services/malar.service';
@@ -40,7 +40,7 @@ export interface ReportPayload {
   selector: 'app-samplepage',
   templateUrl: './samplepage.page.html',
   standalone: true,
-  imports: [IonicModule, ReactiveFormsModule, CommonModule],
+  imports: [IonicModule, ReactiveFormsModule, CommonModule, FormsModule],
   styleUrls: ['./samplepage.page.scss']
 })
 export class SamplepagePage implements OnInit {

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IonButton, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonInput, IonItem, IonLabel, IonRow, IonText, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { MalarService } from '../../services/malar.service';
@@ -19,7 +19,8 @@ import { MalarService } from '../../services/malar.service';
     IonItem,
     IonInput,
     IonLabel,
-    IonButton]
+    IonButton,
+    FormsModule]
 })
 export class NewuserPage implements OnInit {
   newUserForm!: FormGroup;
