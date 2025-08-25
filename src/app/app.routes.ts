@@ -112,6 +112,10 @@ export const routes: Routes = [
         path: 'samplepage',
         loadComponent: () => import('./tabs/pages/samplereport/samplereport.page').then(m => m.SamplereportPage)
       },
+      {
+        path: 'viewsamplereport',
+        loadComponent: () => import('./tabs/components/viewsamplereport/viewsamplereport.page').then(m => m.ViewsamplereportPage)
+      },
 
     ]
   },
@@ -129,6 +133,7 @@ export const routes: Routes = [
     path: 'newstockoutward',
     loadComponent: () => import('./tabs/components/newstockoutward/newstockoutward.page').then(m => m.NewstockoutwardPage)
   },
+
 
 
 

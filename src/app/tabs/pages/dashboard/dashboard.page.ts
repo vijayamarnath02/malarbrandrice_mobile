@@ -18,6 +18,9 @@ import {
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import {
+  arrowDownOutline,
+  cloudUploadOutline,
+  documentTextOutline, downloadOutline,
   flashOutline,
   gridOutline,
   listOutline,
@@ -54,9 +57,13 @@ export class DashboardPage implements OnInit {
   adminUserCount = 0;
   userListCount = 0;
   userRole: string | null = localStorage.getItem('userrole');
-
+  stockOutwardCount = 0;
+  stockInwardCount = 0;
+  wetPaddyOutwardCount = 0;
+  wetPaddyInwardCount = 0;
+  sampleReportCount = 0;
   constructor(private readonly router: Router, private malarService: MalarService) {
-    addIcons({ settingsOutline, listOutline, waterOutline, flashOutline, shieldCheckmarkOutline, peopleOutline, gridOutline });
+    addIcons({ settingsOutline, listOutline, waterOutline, flashOutline, documentTextOutline, downloadOutline, cloudUploadOutline, arrowDownOutline, shieldCheckmarkOutline, peopleOutline, gridOutline });
   }
 
   ngOnInit() {
