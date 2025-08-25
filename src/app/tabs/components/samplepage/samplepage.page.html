@@ -12,7 +12,7 @@
       <ion-label position="floating">Date</ion-label>
       <ion-datetime formControlName="date" presentation="date" readonly></ion-datetime>
     </ion-item>
-    <ion-text color="danger" *ngIf="submitted && f['date'].errors?.['required']">
+    <ion-text color="danger" *ngIf="f['date'].errors?.['required']">
       Date is required
     </ion-text>
 
@@ -21,7 +21,8 @@
       <ion-label position="floating">Load Number</ion-label>
       <ion-input type="text" formControlName="loadNumber"></ion-input>
     </ion-item>
-    <ion-text color="danger" *ngIf="submitted && f['loadNumber'].errors?.['required']">
+    <ion-text color="danger"
+      *ngIf="f['loadNumber'].errors?.['required'] && (f['loadNumber'].touched || f['loadNumber'].dirty)">
       Load Number is required
     </ion-text>
 
@@ -30,7 +31,8 @@
       <ion-label position="floating">Vehicle Number</ion-label>
       <ion-input type="text" formControlName="vehicleNumber"></ion-input>
     </ion-item>
-    <ion-text color="danger" *ngIf="submitted && f['vehicleNumber'].errors?.['required']">
+    <ion-text color="danger"
+      *ngIf="f['vehicleNumber'].errors?.['required'] && (f['vehicleNumber'].touched || f['vehicleNumber'].dirty)">
       Vehicle Number is required
     </ion-text>
 
@@ -39,7 +41,8 @@
       <ion-label position="floating">Driver Name</ion-label>
       <ion-input type="text" formControlName="driverName"></ion-input>
     </ion-item>
-    <ion-text color="danger" *ngIf="submitted && f['driverName'].errors?.['required']">
+    <ion-text color="danger"
+      *ngIf="f['driverName'].errors?.['required'] && (f['driverName'].touched || f['driverName'].dirty)">
       Driver Name is required
     </ion-text>
 
@@ -48,7 +51,8 @@
       <ion-label position="floating">Cell Number</ion-label>
       <ion-input type="tel" formControlName="cellNumber"></ion-input>
     </ion-item>
-    <ion-text color="danger" *ngIf="submitted && f['cellNumber'].errors?.['required']">
+    <ion-text color="danger"
+      *ngIf="f['cellNumber'].errors?.['required'] && (f['cellNumber'].touched || f['cellNumber'].dirty)">
       Cell Number is required
     </ion-text>
 
@@ -57,7 +61,8 @@
       <ion-label position="floating">Party Name</ion-label>
       <ion-input type="text" formControlName="partyName"></ion-input>
     </ion-item>
-    <ion-text color="danger" *ngIf="submitted && f['partyName'].errors?.['required']">
+    <ion-text color="danger"
+      *ngIf="f['partyName'].errors?.['required'] && (f['partyName'].touched || f['partyName'].dirty)">
       Party Name is required
     </ion-text>
 
@@ -66,7 +71,8 @@
       <ion-label position="floating">Bill No / Date</ion-label>
       <ion-input type="text" formControlName="billNoDt"></ion-input>
     </ion-item>
-    <ion-text color="danger" *ngIf="submitted && f['billNoDt'].errors?.['required']">
+    <ion-text color="danger"
+      *ngIf="f['billNoDt'].errors?.['required'] && (f['billNoDt'].touched || f['billNoDt'].dirty)">
       Bill No / Date is required
     </ion-text>
 
@@ -83,7 +89,8 @@
         <ion-select-option *ngFor="let item of itemList" [value]="item._id">{{ item.name }}</ion-select-option>
       </ion-select>
     </ion-item>
-    <ion-text color="danger" *ngIf="submitted && f['item'].errors?.['required']">Item is required</ion-text>
+    <ion-text color="danger" *ngIf="f['item'].errors?.['required'] && (f['item'].touched || f['item'].dirty)  ">Item is
+      required</ion-text>
 
 
     <!-- Moisture (optional, no error) -->
@@ -95,9 +102,13 @@
     <!-- Raw/Dried -->
     <ion-item>
       <ion-label position="floating">Raw/Dried Paddy</ion-label>
-      <ion-input type="text" formControlName="rawOrDried"></ion-input>
+      <ion-select formControlName="rawOrDried" placeholder="Select Type">
+        <ion-select-option [value]="1">Dry Paddy</ion-select-option>
+        <ion-select-option [value]="2">Wet Paddy</ion-select-option>
+      </ion-select>
     </ion-item>
-    <ion-text color="danger" *ngIf="submitted && f['rawOrDried'].errors?.['required']">
+    <ion-text color="danger"
+      *ngIf="f['rawOrDried'].errors?.['required'] && (f['rawOrDried'].touched || f['rawOrDried'].dirty)">
       Raw/Dried Paddy is required
     </ion-text>
 
@@ -106,7 +117,7 @@
       <ion-label position="floating">Bags</ion-label>
       <ion-input type="number" formControlName="bags"></ion-input>
     </ion-item>
-    <ion-text color="danger" *ngIf="submitted && f['bags'].errors?.['required']">
+    <ion-text color="danger" *ngIf="f['bags'].errors?.['required'] && (f['bags'].touched || f['bags'].dirty)">
       Bags are required
     </ion-text>
 
@@ -115,7 +126,7 @@
       <ion-label position="floating">Weight</ion-label>
       <ion-input type="number" formControlName="weight"></ion-input>
     </ion-item>
-    <ion-text color="danger" *ngIf="submitted && f['weight'].errors?.['required']">
+    <ion-text color="danger" *ngIf="f['weight'].errors?.['required'] && (f['weight'].touched || f['weight'].dirty)">
       Weight is required
     </ion-text>
 
@@ -153,11 +164,11 @@
     <ion-item>
       <ion-label position="floating">Accept / Reject</ion-label>
       <ion-select formControlName="acceptReject">
-        <ion-select-option [value]=1>Ok</ion-select-option>
-        <ion-select-option [value]=0>Reject</ion-select-option>
+        <ion-select-option [value]="1">Ok</ion-select-option>
+        <ion-select-option [value]="2">Reject</ion-select-option>
       </ion-select>
     </ion-item>
-    <ion-text color="danger" *ngIf="submitted && f['acceptReject'].errors?.['required']">
+    <ion-text color="danger" *ngIf="f['acceptReject'].errors?.['required']">
       Accept / Reject selection is required
     </ion-text>
 
@@ -181,12 +192,12 @@
           </ion-button>
         </ion-col>
         <ion-col size="6" *ngIf="recordId === null">
-          <ion-button expand="block" type="submit" [disabled]="processForm.invalid">
+          <ion-button expand="block" type="submit">
             Submit
           </ion-button>
         </ion-col>
         <ion-col size="6" *ngIf="recordId !== null">
-          <ion-button expand="block" type="submit" [disabled]="processForm.invalid">
+          <ion-button expand="block" type="submit">
             Update
           </ion-button>
         </ion-col>
