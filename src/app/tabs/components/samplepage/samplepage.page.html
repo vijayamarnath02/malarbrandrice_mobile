@@ -10,7 +10,8 @@
     <!-- Date -->
     <ion-item>
       <ion-label position="floating">Date</ion-label>
-      <ion-datetime formControlName="date" presentation="date" readonly></ion-datetime>
+      <ion-datetime formControlName="date" presentation="date" [value]="processForm.get('date')?.value"
+        readonly></ion-datetime>
     </ion-item>
 
     <!-- Load Number -->

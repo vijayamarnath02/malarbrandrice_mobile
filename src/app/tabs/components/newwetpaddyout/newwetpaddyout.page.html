@@ -9,7 +9,8 @@
 
     <ion-item>
       <ion-label position="floating">Date</ion-label>
-      <ion-datetime presentation="date" formControlName="date"></ion-datetime>
+      <ion-datetime presentation="date" formControlName="date"
+        [value]="wetpaddyOutForm.get('date')?.value"></ion-datetime>
     </ion-item>
     <ion-text color="danger" *ngIf="wetpaddyOutForm.get('date')?.touched && wetpaddyOutForm.get('date')?.invalid">
       Date is required

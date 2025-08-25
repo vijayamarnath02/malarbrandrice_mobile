@@ -9,7 +9,8 @@
 
     <ion-item>
       <ion-label position="floating">Date</ion-label>
-      <ion-datetime formControlName="date" presentation="date" readonly></ion-datetime>
+      <ion-datetime formControlName="date" presentation="date" [value]="stockOutForm.get('date')?.value"
+        readonly></ion-datetime>
     </ion-item>
     <ion-text color="danger" *ngIf="submitted && f['date'].errors?.['required']">
       Date is required
