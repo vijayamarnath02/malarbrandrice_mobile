@@ -20,8 +20,8 @@
       <!-- Date (Disabled) -->
       <ion-item>
         <ion-label position="floating">Date</ion-label>
-        <ion-input [value]="dailyProcessForm.get('date')?.value | date: 'yyyy-MM-dd'" placeholder="2025-07-23"
-          readonly></ion-input>
+        <ion-input [value]="dailyProcessForm.get('date')?.value | date: 'yyyy-MM-dd'" placeholder="2025-07-23" readonly
+          (ionChange)="onDateChange()"></ion-input>
       </ion-item>
 
       <!-- Ural / Godown -->
