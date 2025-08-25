@@ -51,17 +51,19 @@ import { MalarService } from '../../services/malar.service';
     IonIcon, CommonModule, FormsModule]
 })
 export class DashboardPage implements OnInit {
-  dailyProcessCount = 0;
-  prestreamingCount = 0;
-  streamingCount = 0;
-  adminUserCount = 0;
-  userListCount = 0;
+  counts = {
+    dailyProcess: 0,
+    prestreaming: 0,
+    streaming: 0,
+    adminUser: 0,
+    userList: 0,
+    stockOutward: 0,
+    stockInward: 0,
+    wetPaddyOutward: 0,
+    wetPaddyInward: 0,
+    sampleReport: 0
+  };
   userRole: string | null = localStorage.getItem('userrole');
-  stockOutwardCount = 0;
-  stockInwardCount = 0;
-  wetPaddyOutwardCount = 0;
-  wetPaddyInwardCount = 0;
-  sampleReportCount = 0;
   constructor(private readonly router: Router, private malarService: MalarService) {
     addIcons({ settingsOutline, listOutline, waterOutline, flashOutline, documentTextOutline, downloadOutline, cloudUploadOutline, arrowDownOutline, shieldCheckmarkOutline, peopleOutline, gridOutline });
   }
@@ -79,11 +81,12 @@ export class DashboardPage implements OnInit {
     if (this.userRole === '1') {
       this.malarService.getCounts().subscribe({
         next: (counts: any) => {
-          this.dailyProcessCount = counts.daily;
-          this.prestreamingCount = counts.pre;
-          this.streamingCount = counts.stream;
-          this.adminUserCount = counts.pendingDailyProcess;
-          this.userListCount = counts.userCount
+          this.counts.dailyProcess = counts.daily;
+          this.counts.prestreaming = counts.pre;
+          this.counts.streaming = counts.stream;
+          this.counts.adminUser = counts.pendingDailyProcess;
+          this.counts.userList = counts.userCount;
+          this.counts.sampleReport = counts.sampleReport;;
         },
         error: err => console.error('Count fetch failed', err)
       });
@@ -91,9 +94,9 @@ export class DashboardPage implements OnInit {
     else {
       this.malarService.getUserCounts().subscribe({
         next: (counts: any) => {
-          this.dailyProcessCount = counts.daily;
-          this.prestreamingCount = counts.pre;
-          this.streamingCount = counts.stream;
+          this.counts.dailyProcess = counts.daily;
+          this.counts.prestreaming = counts.pre;
+          this.counts.streaming = counts.stream;
         },
         error: err => console.error('Count fetch failed', err)
       });

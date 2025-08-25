@@ -225,6 +225,8 @@ export class MalarService {
 
     const streaming$ = this.http.get<any>(`${this.BASE_URL}/streaming`, this.getHeaders())
       .pipe(map((res: any) => res.response?.total || 0), catchError(this.handleError));
+    const sampleReport$ = this.http.get<any>(`${this.BASE_URL}/sample-report`, this.getHeaders())
+      .pipe(map((res: any) => res.response?.total || 0), catchError(this.handleError));
 
     const pendingDailyProcess$ = this.http.get<any>(`${this.BASE_URL}/daily-process`, this.getHeaders())
       .pipe(
@@ -244,7 +246,8 @@ export class MalarService {
         pre: preStreaming$,
         stream: streaming$,
         pendingDailyProcess: pendingDailyProcess$,
-        userCount: userListCount$
+        userCount: userListCount$,
+        sampleReport: sampleReport$
       }),
       'Loading dashboard counts...'
     );
