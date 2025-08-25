@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IonicModule } from "@ionic/angular";
+import { getValidPastOrToday } from 'src/app/utils/date-utils';
 import { MalarService } from '../../services/malar.service';
 function notFutureDate(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
@@ -45,7 +46,7 @@ export class WetpaddyPage implements OnInit {
     const formattedDate = `${yyyy}-${mm}-${dd}`;
 
     this.wetpaddyForm = this.fb.group({
-      date: [formattedDate, notFutureDate()],
+      date: [formattedDate],
       party_name: [''],
       broker_name: [''],
       vehicle_number: ['', Validators.required],
@@ -53,7 +54,7 @@ export class WetpaddyPage implements OnInit {
       cell_number: [''],
       item_id: ['', Validators.required],
       bill_number: [''],
-      bill_date: [formattedDate, notFutureDate()],
+      bill_date: [formattedDate],
       moisture: ['', Validators.required],
       bags: ['', Validators.required],
       weight: ['', Validators.required],
@@ -83,7 +84,7 @@ export class WetpaddyPage implements OnInit {
     this.malarService.getWetPaddyById(id).subscribe({
       next: (data) => {
         this.wetpaddyForm.patchValue({
-          date: data.date || new Date(),
+          date: data.date || this.onDateChange('date'),
           party_name: data.party_name,
           broker_name: data.broker_name,
           vehicle_number: data.vehicle_number,
@@ -91,7 +92,7 @@ export class WetpaddyPage implements OnInit {
           cell_number: data.cell_number,
           item_id: data.item_id,
           bill_number: data.bill_number,
-          bill_date: data.bill_date,
+          bill_date: data.bill_date || this.onDateChange('bill_date'),
           moisture: data.moisture,
           bags: data.bags,
           weight: data.weight,
@@ -100,6 +101,13 @@ export class WetpaddyPage implements OnInit {
       },
       error: (err) => console.error('Failed to load record', err),
     });
+  }
+  onDateChange(controlName: 'date' | 'bill_date') {
+    const control = this.wetpaddyForm.get(controlName);
+    if (control) {
+      const corrected = getValidPastOrToday(control.value);
+      control.setValue(corrected, { emitEvent: false });
+    }
   }
 
   onSubmit() {

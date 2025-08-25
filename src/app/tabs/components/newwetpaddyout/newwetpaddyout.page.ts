@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
+import { getValidPastOrToday } from 'src/app/utils/date-utils';
 import { MalarService } from '../../services/malar.service';
 
 @Component({
@@ -42,7 +43,13 @@ export class NewwetpaddyoutPage implements OnInit {
       vehicleNumber: ['', Validators.required],
     });
   }
-
+  onDateChange() {
+    const control = this.wetpaddyOutForm.get('date');
+    if (control) {
+      const corrected = getValidPastOrToday(control.value);
+      control.setValue(corrected, { emitEvent: false });
+    }
+  }
   ionViewWillEnter() {
     this.recordId = this.route.snapshot.paramMap.get('id');
     this.loadDropdowns();
