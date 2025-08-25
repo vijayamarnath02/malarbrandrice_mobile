@@ -1,6 +1,6 @@
 form {
   ion-item {
-    margin-bottom: 8px;
+    margin-bottom: 12px;
     --padding-start: 12px;
     --inner-padding-end: 12px;
     --border-color: #e0e0e0;
@@ -11,11 +11,16 @@ form {
 
   ion-label {
     font-size: 14px;
+    font-weight: 500;
+    color: #444;
   }
 
   ion-input,
-  ion-select {
+  ion-select,
+  ion-datetime {
     font-size: 14px;
+    --padding-start: 10px;
+    --padding-end: 10px;
   }
 
   ion-text {
@@ -38,8 +43,4 @@ form {
     max-width: 600px;
     margin: 0 auto;
   }
-}
-ion-button {
-  border-radius: 10px;
-  font-weight: 600;
 }

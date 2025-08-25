@@ -371,9 +371,19 @@ export class MalarService {
       .pipe(map((res: any) => res.response?.data));
     return this.withLoader(obs, 'Fetching stock inwards...');
   }
+  getStockOut(): Observable<any[]> {
+    const obs = this.http.get<any>(`${this.BASE_URL}/stock-outward/`, this.getHeaders())
+      .pipe(map((res: any) => res.response?.data));
+    return this.withLoader(obs, 'Fetching stock outward...');
+  }
   getStockById(id: string): Observable<any[]> {
     const obs = this.http.get<any>(`${this.BASE_URL}/stock-inward/${id}`, this.getHeaders())
       .pipe(map((res: any) => res));
     return this.withLoader(obs, 'Fetching stock inwards...');
+  }
+  getStockOutById(id: string): Observable<any[]> {
+    const obs = this.http.get<any>(`${this.BASE_URL}/stock-outward/${id}`, this.getHeaders())
+      .pipe(map((res: any) => res));
+    return this.withLoader(obs, 'Fetching stock outwards...');
   }
 }

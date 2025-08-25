@@ -109,7 +109,7 @@ export class WetpaddyPage implements OnInit {
       this.malarService.updateWetPaddy(this.recordId, payload).subscribe({
         next: () => {
           console.log('Wet paddy updated successfully');
-          this.router.navigate(['/tabs/dashboard']);
+          this.router.navigate(['/tabs/samplepage']);
         },
         error: (err) => console.error('Update failed', err),
       });
@@ -120,7 +120,7 @@ export class WetpaddyPage implements OnInit {
           console.log('Wet paddy created successfully');
           this.wetpaddyForm.reset();
           localStorage.removeItem('paddyInProcessId');
-          this.router.navigate(['/tabs/dashboard']);
+          this.router.navigate(['/tabs/samplepage']);
         },
         error: (err) => console.error('Create failed', err),
       });

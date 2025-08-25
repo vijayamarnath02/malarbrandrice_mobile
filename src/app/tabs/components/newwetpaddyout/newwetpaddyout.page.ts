@@ -97,12 +97,12 @@ export class NewwetpaddyoutPage implements OnInit {
 
     if (this.recordId) {
       this.malarService.updateWetPaddyOut(this.recordId, payload).subscribe({
-        next: () => this.router.navigate(['/tabs/dashboard']),
+        next: () => this.router.navigate(['/tabs/samplepage']),
         error: (err) => console.error('Update failed', err),
       });
     } else {
       this.malarService.createWetPaddyOut(payload).subscribe({
-        next: () => this.router.navigate(['/tabs/dashboard']),
+        next: () => this.router.navigate(['/tabs/samplepage']),
         error: (err) => console.error('Create failed', err),
       });
     }

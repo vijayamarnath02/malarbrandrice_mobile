@@ -85,6 +85,10 @@ export const routes: Routes = [
         loadComponent: () => import('./tabs/components/stockoutward/stockoutward.page').then(m => m.StockoutwardPage)
       },
       {
+        path: 'stockoutward/:id',
+        loadComponent: () => import('./tabs/components/stockoutward/stockoutward.page').then(m => m.StockoutwardPage)
+      },
+      {
         path: 'newwetpaddy',
         loadComponent: () => import('./tabs/components/wetpaddyin/wetpaddy.page').then(m => m.WetpaddyPage)
       },
@@ -132,6 +136,10 @@ export const routes: Routes = [
         path: 'stockin',
         loadComponent: () => import('./tabs/pages/stockin/stockin.page').then(m => m.StockinPage)
       },
+      {
+        path: 'stockout',
+        loadComponent: () => import('./tabs/pages/stockout/stockout.page').then(m => m.StockoutPage)
+      },
 
     ]
   },
@@ -152,10 +160,7 @@ export const routes: Routes = [
 
 
 
-  {
-    path: 'stockout',
-    loadComponent: () => import('./tabs/pages/stockout/stockout.page').then(m => m.StockoutPage)
-  },
+
 
 
 

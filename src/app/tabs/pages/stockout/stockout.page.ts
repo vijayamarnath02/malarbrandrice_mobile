@@ -1,20 +1,57 @@
-import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { Component, OnInit } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
+import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonChip, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonLabel, IonRow, IonText, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { addIcons } from 'ionicons';
+import { addOutline, createOutline, eyeOutline, flashOutline, settingsOutline, timeOutline, trashOutline } from 'ionicons/icons';
+import { MalarService } from '../../services/malar.service';
 
 @Component({
   selector: 'app-stockout',
   templateUrl: './stockout.page.html',
   styleUrls: ['./stockout.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [
+    IonContent, IonHeader, IonTitle, IonToolbar,
+    IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent,
+    IonGrid, IonRow, IonCol, IonChip, IonLabel, IonButton, IonIcon, IonText,
+    CommonModule, RouterModule
+  ]
 })
 export class StockoutPage implements OnInit {
+  stockOutList: any[] = [];
+  constructor(private router: Router,
+    private malarService: MalarService) {
+    addIcons({ addOutline, createOutline, trashOutline });
 
-  constructor() { }
-
-  ngOnInit() {
   }
 
+  ngOnInit() {
+    addIcons({ settingsOutline, addOutline, eyeOutline, createOutline, trashOutline, timeOutline, flashOutline });
+
+  }
+  ionViewWillEnter() {
+    this.loadSampleReports();
+  }
+
+  loadSampleReports() {
+    this.malarService.getStockOut().subscribe({
+      next: (res) => {
+        this.stockOutList = res || [];
+      },
+      error: (err) => {
+        console.error('Failed to load sample reports:', err);
+      },
+    });
+  }
+
+
+  editStockOut(record: any) {
+    this.router.navigate([`/tabs/stockoutward/${record._id}`]);
+  }
+
+  deleteStockOut(id: string) {
+    console.log('Delete Stock Out with ID', id);
+    // Call delete API
+  }
 }

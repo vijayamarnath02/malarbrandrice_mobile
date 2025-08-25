@@ -117,9 +117,9 @@ export class StockinwardPage implements OnInit {
       in_charge: this.stockForm.value.incharge
     };
 
-    if (this.recordId) {
+    if (this.processId) {
       // Update
-      this.malarService.updateStockInward(this.recordId, payload).subscribe({
+      this.malarService.updateStockInward(this.processId, payload).subscribe({
         next: res => {
           console.log('Stock updated:', res);
           this.router.navigate(['/tabs/dashboard']);
@@ -131,13 +131,13 @@ export class StockinwardPage implements OnInit {
       this.malarService.createStockInward(payload).subscribe({
         next: res => {
           console.log('Stock created:', res);
-          this.router.navigate(['/tabs/dashboard']);
+          this.router.navigate(['/tabs/samplepage']);
         },
         error: err => console.error('Creation failed:', err)
       });
     }
   }
   onCancel() {
-    this.router.navigate(['/tabs/dashboard']);
+    this.router.navigate(['/tabs/samplepage']);
   }
 }
