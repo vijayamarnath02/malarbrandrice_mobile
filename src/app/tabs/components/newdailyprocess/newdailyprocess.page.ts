@@ -190,4 +190,5 @@ export class NewdailyprocessPage implements OnInit {
   isFormUnchanged(): boolean {
     return JSON.stringify(this.dailyProcessForm.value) === this.originalFormValue;
   }
+
 }
