@@ -60,7 +60,7 @@ export class NewwetpaddyoutPage implements OnInit {
   }
 
   loadWetPaddyOutDetails(id: string) {
-    this.malarService.getWetPaddyOutById(id).subscribe({
+    this.malarService.getWetPaddyOutSpecialById(id).subscribe({
       next: (data) => {
         this.wetpaddyOutForm.patchValue({
           date: data.date,

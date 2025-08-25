@@ -320,6 +320,11 @@ export class MalarService {
       .pipe(map((res: any) => res.response));
     return this.withLoader(obs, 'Fetching wet paddy outward details...');
   }
+  getWetPaddyOutSpecialById(id: string): Observable<any> {
+    const obs = this.http.get(`${this.BASE_URL}/wet-paddy-outward/fetchbyid/${id}`, this.getHeaders())
+      .pipe(map((res: any) => res.response));
+    return this.withLoader(obs, 'Fetching wet paddy details...');
+  }
 
   createWetPaddyOut(data: any): Observable<any> {
     const obs = this.http.post(`${this.BASE_URL}/wet-paddy-outward`, data, this.getHeaders())
