@@ -306,7 +306,7 @@ export class MalarService {
 
   // GET wet paddy inward by id (for editing)
   getWetPaddyById(id: string): Observable<any> {
-    const obs = this.http.get(`${this.BASE_URL}/wet-paddy-inward/${id}`, this.getHeaders())
+    const obs = this.http.get(`${this.BASE_URL}/wet-paddy-inward/fetchbyid/${id}`, this.getHeaders())
       .pipe(map((res: any) => res.response));
     return this.withLoader(obs, 'Fetching wet paddy details...');
   }
@@ -350,5 +350,15 @@ export class MalarService {
     const obs = this.http.get(`${this.BASE_URL}/stock-inward/${id}`, this.getHeaders())
       .pipe(map((res: any) => res.response));
     return this.withLoader(obs, 'Fetching stock inward...');
+  }
+  getWetInPaddy(id: string): Observable<any[]> {
+    const obs = this.http.get<any>(`${this.BASE_URL}/wet-paddy-inward/${id}`, this.getHeaders())
+      .pipe(map((res: any) => res.response?.data));
+    return this.withLoader(obs, 'Fetching stock inwards...');
+  }
+  getWetOutPaddy(id: string): Observable<any[]> {
+    const obs = this.http.get<any>(`${this.BASE_URL}/wet-paddy-outward/${id}`, this.getHeaders())
+      .pipe(map((res: any) => res.response?.data));
+    return this.withLoader(obs, 'Fetching stock outwards...');
   }
 }

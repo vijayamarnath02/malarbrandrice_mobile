@@ -197,10 +197,10 @@ export class SamplereportPage implements OnInit {
 
   }
   viewReport(report: SampleReport) {
-    // if (report._id) {
-    //   this.router.navigate(['/tabs/newsamplereport', report._id]);
-    // } else {
-    //   this.showToast('Cannot view report: ID not found', 'warning');
-    // }
+    if (report._id) {
+      this.router.navigate(['/tabs/viewsamplereport', report._id]);
+    } else {
+      this.showToast('Cannot view report: ID not found', 'warning');
+    }
   }
 }

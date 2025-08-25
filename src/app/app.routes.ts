@@ -113,8 +113,20 @@ export const routes: Routes = [
         loadComponent: () => import('./tabs/pages/samplereport/samplereport.page').then(m => m.SamplereportPage)
       },
       {
-        path: 'viewsamplereport',
+        path: 'viewsamplereport/:id',
         loadComponent: () => import('./tabs/components/viewsamplereport/viewsamplereport.page').then(m => m.ViewsamplereportPage)
+      },
+      {
+        path: 'paddyin/:id',
+        loadComponent: () => import('./tabs/pages/paddyin/paddyin.page').then(m => m.PaddyinPage)
+      },
+      {
+        path: 'paddyout',
+        loadComponent: () => import('./tabs/pages/paddyout/paddyout.page').then(m => m.PaddyoutPage)
+      },
+      {
+        path: 'paddyout/:id',
+        loadComponent: () => import('./tabs/pages/paddyout/paddyout.page').then(m => m.PaddyoutPage)
       },
 
     ]
@@ -133,21 +145,15 @@ export const routes: Routes = [
     path: 'newstockoutward',
     loadComponent: () => import('./tabs/components/newstockoutward/newstockoutward.page').then(m => m.NewstockoutwardPage)
   },
-  {
-    path: 'paddyout',
-    loadComponent: () => import('./tabs/pages/paddyout/paddyout.page').then( m => m.PaddyoutPage)
-  },
-  {
-    path: 'paddyin',
-    loadComponent: () => import('./tabs/pages/paddyin/paddyin.page').then( m => m.PaddyinPage)
-  },
+
+
   {
     path: 'stockin',
-    loadComponent: () => import('./tabs/pages/stockin/stockin.page').then( m => m.StockinPage)
+    loadComponent: () => import('./tabs/pages/stockin/stockin.page').then(m => m.StockinPage)
   },
   {
     path: 'stockout',
-    loadComponent: () => import('./tabs/pages/stockout/stockout.page').then( m => m.StockoutPage)
+    loadComponent: () => import('./tabs/pages/stockout/stockout.page').then(m => m.StockoutPage)
   },
 
 

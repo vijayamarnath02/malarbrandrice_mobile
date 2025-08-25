@@ -84,8 +84,9 @@ export class NewwetpaddyoutPage implements OnInit {
     }
 
     const payload = {
+      sample_report_id: localStorage.getItem('paddyOutProcessId') || '',
       date: this.wetpaddyOutForm.value.date,
-      item_id: this.wetpaddyOutForm.value.itemId,
+      item_id: this.wetpaddyOutForm.value.item,
       dried_at: this.wetpaddyOutForm.value.driedAt,
       delivery_at: this.wetpaddyOutForm.value.deliveryAt,
       moisture: +this.wetpaddyOutForm.value.moisture,

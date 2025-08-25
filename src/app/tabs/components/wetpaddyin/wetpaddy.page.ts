@@ -33,20 +33,21 @@ export class WetpaddyPage implements OnInit {
     const formattedDate = `${yyyy}-${mm}-${dd}`;
 
     this.wetpaddyForm = this.fb.group({
-      date: [formattedDate, Validators.required],
-      partyName: [''],
-      brokerName: [''],
-      vehicleNumber: ['', Validators.required],
-      driverName: [''],
-      cellNumber: [''],
-      item: ['', Validators.required],
-      billNumber: [''],
-      billDate: [''],
+      date: [formattedDate],
+      party_name: [''],
+      broker_name: [''],
+      vehicle_number: ['', Validators.required],
+      driver_name: [''],
+      cell_number: [''],
+      item_id: ['', Validators.required],
+      bill_number: [''],
+      bill_date: [formattedDate],
       moisture: ['', Validators.required],
       bags: ['', Validators.required],
       weight: ['', Validators.required],
-      driedAt: ['']
+      dried_at: ['']
     });
+
   }
 
   ionViewWillEnter() {
@@ -71,18 +72,18 @@ export class WetpaddyPage implements OnInit {
       next: (data) => {
         this.wetpaddyForm.patchValue({
           date: data.date,
-          partyName: data.party_name,
-          brokerName: data.broker_name,
-          vehicleNumber: data.vehicle_number,
-          driverName: data.driver_name,
-          cellNumber: data.cell_number,
-          item: data.item_id,
-          billNumber: data.bill_number,
-          billDate: data.bill_date,
+          party_name: data.party_name,
+          broker_name: data.broker_name,
+          vehicle_number: data.vehicle_number,
+          driver_name: data.driver_name,
+          cell_number: data.cell_number,
+          item_id: data.item_id,
+          bill_number: data.bill_number,
+          bill_date: data.bill_date,
           moisture: data.moisture,
           bags: data.bags,
           weight: data.weight,
-          driedAt: data.dried_at
+          dried_at: data.dried_at
         });
       },
       error: (err) => console.error('Failed to load record', err),
@@ -96,19 +97,11 @@ export class WetpaddyPage implements OnInit {
     }
 
     const payload = {
-      date: this.wetpaddyForm.value.date,
-      party_name: this.wetpaddyForm.value.partyName,
-      broker_name: this.wetpaddyForm.value.brokerName,
-      vehicle_number: this.wetpaddyForm.value.vehicleNumber,
-      driver_name: this.wetpaddyForm.value.driverName,
-      cell_number: this.wetpaddyForm.value.cellNumber,
-      item_id: this.wetpaddyForm.value.item,
-      bill_number: this.wetpaddyForm.value.billNumber,
-      bill_date: this.wetpaddyForm.value.billDate,
+      sample_report_id: localStorage.getItem('paddyInProcessId'),
+      ...this.wetpaddyForm.value,   // spreads all fields directly
       moisture: +this.wetpaddyForm.value.moisture,
       bags: +this.wetpaddyForm.value.bags,
-      weight: +this.wetpaddyForm.value.weight,
-      dried_at: this.wetpaddyForm.value.driedAt,
+      weight: +this.wetpaddyForm.value.weight
     };
 
     if (this.recordId) {
@@ -125,6 +118,8 @@ export class WetpaddyPage implements OnInit {
       this.malarService.createWetPaddy(payload).subscribe({
         next: () => {
           console.log('Wet paddy created successfully');
+          this.wetpaddyForm.reset();
+          localStorage.removeItem('paddyInProcessId');
           this.router.navigate(['/tabs/dashboard']);
         },
         error: (err) => console.error('Create failed', err),
@@ -134,6 +129,8 @@ export class WetpaddyPage implements OnInit {
 
   onCancel() {
     this.wetpaddyForm.reset();
-    this.router.navigate(['/tabs/dashboard']);
+    this.router.navigate(['/tabs/viewsamplereport/', this.recordId || localStorage.getItem('paddyInProcessId')])
+    localStorage.removeItem('paddyInProcessId');
+
   }
 }

@@ -1,91 +1,101 @@
-<ion-header>
+<ion-header color="primary">
   <ion-toolbar color="primary">
-    <ion-title>Wet Paddy</ion-title>
+    <ion-title>Wet Paddy In</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="false" class="ion-padding">
+<ion-content class="ion-padding" [fullscreen]="false">
   <form [formGroup]="wetpaddyForm" (ngSubmit)="onSubmit()">
+
     <ion-item>
       <ion-label position="floating">Date</ion-label>
-      <ion-datetime formControlName="date" presentation="date" readonly></ion-datetime>
+      <ion-datetime formControlName="date" presentation="date"></ion-datetime>
     </ion-item>
-    <small class="error" *ngIf="wetpaddyForm.get('date')?.touched && wetpaddyForm.get('date')?.invalid">
+    <ion-note color="danger" *ngIf="wetpaddyForm.get('date')?.touched && wetpaddyForm.get('date')?.invalid">
       Date is required
-    </small>
+    </ion-note>
 
-    <!-- Party Name -->
     <ion-item>
       <ion-label position="floating">Party Name</ion-label>
-      <ion-input formControlName="partyName"></ion-input>
+      <ion-input formControlName="party_name"></ion-input>
     </ion-item>
-    <small class="error" *ngIf="wetpaddyForm.get('partyName')?.touched && wetpaddyForm.get('partyName')?.invalid">
-      Party name is required
-    </small>
 
-    <!-- Vehicle Number -->
+    <ion-item>
+      <ion-label position="floating">Broker Name</ion-label>
+      <ion-input formControlName="broker_name"></ion-input>
+    </ion-item>
+
     <ion-item>
       <ion-label position="floating">Vehicle Number</ion-label>
-      <ion-input formControlName="vehicleNumber"></ion-input>
+      <ion-input formControlName="vehicle_number"></ion-input>
     </ion-item>
-    <small class="error"
-      *ngIf="wetpaddyForm.get('vehicleNumber')?.touched && wetpaddyForm.get('vehicleNumber')?.invalid">
+    <ion-note color="danger"
+      *ngIf="wetpaddyForm.get('vehicle_number')?.touched && wetpaddyForm.get('vehicle_number')?.invalid">
       Vehicle number is required
-    </small>
+    </ion-note>
 
-    <!-- Item Dropdown -->
+    <ion-item>
+      <ion-label position="floating">Driver Name</ion-label>
+      <ion-input formControlName="driver_name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Cell Number</ion-label>
+      <ion-input formControlName="cell_number" type="tel"></ion-input>
+    </ion-item>
+
     <ion-item>
       <ion-label position="floating">Item</ion-label>
-      <ion-select formControlName="item" placeholder="Select Item">
-        <ion-select-option *ngFor="let item of itemList" [value]="item._id">{{ item.name }}</ion-select-option>
+      <ion-select formControlName="item_id" placeholder="Select Item">
+        <ion-select-option *ngFor="let item of itemList" [value]="item._id">
+          {{ item.name }}
+        </ion-select-option>
       </ion-select>
     </ion-item>
-    <ion-text color="danger" *ngIf="wetpaddyForm.get('itemId')?.touched && wetpaddyForm.get('itemId')?.invalid">Item is
-      required</ion-text>
+    <ion-note color="danger" *ngIf="wetpaddyForm.get('item_id')?.touched && wetpaddyForm.get('item_id')?.invalid">
+      Item is required
+    </ion-note>
 
-    <!-- Moisture -->
+    <ion-item>
+      <ion-label position="floating">Bill Number</ion-label>
+      <ion-input formControlName="bill_number"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Bill Date</ion-label>
+      <ion-datetime formControlName="bill_date" presentation="date"></ion-datetime>
+    </ion-item>
+
     <ion-item>
       <ion-label position="floating">Moisture</ion-label>
       <ion-input type="number" formControlName="moisture"></ion-input>
     </ion-item>
-    <small class="error" *ngIf="wetpaddyForm.get('moisture')?.touched && wetpaddyForm.get('moisture')?.invalid">
-      Moisture is required
-    </small>
 
-    <!-- Bags -->
     <ion-item>
       <ion-label position="floating">Bags</ion-label>
       <ion-input type="number" formControlName="bags"></ion-input>
     </ion-item>
-    <small class="error" *ngIf="wetpaddyForm.get('bags')?.touched && wetpaddyForm.get('bags')?.invalid">
-      Bags are required
-    </small>
 
-    <!-- Weight -->
     <ion-item>
-      <ion-label position="floating">Weight</ion-label>
+      <ion-label position="floating">Weight (kg)</ion-label>
       <ion-input type="number" formControlName="weight"></ion-input>
     </ion-item>
-    <small class="error" *ngIf="wetpaddyForm.get('weight')?.touched && wetpaddyForm.get('weight')?.invalid">
-      Weight is required
-    </small>
 
+    <ion-item>
+      <ion-label position="floating">Dried At</ion-label>
+      <ion-input formControlName="dried_at"></ion-input>
+    </ion-item>
 
     <ion-grid>
       <ion-row class="ion-justify-content-between">
         <ion-col size="6">
-          <ion-button expand="block" type="button" color="medium" fill="outline" (click)="onCancel()">
+          <ion-button expand="block" color="medium" fill="outline" type="button" (click)="onCancel()">
             Cancel
           </ion-button>
         </ion-col>
-        <ion-col size="6" *ngIf="recordId === null">
+        <ion-col size="6">
           <ion-button expand="block" type="submit" [disabled]="wetpaddyForm.invalid">
-            Submit
-          </ion-button>
-        </ion-col>
-        <ion-col size="6" *ngIf="recordId !== null">
-          <ion-button expand="block" type="submit" [disabled]="wetpaddyForm.invalid">
-            Update
+            {{ recordId ? 'Update' : 'Submit' }}
           </ion-button>
         </ion-col>
       </ion-row>
