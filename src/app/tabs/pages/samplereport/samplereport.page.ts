@@ -11,7 +11,7 @@ import {
 } from '@ionic/angular/standalone';
 import { OverlayEventDetail } from '@ionic/core';
 import { addIcons } from 'ionicons';
-import { addOutline, createOutline, flashOutline, gridOutline, listOutline, settingsOutline, shieldCheckmarkOutline, timeOutline, trashOutline, waterOutline } from 'ionicons/icons';
+import { addOutline, createOutline, eyeOutline, flashOutline, gridOutline, listOutline, settingsOutline, shieldCheckmarkOutline, timeOutline, trashOutline, waterOutline } from 'ionicons/icons';
 import { MalarService } from '../../services/malar.service';
 
 interface SampleReport {
@@ -78,7 +78,7 @@ export class SamplereportPage implements OnInit {
     private alertController: AlertController,
     private toastController: ToastController
   ) {
-    addIcons({ settingsOutline, addOutline, timeOutline, flashOutline, waterOutline, createOutline, trashOutline, gridOutline, listOutline, shieldCheckmarkOutline });
+    addIcons({ settingsOutline, addOutline, eyeOutline, createOutline, trashOutline, timeOutline, flashOutline, waterOutline, gridOutline, listOutline, shieldCheckmarkOutline });
   }
 
   ngOnInit() {
@@ -195,5 +195,12 @@ export class SamplereportPage implements OnInit {
       this.loadSampleReports();
     });
 
+  }
+  viewReport(report: SampleReport) {
+    // if (report._id) {
+    //   this.router.navigate(['/tabs/newsamplereport', report._id]);
+    // } else {
+    //   this.showToast('Cannot view report: ID not found', 'warning');
+    // }
   }
 }
