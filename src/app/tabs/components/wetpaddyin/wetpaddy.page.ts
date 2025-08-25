@@ -1,10 +1,21 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IonicModule } from "@ionic/angular";
 import { MalarService } from '../../services/malar.service';
+function notFutureDate(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    if (!control.value) return null;
 
+    const entered = new Date(control.value);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // ignore time
+    entered.setHours(0, 0, 0, 0);
+
+    return entered <= today ? null : { futureDate: true };
+  };
+}
 @Component({
   selector: 'app-wetpaddy',
   templateUrl: './wetpaddy.page.html',
@@ -12,6 +23,7 @@ import { MalarService } from '../../services/malar.service';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, IonicModule, FormsModule]
 })
+
 export class WetpaddyPage implements OnInit {
   wetpaddyForm!: FormGroup;
   itemList: any[] = [];
@@ -33,7 +45,7 @@ export class WetpaddyPage implements OnInit {
     const formattedDate = `${yyyy}-${mm}-${dd}`;
 
     this.wetpaddyForm = this.fb.group({
-      date: [today],
+      date: [formattedDate, notFutureDate()],
       party_name: [''],
       broker_name: [''],
       vehicle_number: ['', Validators.required],
@@ -41,7 +53,7 @@ export class WetpaddyPage implements OnInit {
       cell_number: [''],
       item_id: ['', Validators.required],
       bill_number: [''],
-      bill_date: [today],
+      bill_date: [formattedDate, notFutureDate()],
       moisture: ['', Validators.required],
       bags: ['', Validators.required],
       weight: ['', Validators.required],

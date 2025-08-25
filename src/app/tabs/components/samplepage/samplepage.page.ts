@@ -65,7 +65,7 @@ export class SamplepagePage implements OnInit {
     const formattedDate = `${yyyy}-${mm}-${dd}`;
 
     this.processForm = this.fb.group({
-      date: [today, Validators.required],
+      date: [formattedDate, Validators.required],
       loadNumber: ['', Validators.required],
       vehicleNumber: ['', Validators.required],
       driverName: ['', Validators.required],

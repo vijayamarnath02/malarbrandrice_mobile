@@ -30,7 +30,7 @@ export class StockinwardPage implements OnInit {
     const dd = String(today.getDate()).padStart(2, '0');
     const formattedDate = `${yyyy}-${mm}-${dd}`;
     this.stockForm = this.fb.group({
-      date: [today, Validators.required],
+      date: [formattedDate, Validators.required],
       item: ['', Validators.required],
       partyName: ['', Validators.required],
       directLoadStake: [''],
