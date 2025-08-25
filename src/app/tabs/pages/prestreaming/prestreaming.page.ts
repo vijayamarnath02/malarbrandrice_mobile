@@ -58,7 +58,10 @@ export class PrestreamingPage implements OnInit {
 
   loadDropdowns() {
     this.malarService.getPrestreamings().subscribe({
-      next: res => this.prestreamList = res.map(i => i),
+      next: (res: any) => {
+
+        this.prestreamList = res.response.data.map((i: any) => i);
+      },
       error: err => console.error('Item load failed', err),
     });
   }

@@ -161,7 +161,7 @@ export class MalarService {
   // ✅ PRESTREAMING
   getPrestreamings(): Observable<any[]> {
     const obs = this.http.get<any>(`${this.BASE_URL}/pre-streaming`, this.getHeaders())
-      .pipe(map(res => res.response?.data));
+      .pipe(map(res => res));
     return this.withLoader(obs, 'Fetching prestreamings...');
   }
 
