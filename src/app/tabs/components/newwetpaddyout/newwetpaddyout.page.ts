@@ -43,13 +43,6 @@ export class NewwetpaddyoutPage implements OnInit {
       vehicleNumber: ['', Validators.required],
     });
   }
-  onDateChange() {
-    const control = this.wetpaddyOutForm.get('date');
-    if (control) {
-      const corrected = getValidPastOrToday(control.value);
-      control.setValue(corrected, { emitEvent: false });
-    }
-  }
   ionViewWillEnter() {
     this.recordId = this.route.snapshot.paramMap.get('id');
     this.loadDropdowns();
@@ -70,7 +63,7 @@ export class NewwetpaddyoutPage implements OnInit {
     this.malarService.getWetPaddyOutSpecialById(id).subscribe({
       next: (data) => {
         this.wetpaddyOutForm.patchValue({
-          date: data.date || new Date(),
+          date: data.date || this.onDateChange(),
           item: data.item_id,
           driedAt: data.dried_at,
           deliveryAt: data.delivery_at,
@@ -112,6 +105,13 @@ export class NewwetpaddyoutPage implements OnInit {
         next: () => this.router.navigate(['/tabs/samplepage']),
         error: (err) => console.error('Create failed', err),
       });
+    }
+  }
+  onDateChange() {
+    const control = this.wetpaddyOutForm.get('date');
+    if (control) {
+      const corrected = getValidPastOrToday(control.value);
+      control.setValue(corrected, { emitEvent: false });
     }
   }
 

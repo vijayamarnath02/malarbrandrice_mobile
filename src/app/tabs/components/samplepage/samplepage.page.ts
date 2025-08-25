@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IonicModule } from "@ionic/angular";
+import { getValidPastOrToday } from 'src/app/utils/date-utils';
 import { MalarService } from '../../services/malar.service';
 
 // Add the import for ReportPayload if it exists in a service/model file
@@ -157,7 +158,7 @@ export class SamplepagePage implements OnInit {
       cell_number: this.processForm.value.cellNumber,
       party_name: this.processForm.value.partyName,
       bill_number: this.processForm.value.billNoDt,
-      bill_date: this.processForm.value.date,
+      bill_date: this.processForm.value.date || this.onDateChange(),
       broker_name: this.processForm.value.brokerName,
       item_id: this.processForm.value.item,
       moisture: this.processForm.value.moisture,
@@ -188,6 +189,15 @@ export class SamplepagePage implements OnInit {
         },
         error: (err: any) => console.error('Create failed', err)
       });
+    }
+  }
+
+
+  onDateChange() {
+    const control = this.processForm.get('date');
+    if (control) {
+      const corrected = getValidPastOrToday(control.value);
+      control.setValue(corrected, { emitEvent: false });
     }
   }
 

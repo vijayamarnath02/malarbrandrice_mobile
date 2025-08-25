@@ -26,6 +26,7 @@ import {
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
+import { getValidPastOrToday } from 'src/app/utils/date-utils';
 import { MalarService } from '../../services/malar.service';
 
 @Component({
@@ -65,7 +66,7 @@ export class NewdailyprocessPage implements OnInit {
   ngOnInit() {
     this.dailyProcessForm = this.fb.group({
       item: ['', Validators.required],
-      date: [{ value: new Date().toISOString(), disabled: true }, Validators.required],
+      date: [{ value: this.onDateChange(), disabled: true }, Validators.required],
       ural: ['', Validators.required],
       unit: ['', Validators.required],
       lotNumber: ['', Validators.required],
@@ -81,6 +82,13 @@ export class NewdailyprocessPage implements OnInit {
     this.loadDropdowns();
     if (this.processId && this.processId != null) {
       this.getDailyProcessById();
+    }
+  }
+  onDateChange() {
+    const control = this.dailyProcessForm.get('date');
+    if (control) {
+      const corrected = getValidPastOrToday(control.value);
+      control.setValue(corrected, { emitEvent: false });
     }
   }
   loadDropdowns() {
@@ -106,7 +114,7 @@ export class NewdailyprocessPage implements OnInit {
       next: res => {
         this.dailyProcessForm.patchValue({
           item: res.item_id._id,
-          date: res.date,
+          date: res.date || this.onDateChange(),
           ural: res.godown_id._id,
           unit: res.unit_id._id,
           lotNumber: res.lot_number,
@@ -128,7 +136,7 @@ export class NewdailyprocessPage implements OnInit {
       const formValue = this.dailyProcessForm.getRawValue();
       const data = {
         item_id: formValue.item,
-        date: new Date(formValue.date).toISOString().split('T')[0],
+        date: this.onDateChange(),
         godown_id: formValue.ural,
         unit_id: formValue.unit,
         bags: formValue.bags,
@@ -151,7 +159,7 @@ export class NewdailyprocessPage implements OnInit {
       const formValue = this.dailyProcessForm.getRawValue();
       const data = {
         item_id: formValue.item,
-        date: new Date(formValue.date).toISOString().split('T')[0],
+        date: this.onDateChange(),
         godown_id: formValue.ural,
         unit_id: formValue.unit,
         bags: formValue.bags,
@@ -174,7 +182,7 @@ export class NewdailyprocessPage implements OnInit {
   }
   onCancel() {
     this.dailyProcessForm.reset({
-      date: new Date().toISOString(),
+      date: this.onDateChange(),
       incharge: this.loggedInUser,
     });
     this.router.navigate(['/tabs/daily-process']);
