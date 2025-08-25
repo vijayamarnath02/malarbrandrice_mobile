@@ -6,7 +6,7 @@ ion-card[color="primary"] {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 
   /* Add common size */ /* Adjust as needed */
-  height: 150px; /* Adjust as needed */
+  height: 250px; /* Adjust as needed */
 
   &:hover {
     transform: translateY(-4px);
@@ -26,11 +26,12 @@ ion-card[color="primary"] {
 .grid-icon {
   font-size: 36px;
   margin-bottom: 8px;
-  color: #fff;
 }
 
 .grid-title {
   font-size: 16px;
   font-weight: 700;
-  color: #fff;
+}
+ion-card {
+  height: 80%;
 }

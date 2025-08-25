@@ -386,4 +386,14 @@ export class MalarService {
       .pipe(map((res: any) => res));
     return this.withLoader(obs, 'Fetching stock outwards...');
   }
+  deleteStockOut(id: string) {
+    const obs = this.http.delete<any>(`${this.BASE_URL}/stock-outward/${id}`, this.getHeaders())
+      .pipe(map((res: any) => res));
+    return this.withLoader(obs, 'Deleting stock outwards...');
+  }
+  deleteStockIn(id: string) {
+    const obs = this.http.delete<any>(`${this.BASE_URL}/stock-inward/${id}`, this.getHeaders())
+      .pipe(map((res: any) => res));
+    return this.withLoader(obs, 'Deleting stock inwards...');
+  }
 }

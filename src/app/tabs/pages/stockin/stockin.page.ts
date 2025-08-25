@@ -49,7 +49,14 @@ export class StockinPage implements OnInit {
   }
 
   deleteStockIn(id: string) {
-    // Confirm and delete
-    console.log('Delete stock inward', id);
+    this.malarService.deleteStockIn(id).subscribe({
+      next: () => {
+        console.log('Stock In deleted successfully');
+        this.loadSampleReports(); // Refresh the list
+      },
+      error: (err) => {
+        console.error('Failed to delete Stock In:', err);
+      },
+    });
   }
 }

@@ -51,7 +51,14 @@ export class StockoutPage implements OnInit {
   }
 
   deleteStockOut(id: string) {
-    console.log('Delete Stock Out with ID', id);
-    // Call delete API
+    this.malarService.deleteStockOut(id).subscribe({
+      next: () => {
+        console.log('Stock Out deleted successfully');
+        this.loadSampleReports(); // Refresh the list
+      },
+      error: (err) => {
+        console.error('Failed to delete Stock Out:', err);
+      },
+    });
   }
 }
