@@ -22,10 +22,14 @@ export class ViewsamplereportPage implements OnInit {
   ngOnInit() {
     this.processId = this.route.snapshot.paramMap.get('id') || null;
   }
-  goToPage(route: string, id: string) {
+  goToPage(route: string, id?: string) {
     console.log('Navigating to', route, 'with id', id);
-
-    this.router.navigate([`/tabs/${route}`, id]);
+    if (id) {
+      this.router.navigate([`/tabs/${route}`, id]);
+    }
+    else {
+      this.router.navigate([`/tabs/${route}`]);
+    }
   }
 
 }

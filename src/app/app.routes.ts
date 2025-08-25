@@ -128,6 +128,10 @@ export const routes: Routes = [
         path: 'paddyout/:id',
         loadComponent: () => import('./tabs/pages/paddyout/paddyout.page').then(m => m.PaddyoutPage)
       },
+      {
+        path: 'stockin',
+        loadComponent: () => import('./tabs/pages/stockin/stockin.page').then(m => m.StockinPage)
+      },
 
     ]
   },
@@ -147,10 +151,7 @@ export const routes: Routes = [
   },
 
 
-  {
-    path: 'stockin',
-    loadComponent: () => import('./tabs/pages/stockin/stockin.page').then(m => m.StockinPage)
-  },
+
   {
     path: 'stockout',
     loadComponent: () => import('./tabs/pages/stockout/stockout.page').then(m => m.StockoutPage)
