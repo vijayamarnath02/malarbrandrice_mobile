@@ -71,7 +71,7 @@ export class WetpaddyPage implements OnInit {
     this.malarService.getWetPaddyById(id).subscribe({
       next: (data) => {
         this.wetpaddyForm.patchValue({
-          date: data.date,
+          date: data.date || new Date(),
           party_name: data.party_name,
           broker_name: data.broker_name,
           vehicle_number: data.vehicle_number,

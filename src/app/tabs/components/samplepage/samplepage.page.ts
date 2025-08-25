@@ -115,7 +115,7 @@ export class SamplepagePage implements OnInit {
       next: (res) => {
         // Map API fields to form fields
         this.processForm.patchValue({
-          date: res.bill_date || '',
+          date: res.date || new Date(),
           loadNumber: res.load_number || '',
           vehicleNumber: res.vehicle_number || '',
           driverName: res.driver_name || '',

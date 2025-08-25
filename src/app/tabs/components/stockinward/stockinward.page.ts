@@ -60,7 +60,7 @@ export class StockinwardPage implements OnInit {
             const stock = res?.response; // Take the first record or whichever you need
 
             this.stockForm.patchValue({
-              date: stock.date ? new Date(stock.date).toISOString() : '',
+              date: stock.date ? new Date(stock.date).toISOString() : new Date().toISOString(),
               item: stock.item_id || '',
               partyName: stock.party_name || '',
               directLoadStake: stock.direct_load_stake || '',
