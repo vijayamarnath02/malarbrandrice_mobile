@@ -32,7 +32,7 @@ export class NewwetpaddyoutPage implements OnInit {
     const formattedDate = `${yyyy}-${mm}-${dd}`;
 
     this.wetpaddyOutForm = this.fb.group({
-      date: [formattedDate, Validators.required],
+      date: [today, Validators.required],
       item: ['', Validators.required],
       driedAt: [''],
       deliveryAt: [''],

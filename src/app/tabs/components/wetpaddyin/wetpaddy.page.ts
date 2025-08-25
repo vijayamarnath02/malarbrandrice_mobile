@@ -33,7 +33,7 @@ export class WetpaddyPage implements OnInit {
     const formattedDate = `${yyyy}-${mm}-${dd}`;
 
     this.wetpaddyForm = this.fb.group({
-      date: [formattedDate],
+      date: [today],
       party_name: [''],
       broker_name: [''],
       vehicle_number: ['', Validators.required],
@@ -41,7 +41,7 @@ export class WetpaddyPage implements OnInit {
       cell_number: [''],
       item_id: ['', Validators.required],
       bill_number: [''],
-      bill_date: [formattedDate],
+      bill_date: [today],
       moisture: ['', Validators.required],
       bags: ['', Validators.required],
       weight: ['', Validators.required],
