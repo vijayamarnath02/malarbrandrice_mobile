@@ -396,4 +396,14 @@ export class MalarService {
       .pipe(map((res: any) => res));
     return this.withLoader(obs, 'Deleting stock inwards...');
   }
+  deleteWetInPaddy(id: string) {
+    const obs = this.http.delete<any>(`${this.BASE_URL}/wet-paddy-inward/${id}`, this.getHeaders())
+      .pipe(map((res: any) => res));
+    return this.withLoader(obs, 'Deleting wet paddy inwards...');
+  }
+  deleteWetOutPaddy(id: string) {
+    const obs = this.http.delete<any>(`${this.BASE_URL}/wet-paddy-outward/${id}`, this.getHeaders())
+      .pipe(map((res: any) => res));
+    return this.withLoader(obs, 'Deleting wet paddy outwards...');
+  }
 }

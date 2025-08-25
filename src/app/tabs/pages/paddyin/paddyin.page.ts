@@ -48,8 +48,14 @@ export class PaddyinPage implements OnInit {
   }
 
   deleteInward(id: string) {
-    // Call delete API
-    console.log('Delete inward id', id);
+    this.malarService.deleteWetInPaddy(id).subscribe({
+      next: () => {
+        this.loadSampleReports();
+      },
+      error: (error: any) => {
+        console.error('Error deleting wet paddy inward:', error);
+      }
+    });
   }
   addNewWetPaddy() {
     localStorage.setItem('paddyInProcessId', this.processId || '');

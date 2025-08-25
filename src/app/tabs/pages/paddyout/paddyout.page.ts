@@ -47,7 +47,14 @@ export class PaddyoutPage implements OnInit {
     this.router.navigate([`/tabs/newwetpaddyout/${outward._id}`]);
   }
   deleteOutward(outward: any) {
-
+    this.malarService.deleteWetInPaddy(outward).subscribe({
+      next: () => {
+        this.loadSampleReports();
+      },
+      error: (error: any) => {
+        console.error('Error deleting wet paddy inward:', error);
+      }
+    });
   }
   addNewWetPaddy() {
     localStorage.setItem('paddyOutProcessId', this.processId || '');
