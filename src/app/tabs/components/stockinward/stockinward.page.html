@@ -46,11 +46,15 @@
       <ion-label position="floating">Dried At</ion-label>
       <ion-input type="text" formControlName="driedAt"></ion-input>
     </ion-item>
-
     <ion-item>
       <ion-label position="floating">Godown Name</ion-label>
-      <ion-input type="text" formControlName="godownName"></ion-input>
+      <ion-select formControlName="godownName" placeholder="Select Godown">
+        <ion-select-option *ngFor="let item of gowdownList" [value]="item._id">{{ item.name }}</ion-select-option>
+      </ion-select>
     </ion-item>
+    <ion-text color="danger" *ngIf="submitted && f['godownName'].errors?.['required']">Godown Name is
+      required</ion-text>
+
 
     <ion-item>
       <ion-label position="floating">Bin</ion-label>
