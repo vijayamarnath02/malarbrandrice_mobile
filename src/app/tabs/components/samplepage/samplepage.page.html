@@ -10,13 +10,14 @@
     <!-- Date -->
     <ion-item>
       <ion-label position="floating">Date</ion-label>
-      <ion-input type="text" formControlName="date" (ionChange)="onDateChange()" readonly></ion-input>
+      <ion-input type="text" formControlName="date" placeholder="Select date" (ionChange)="onDateChange()"
+        readonly></ion-input>
     </ion-item>
 
     <!-- Load Number -->
     <ion-item>
       <ion-label position="floating">Load Number</ion-label>
-      <ion-input type="text" formControlName="loadNumber"></ion-input>
+      <ion-input type="text" formControlName="loadNumber" placeholder="Enter load number"></ion-input>
     </ion-item>
     <ion-text color="danger"
       *ngIf="f['loadNumber'].errors?.['required'] && (f['loadNumber'].touched || f['loadNumber'].dirty)">
@@ -26,7 +27,7 @@
     <!-- Vehicle Number -->
     <ion-item>
       <ion-label position="floating">Vehicle Number</ion-label>
-      <ion-input type="text" formControlName="vehicleNumber"></ion-input>
+      <ion-input type="text" formControlName="vehicleNumber" placeholder="Enter vehicle number"></ion-input>
     </ion-item>
     <ion-text color="danger"
       *ngIf="f['vehicleNumber'].errors?.['required'] && (f['vehicleNumber'].touched || f['vehicleNumber'].dirty)">
@@ -36,7 +37,7 @@
     <!-- Driver Name -->
     <ion-item>
       <ion-label position="floating">Driver Name</ion-label>
-      <ion-input type="text" formControlName="driverName"></ion-input>
+      <ion-input type="text" formControlName="driverName" placeholder="Enter driver name"></ion-input>
     </ion-item>
     <ion-text color="danger"
       *ngIf="f['driverName'].errors?.['required'] && (f['driverName'].touched || f['driverName'].dirty)">
@@ -46,7 +47,7 @@
     <!-- Cell Number -->
     <ion-item>
       <ion-label position="floating">Cell Number</ion-label>
-      <ion-input type="tel" formControlName="cellNumber"></ion-input>
+      <ion-input type="tel" formControlName="cellNumber" placeholder="Enter driver contact number"></ion-input>
     </ion-item>
     <ion-text color="danger"
       *ngIf="f['cellNumber'].errors?.['required'] && (f['cellNumber'].touched || f['cellNumber'].dirty)">
@@ -56,7 +57,7 @@
     <!-- Party Name -->
     <ion-item>
       <ion-label position="floating">Party Name</ion-label>
-      <ion-input type="text" formControlName="partyName"></ion-input>
+      <ion-input type="text" formControlName="partyName" placeholder="Enter party name"></ion-input>
     </ion-item>
     <ion-text color="danger"
       *ngIf="f['partyName'].errors?.['required'] && (f['partyName'].touched || f['partyName'].dirty)">
@@ -66,40 +67,41 @@
     <!-- Bill No/Date -->
     <ion-item>
       <ion-label position="floating">Bill No / Date</ion-label>
-      <ion-input type="text" formControlName="billNoDt"></ion-input>
+      <ion-input type="text" formControlName="billNoDt" placeholder="Enter bill number and date"></ion-input>
     </ion-item>
     <ion-text color="danger"
       *ngIf="f['billNoDt'].errors?.['required'] && (f['billNoDt'].touched || f['billNoDt'].dirty)">
       Bill No / Date is required
     </ion-text>
 
-    <!-- Broker Name (optional, so no error) -->
+    <!-- Broker Name -->
     <ion-item>
       <ion-label position="floating">Broker Name</ion-label>
-      <ion-input type="text" formControlName="brokerName"></ion-input>
+      <ion-input type="text" formControlName="brokerName" placeholder="Enter broker name (if any)"></ion-input>
     </ion-item>
 
     <!-- Item -->
     <ion-item>
       <ion-label position="floating">Item</ion-label>
-      <ion-select formControlName="item" placeholder="Select Item">
+      <ion-select formControlName="item" placeholder="Select item">
         <ion-select-option *ngFor="let item of itemList" [value]="item._id">{{ item.name }}</ion-select-option>
       </ion-select>
     </ion-item>
-    <ion-text color="danger" *ngIf="f['item'].errors?.['required'] && (f['item'].touched || f['item'].dirty)  ">Item is
-      required</ion-text>
+    <ion-text color="danger" *ngIf="f['item'].errors?.['required'] && (f['item'].touched || f['item'].dirty)">
+      Item is required
+    </ion-text>
 
-
-    <!-- Moisture (optional, no error) -->
+    <!-- Moisture -->
     <ion-item>
       <ion-label position="floating">Moisture</ion-label>
-      <ion-input type="number" formControlName="moisture" (ionChange)="calculateTotalPercentage()"></ion-input>
+      <ion-input type="number" formControlName="moisture" placeholder="Enter moisture percentage"
+        (ionChange)="calculateTotalPercentage()"></ion-input>
     </ion-item>
 
     <!-- Raw/Dried -->
     <ion-item>
       <ion-label position="floating">Raw/Dried Paddy</ion-label>
-      <ion-select formControlName="rawOrDried" placeholder="Select Type" readonly>
+      <ion-select formControlName="rawOrDried" placeholder="Select paddy type" readonly>
         <ion-select-option [value]="1">Dry Paddy</ion-select-option>
         <ion-select-option [value]="2">Wet Paddy</ion-select-option>
       </ion-select>
@@ -112,7 +114,7 @@
     <!-- Bags -->
     <ion-item>
       <ion-label position="floating">Bags</ion-label>
-      <ion-input type="number" formControlName="bags"></ion-input>
+      <ion-input type="number" formControlName="bags" placeholder="Enter number of bags"></ion-input>
     </ion-item>
     <ion-text color="danger" *ngIf="f['bags'].errors?.['required'] && (f['bags'].touched || f['bags'].dirty)">
       Bags are required
@@ -121,41 +123,41 @@
     <!-- Weight -->
     <ion-item>
       <ion-label position="floating">Weight</ion-label>
-      <ion-input type="number" formControlName="weight"></ion-input>
+      <ion-input type="number" formControlName="weight" placeholder="Enter total weight (kg)"></ion-input>
     </ion-item>
     <ion-text color="danger" *ngIf="f['weight'].errors?.['required'] && (f['weight'].touched || f['weight'].dirty)">
       Weight is required
     </ion-text>
 
-
     <!-- Rice -->
     <ion-item>
       <ion-label position="floating">Rice</ion-label>
-      <ion-input type="number" formControlName="rice"></ion-input>
+      <ion-input type="number" formControlName="rice" placeholder="Enter rice percentage"></ion-input>
     </ion-item>
 
     <!-- Broken -->
     <ion-item>
       <ion-label position="floating">Broken</ion-label>
-      <ion-input type="number" formControlName="broken"></ion-input>
+      <ion-input type="number" formControlName="broken" placeholder="Enter broken percentage"></ion-input>
     </ion-item>
 
     <!-- Bran -->
     <ion-item>
       <ion-label position="floating">Bran</ion-label>
-      <ion-input type="number" formControlName="bran"></ion-input>
+      <ion-input type="number" formControlName="bran" placeholder="Enter bran percentage"></ion-input>
     </ion-item>
 
     <!-- Total Percentage -->
     <ion-item>
       <ion-label position="floating">Total Percentage</ion-label>
-      <ion-input type="number" formControlName="totalPercentage"></ion-input>
+      <ion-input type="number" formControlName="totalPercentage"
+        placeholder="Auto-calculated or enter manually"></ion-input>
     </ion-item>
 
     <!-- Accept / Reject -->
     <ion-item>
       <ion-label position="floating">Accept / Reject</ion-label>
-      <ion-select formControlName="acceptReject">
+      <ion-select formControlName="acceptReject" placeholder="Select decision">
         <ion-select-option [value]="1">Ok</ion-select-option>
         <ion-select-option [value]="2">Reject</ion-select-option>
       </ion-select>
@@ -165,34 +167,29 @@
       Accept / Reject selection is required
     </ion-text>
 
-    <!-- Reason (optional, no error) -->
+    <!-- Reason -->
     <ion-item>
       <ion-label position="floating">Reason</ion-label>
-      <ion-input type="text" formControlName="reason"></ion-input>
+      <ion-input type="text" formControlName="reason" placeholder="Enter reason (if any)"></ion-input>
     </ion-item>
 
-    <!-- Delivery At (optional, no error) -->
+    <!-- Delivery At -->
     <ion-item>
       <ion-label position="floating">Delivery At</ion-label>
-      <ion-input type="text" formControlName="deliveryAt"></ion-input>
+      <ion-input type="text" formControlName="deliveryAt" placeholder="Enter delivery location"></ion-input>
     </ion-item>
 
     <ion-grid>
       <ion-row class="ion-justify-content-between">
         <ion-col size="6">
-          <ion-button expand="block" type="button" color="medium" fill="outline" (click)="onCancel()">
-            Cancel
-          </ion-button>
+          <ion-button expand="block" type="button" color="medium" fill="outline"
+            (click)="onCancel()">Cancel</ion-button>
         </ion-col>
         <ion-col size="6" *ngIf="recordId === null">
-          <ion-button expand="block" type="submit" [disabled]="processForm.invalid">
-            Submit
-          </ion-button>
+          <ion-button expand="block" type="submit" [disabled]="processForm.invalid">Submit</ion-button>
         </ion-col>
         <ion-col size="6" *ngIf="recordId !== null">
-          <ion-button expand="block" type="submit" [disabled]="processForm.invalid">
-            Update
-          </ion-button>
+          <ion-button expand="block" type="submit" [disabled]="processForm.invalid">Update</ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>

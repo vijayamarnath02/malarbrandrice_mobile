@@ -7,21 +7,19 @@
 <ion-content [fullscreen]="false" class="ion-padding">
   <form [formGroup]="prestreamingForm" (ngSubmit)="submitForm()">
 
-
+    <!-- Item -->
     <ion-item>
       <ion-label position="floating">Item</ion-label>
-      <ion-select formControlName="item" placeholder="Select Item">
+      <ion-select formControlName="item" placeholder="Select an item">
         <ion-select-option *ngFor="let item of itemList" [value]="item._id">{{ item.name }}</ion-select-option>
       </ion-select>
     </ion-item>
-    <ion-text color="danger" *ngIf="isInvalid('item')">Item is
-      required</ion-text>
-
+    <ion-text color="danger" *ngIf="isInvalid('item')">Item is required</ion-text>
 
     <!-- Unit Select -->
     <ion-item>
       <ion-label position="floating">Unit</ion-label>
-      <ion-select formControlName="unit" placeholder="Select Unit">
+      <ion-select formControlName="unit" placeholder="Select a unit">
         <ion-select-option *ngFor="let unit of unitList" [value]="unit._id">{{ unit.name }}</ion-select-option>
       </ion-select>
     </ion-item>
@@ -32,13 +30,14 @@
     <!-- Batch Number (Read-only) -->
     <ion-item>
       <ion-label position="floating">Batch Number</ion-label>
-      <ion-input [value]="batchNumber" readonly></ion-input>
+      <ion-input [value]="batchNumber" readonly placeholder="Auto-generated"></ion-input>
     </ion-item>
 
     <!-- Tank Level Timing -->
     <ion-item>
       <ion-label position="floating">Tank Level Timing</ion-label>
-      <ion-input formControlName="tankLevelTiming" type="text" autocomplete="off"></ion-input>
+      <ion-input formControlName="tankLevelTiming" type="text" autocomplete="off"
+        placeholder="Enter tank level timing"></ion-input>
     </ion-item>
     <ion-text color="danger" *ngIf="isInvalid('tankLevelTiming')">
       <small>Tank Level Timing is required</small>
@@ -47,7 +46,7 @@
     <!-- Timing -->
     <ion-item>
       <ion-label position="floating">Timing</ion-label>
-      <ion-input formControlName="timing" type="text" autocomplete="off"></ion-input>
+      <ion-input formControlName="timing" type="text" autocomplete="off" placeholder="Enter timing"></ion-input>
     </ion-item>
     <ion-text color="danger" *ngIf="isInvalid('timing')">
       <small>Timing is required</small>
@@ -56,7 +55,8 @@
     <!-- Ural Timing -->
     <ion-item>
       <ion-label position="floating">Ural Timing</ion-label>
-      <ion-input formControlName="uralTiming" type="text" autocomplete="off"></ion-input>
+      <ion-input formControlName="uralTiming" type="text" autocomplete="off"
+        placeholder="Enter ural timing"></ion-input>
     </ion-item>
     <ion-text color="danger" *ngIf="isInvalid('uralTiming')">
       <small>Ural Timing is required</small>
@@ -65,7 +65,8 @@
     <!-- Water Release Timing -->
     <ion-item>
       <ion-label position="floating">Water Release Timing</ion-label>
-      <ion-input formControlName="waterReleaseTiming" type="text" autocomplete="off"></ion-input>
+      <ion-input formControlName="waterReleaseTiming" type="text" autocomplete="off"
+        placeholder="Enter water release timing"></ion-input>
     </ion-item>
     <ion-text color="danger" *ngIf="isInvalid('waterReleaseTiming')">
       <small>Water Release Timing is required</small>
@@ -74,7 +75,7 @@
     <!-- Remarks -->
     <ion-item>
       <ion-label position="floating">Remarks</ion-label>
-      <ion-textarea formControlName="remarks" rows="3"></ion-textarea>
+      <ion-textarea formControlName="remarks" rows="3" placeholder="Enter remarks (if any)"></ion-textarea>
     </ion-item>
     <ion-text color="danger" *ngIf="isInvalid('remarks')">
       <small>Remarks are required</small>
@@ -83,7 +84,7 @@
     <!-- Incharge (read-only) -->
     <ion-item>
       <ion-label position="floating">Incharge</ion-label>
-      <ion-input formControlName="incharge" readonly></ion-input>
+      <ion-input formControlName="incharge" readonly placeholder="Auto-filled"></ion-input>
     </ion-item>
 
     <ion-grid>
@@ -94,7 +95,7 @@
           </ion-button>
         </ion-col>
         <ion-col size="6">
-          <ion-button expand="block" type="submit" [disabled]="prestreamingForm.invalid " *ngIf="processId === null">
+          <ion-button expand="block" type="submit" [disabled]="prestreamingForm.invalid" *ngIf="processId === null">
             Submit
           </ion-button>
           <ion-button expand="block" type="submit" [disabled]="prestreamingForm.invalid || isFormUnchanged()"

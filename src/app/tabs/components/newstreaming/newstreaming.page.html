@@ -11,7 +11,7 @@
       <!-- Item -->
       <ion-item>
         <ion-label position="floating">Item</ion-label>
-        <ion-select formControlName="item" placeholder="Select Item">
+        <ion-select formControlName="item" placeholder="Select an item">
           <ion-select-option *ngFor="let item of itemList" [value]="item._id">{{ item.name }}</ion-select-option>
         </ion-select>
       </ion-item>
@@ -20,7 +20,7 @@
       <!-- Unit -->
       <ion-item>
         <ion-label position="floating">Unit</ion-label>
-        <ion-select formControlName="unit" placeholder="Select Unit">
+        <ion-select formControlName="unit" placeholder="Select a unit">
           <ion-select-option *ngFor="let unit of unitList" [value]="unit._id">{{ unit.name }}</ion-select-option>
         </ion-select>
       </ion-item>
@@ -29,41 +29,45 @@
       <!-- Batch Number (readonly) -->
       <ion-item>
         <ion-label position="floating">Batch Number</ion-label>
-        <ion-input [value]="batchNumber" readonly></ion-input>
+        <ion-input [value]="batchNumber" readonly placeholder="Auto-generated"></ion-input>
       </ion-item>
 
       <!-- Streaming Timing -->
       <ion-item>
         <ion-label position="floating">Steam Timing</ion-label>
-        <ion-input formControlName="streamingTiming" type="text" autocomplete="off"></ion-input>
+        <ion-input formControlName="streamingTiming" type="text" autocomplete="off"
+          placeholder="Enter steaming timing"></ion-input>
       </ion-item>
-      <ion-text color="danger" *ngIf="isInvalid('streamingTiming')"><small>Steam Timing is
-          required</small></ion-text>
+      <ion-text color="danger" *ngIf="isInvalid('streamingTiming')"><small>Steam Timing is required</small></ion-text>
 
       <!-- Stream Start Time -->
       <ion-item>
         <ion-label position="floating">Steam Start Time</ion-label>
-        <ion-input formControlName="streamStartTime" type="text" autocomplete="off"></ion-input>
+        <ion-input formControlName="streamStartTime" type="text" autocomplete="off"
+          placeholder="Enter start time"></ion-input>
       </ion-item>
       <ion-text color="danger" *ngIf="isInvalid('streamStartTime')"><small>Start Time is required</small></ion-text>
 
-      <!-- End Time -->
+      <!-- Steam End Time -->
       <ion-item>
         <ion-label position="floating">Steam End Time</ion-label>
-        <ion-input formControlName="streamEndTime" type="text" autocomplete="off"></ion-input>
+        <ion-input formControlName="streamEndTime" type="text" autocomplete="off"
+          placeholder="Enter end time"></ion-input>
       </ion-item>
       <ion-text color="danger" *ngIf="isInvalid('streamEndTime')"><small>Steam End Time is required</small></ion-text>
 
+      <!-- End Time -->
       <ion-item>
         <ion-label position="floating">End Time</ion-label>
-        <ion-input formControlName="endTime" type="text" autocomplete="off"></ion-input>
+        <ion-input formControlName="endTime" type="text" autocomplete="off"
+          placeholder="Enter final end time"></ion-input>
       </ion-item>
-      <ion-text color="danger" *ngIf="isInvalid('endTime')"><small>Steam End Time is required</small></ion-text>
+      <ion-text color="danger" *ngIf="isInvalid('endTime')"><small>End Time is required</small></ion-text>
 
       <!-- Dryer -->
       <ion-item>
         <ion-label position="floating">Dryer</ion-label>
-        <ion-select formControlName="dryer" placeholder="Select Dryer">
+        <ion-select formControlName="dryer" placeholder="Select a dryer">
           <ion-select-option *ngFor="let dryer of dryerList" [value]="dryer._id">{{ dryer.name }}</ion-select-option>
         </ion-select>
       </ion-item>

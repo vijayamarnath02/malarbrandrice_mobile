@@ -6,15 +6,12 @@
 
 <ion-content [fullscreen]="false" class="ion-padding">
   <form [formGroup]="stockForm" (ngSubmit)="onSubmit()">
+
     <ion-item>
       <ion-label position="floating">Date</ion-label>
-      <ion-input type="text" formControlName="date" readonly></ion-input>
+      <ion-input type="text" formControlName="date" readonly placeholder="Select or auto-filled date"></ion-input>
     </ion-item>
     <ion-text color="danger" *ngIf="submitted && f['date'].errors?.['required']">
-      Date is required
-    </ion-text>
-
-    <ion-text *ngIf="stockForm.get('date')?.touched && stockForm.get('date')?.invalid">
       Date is required
     </ion-text>
 
@@ -26,26 +23,26 @@
     </ion-item>
     <ion-text color="danger" *ngIf="submitted && f['item'].errors?.['required']">Item is required</ion-text>
 
-
     <ion-item>
       <ion-label position="floating">Party Name</ion-label>
-      <ion-input type="text" formControlName="partyName"></ion-input>
+      <ion-input type="text" formControlName="partyName" placeholder="Enter Party Name"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Direct Load Stake</ion-label>
-      <ion-input type="text" formControlName="directLoadStake"></ion-input>
+      <ion-input type="text" formControlName="directLoadStake" placeholder="Enter Direct Load Stake"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Moisture</ion-label>
-      <ion-input type="number" formControlName="moisture"></ion-input>
+      <ion-input type="number" formControlName="moisture" placeholder="Enter Moisture %"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Dried At</ion-label>
-      <ion-input type="text" formControlName="driedAt"></ion-input>
+      <ion-input type="text" formControlName="driedAt" placeholder="Enter Dried At location"></ion-input>
     </ion-item>
+
     <ion-item>
       <ion-label position="floating">Godown Name</ion-label>
       <ion-select formControlName="godownName" placeholder="Select Godown">
@@ -55,40 +52,39 @@
     <ion-text color="danger" *ngIf="submitted && f['godownName'].errors?.['required']">Godown Name is
       required</ion-text>
 
-
     <ion-item>
       <ion-label position="floating">Bin</ion-label>
-      <ion-input type="text" formControlName="bin"></ion-input>
+      <ion-input type="text" formControlName="bin" placeholder="Enter Bin"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Lot</ion-label>
-      <ion-input type="text" formControlName="lot"></ion-input>
+      <ion-input type="text" formControlName="lot" placeholder="Enter Lot"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Bags</ion-label>
-      <ion-input type="number" formControlName="bags"></ion-input>
+      <ion-input type="number" formControlName="bags" placeholder="Enter number of Bags"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Weight</ion-label>
-      <ion-input type="number" formControlName="weight"></ion-input>
+      <ion-input type="number" formControlName="weight" placeholder="Enter Weight"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Vehicle Number</ion-label>
-      <ion-input type="text" formControlName="vehicleNumber"></ion-input>
+      <ion-input type="text" formControlName="vehicleNumber" placeholder="Enter Vehicle Number"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Incharge</ion-label>
-      <ion-input type="text" formControlName="incharge"></ion-input>
+      <ion-input type="text" formControlName="incharge" placeholder="Enter Incharge Name"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Remark</ion-label>
-      <ion-input type="text" formControlName="remark"></ion-input>
+      <ion-input type="text" formControlName="remark" placeholder="Enter any Remark"></ion-input>
     </ion-item>
 
     <ion-grid>

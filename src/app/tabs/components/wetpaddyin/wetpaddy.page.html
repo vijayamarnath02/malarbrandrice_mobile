@@ -9,7 +9,8 @@
 
     <ion-item>
       <ion-label position="floating">Date</ion-label>
-      <ion-input type="text" formControlName="date" (ionChange)="onDateChange('date')"></ion-input>
+      <ion-input type="text" formControlName="date" (ionChange)="onDateChange('date')"
+        placeholder="Select Date"></ion-input>
     </ion-item>
     <ion-note color="danger" *ngIf="wetpaddyForm.get('date')?.touched && wetpaddyForm.get('date')?.invalid">
       Date is required
@@ -17,17 +18,17 @@
 
     <ion-item>
       <ion-label position="floating">Party Name</ion-label>
-      <ion-input formControlName="party_name"></ion-input>
+      <ion-input formControlName="party_name" placeholder="Enter Party Name"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Broker Name</ion-label>
-      <ion-input formControlName="broker_name"></ion-input>
+      <ion-input formControlName="broker_name" placeholder="Enter Broker Name"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Vehicle Number</ion-label>
-      <ion-input formControlName="vehicle_number"></ion-input>
+      <ion-input formControlName="vehicle_number" placeholder="Enter Vehicle Number"></ion-input>
     </ion-item>
     <ion-note color="danger"
       *ngIf="wetpaddyForm.get('vehicle_number')?.touched && wetpaddyForm.get('vehicle_number')?.invalid">
@@ -36,12 +37,12 @@
 
     <ion-item>
       <ion-label position="floating">Driver Name</ion-label>
-      <ion-input formControlName="driver_name"></ion-input>
+      <ion-input formControlName="driver_name" placeholder="Enter Driver Name"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Cell Number</ion-label>
-      <ion-input formControlName="cell_number" type="tel"></ion-input>
+      <ion-input formControlName="cell_number" type="tel" placeholder="Enter Cell Number"></ion-input>
     </ion-item>
 
     <ion-item>
@@ -58,32 +59,33 @@
 
     <ion-item>
       <ion-label position="floating">Bill Number</ion-label>
-      <ion-input formControlName="bill_number"></ion-input>
+      <ion-input formControlName="bill_number" placeholder="Enter Bill Number"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Bill Date</ion-label>
-      <ion-input type="text" formControlName="bill_date" (ionChange)="onDateChange('bill_date')"></ion-input>
+      <ion-input type="text" formControlName="bill_date" (ionChange)="onDateChange('bill_date')"
+        placeholder="Select Bill Date"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Moisture</ion-label>
-      <ion-input type="number" formControlName="moisture"></ion-input>
+      <ion-input type="number" formControlName="moisture" placeholder="Enter Moisture %"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Bags</ion-label>
-      <ion-input type="number" formControlName="bags"></ion-input>
+      <ion-input type="number" formControlName="bags" placeholder="Enter Number of Bags"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Weight (kg)</ion-label>
-      <ion-input type="number" formControlName="weight"></ion-input>
+      <ion-input type="number" formControlName="weight" placeholder="Enter Weight in kg"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Dried At</ion-label>
-      <ion-input formControlName="dried_at"></ion-input>
+      <ion-input formControlName="dried_at" placeholder="Enter Drying Location"></ion-input>
     </ion-item>
 
     <ion-grid>

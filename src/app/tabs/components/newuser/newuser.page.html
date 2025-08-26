@@ -10,7 +10,7 @@
     <!-- Name -->
     <ion-item>
       <ion-label position="floating">Name</ion-label>
-      <ion-input formControlName="name"></ion-input>
+      <ion-input formControlName="name" placeholder="Enter full name"></ion-input>
     </ion-item>
     <ion-text color="danger" *ngIf="newUserForm.get('name')?.touched && newUserForm.get('name')?.invalid">
       <small *ngIf="newUserForm.get('name')?.errors?.['required']">Name is required.</small>
@@ -19,7 +19,7 @@
     <!-- Email -->
     <ion-item>
       <ion-label position="floating">Email</ion-label>
-      <ion-input formControlName="email" type="email"></ion-input>
+      <ion-input formControlName="email" type="email" placeholder="Enter email address"></ion-input>
     </ion-item>
     <ion-text color="danger" *ngIf="newUserForm.get('email')?.touched && newUserForm.get('email')?.invalid">
       <small *ngIf="newUserForm.get('email')?.errors?.['required']">Email is required.</small>
@@ -29,7 +29,7 @@
     <!-- Phone -->
     <ion-item>
       <ion-label position="floating">Phone</ion-label>
-      <ion-input formControlName="phone" type="tel"></ion-input>
+      <ion-input formControlName="phone" type="tel" placeholder="Enter phone number"></ion-input>
     </ion-item>
     <ion-text color="danger" *ngIf="newUserForm.get('phone')?.touched && newUserForm.get('phone')?.invalid">
       <small *ngIf="newUserForm.get('phone')?.errors?.['required']">Phone number is required.</small>
@@ -39,7 +39,7 @@
     <!-- Country Code -->
     <ion-item>
       <ion-label position="floating">Country Code</ion-label>
-      <ion-input formControlName="country_code" type="text"></ion-input>
+      <ion-input formControlName="country_code" type="text" placeholder="Enter country code (e.g., +1)"></ion-input>
     </ion-item>
     <ion-text color="danger"
       *ngIf="newUserForm.get('country_code')?.touched && newUserForm.get('country_code')?.invalid">
@@ -49,7 +49,7 @@
     <!-- User Type -->
     <ion-item>
       <ion-label position="floating">User Type</ion-label>
-      <ion-input formControlName="user_type" type="number" readonly></ion-input>
+      <ion-input formControlName="user_type" type="number" readonly placeholder="Auto-assigned"></ion-input>
     </ion-item>
     <ion-text color="danger" *ngIf="newUserForm.get('user_type')?.touched && newUserForm.get('user_type')?.invalid">
       <small *ngIf="newUserForm.get('user_type')?.errors?.['required']">User type is required.</small>
