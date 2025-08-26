@@ -89,23 +89,27 @@ export class StockoutwardPage implements OnInit {
   onSubmit() {
     this.submitted = true;
     if (this.stockOutForm.invalid) return;
-
     const formValue = this.stockOutForm.value;
     const payload = {
-      sample_report_id: this.processId,
-      date: formValue.date,
+      date: formValue.date || this.onDateChange(),
+      in_charge: formValue.incharge,
       item_id: formValue.item,
-      dried_at: formValue.godownName,
-      delivery_at: formValue.transferTo,
-      moisture: formValue.moisture,
+      godown_id: formValue.godownName,
+      lot: formValue.lot,
       bags: formValue.bags,
       weight: formValue.weight,
-      vehicle_number: formValue.vehicleNumber,
-      in_charge: formValue.incharge
+      reason: formValue.remarks || "",
+      transfer_to: {
+        value: formValue.transferTo,
+        godown_id: formValue.godownName,
+        bin: formValue.bin || "",
+        stack: formValue.stack || ""
+      },
+      vehicle_number: formValue.vehicleNumber
     };
     if (this.processId) {
       // Update
-      this.malarService.updateStockOutward(this.processId, payload).subscribe({
+      this.malarService.updateWetPaddyOut(this.processId, payload).subscribe({
         next: res => {
           console.log('Stock updated:', res);
           this.router.navigate(['/tabs/dashboard']);
@@ -114,7 +118,7 @@ export class StockoutwardPage implements OnInit {
       });
     } else {
       // Create
-      this.malarService.createStockOutward(payload).subscribe({
+      this.malarService.createWetPaddyOut(payload).subscribe({
         next: res => {
           console.log('Stock created:', res);
           this.router.navigate(['/tabs/samplepage']);
@@ -122,13 +126,11 @@ export class StockoutwardPage implements OnInit {
         error: err => console.error('Creation failed:', err)
       });
     }
-    // You can now send `payload` to your API
   }
-
   onDateChange() {
     const control = this.stockOutForm.get('date');
     if (control) {
-      const corrected = getValidPastOrToday(control.value);
+      const corrected = getValidPastOrToday(control.value || new Date());
       control.setValue(corrected, { emitEvent: false });
     }
   }

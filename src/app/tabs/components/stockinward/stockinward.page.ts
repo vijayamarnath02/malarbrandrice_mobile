@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IonicModule } from "@ionic/angular";
+import { getValidPastOrToday } from 'src/app/utils/date-utils';
 import { MalarService } from '../../services/malar.service';
 
 @Component({
@@ -30,7 +31,7 @@ export class StockinwardPage implements OnInit {
     const dd = String(today.getDate()).padStart(2, '0');
     const formattedDate = `${yyyy}-${mm}-${dd}`;
     this.stockForm = this.fb.group({
-      date: [formattedDate, Validators.required],
+      date: [today, Validators.required],
       item: ['', Validators.required],
       partyName: ['', Validators.required],
       directLoadStake: [''],
@@ -43,8 +44,9 @@ export class StockinwardPage implements OnInit {
       weight: ['', Validators.required],
       vehicleNumber: ['', Validators.required],
       incharge: [''],
-      remark: ['']
+      // remark: ['']
     });
+    this.onDateChange();
   }
 
   get f() {
@@ -60,7 +62,7 @@ export class StockinwardPage implements OnInit {
             const stock = res?.response; // Take the first record or whichever you need
 
             this.stockForm.patchValue({
-              date: stock.date ? new Date(stock.date).toISOString() : new Date().toISOString(),
+              date: stock.date ? new Date(stock.date) : new Date(),
               item: stock.item_id || '',
               partyName: stock.party_name || '',
               directLoadStake: stock.direct_load_stake || '',
@@ -73,9 +75,10 @@ export class StockinwardPage implements OnInit {
               weight: stock.weight || '',
               vehicleNumber: stock.vehicle_number || '',
               incharge: stock.in_charge || '',
-              remark: stock.remark || ''
+              // remark: stock.remark || ''
             });
           }
+          this.onDateChange();
         },
         error: (err) => console.error('Item load failed', err),
       });
@@ -113,7 +116,7 @@ export class StockinwardPage implements OnInit {
       bags: +this.stockForm.value.bags,
       weight: +this.stockForm.value.weight,
       vehicle_number: this.stockForm.value.vehicleNumber,
-      reason: this.stockForm.value.remark,
+      // reason: this.stockForm.value.remark,
       in_charge: this.stockForm.value.incharge
     };
 
@@ -135,6 +138,13 @@ export class StockinwardPage implements OnInit {
         },
         error: err => console.error('Creation failed:', err)
       });
+    }
+  }
+  onDateChange() {
+    const control = this.stockForm.get('date');
+    if (control) {
+      const corrected = getValidPastOrToday(control.value);
+      control.setValue(corrected, { emitEvent: false });
     }
   }
   onCancel() {

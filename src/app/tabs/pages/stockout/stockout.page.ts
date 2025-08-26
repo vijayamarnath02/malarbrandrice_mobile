@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonChip, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonLabel, IonRow, IonText, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { addOutline, createOutline, eyeOutline, flashOutline, settingsOutline, timeOutline, trashOutline } from 'ionicons/icons';
@@ -20,8 +20,11 @@ import { MalarService } from '../../services/malar.service';
 })
 export class StockoutPage implements OnInit {
   stockOutList: any[] = [];
+  processId: string | null = null;
   constructor(private router: Router,
-    private malarService: MalarService) {
+    private malarService: MalarService,
+    private route: ActivatedRoute) {
+    this.processId = this.route.snapshot.paramMap.get('id') || null;
     addIcons({ addOutline, createOutline, trashOutline });
 
   }
@@ -47,6 +50,7 @@ export class StockoutPage implements OnInit {
 
 
   editStockOut(record: any) {
+    localStorage.setItem('stockOutProcessId', this.processId || '');
     this.router.navigate([`/tabs/stockoutward/${record._id}`]);
   }
 
