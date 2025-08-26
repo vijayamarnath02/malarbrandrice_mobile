@@ -31,7 +31,7 @@ export class NewPrestreamingPage implements OnInit {
   prestreamingForm!: FormGroup;
   itemList: any;
   unitList: any;
-  loggedInUser = 'admin@malarbrandrice.com';
+  loggedInUser = localStorage.getItem('username');
   batchNumber = 'BATCH-' + Math.floor(Math.random() * 100000);
   processId: string | null = null;
   originalFormValue: any;
