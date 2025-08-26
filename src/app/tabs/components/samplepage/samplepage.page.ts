@@ -165,7 +165,7 @@ export class SamplepagePage implements OnInit {
       paddy_type: this.processForm.value.rawOrDried,
       bags: this.processForm.value.bags,
       weight: this.processForm.value.weight,
-      sample_taken_by: this.processForm.value.sampleTakenBy || 'new',
+      sample_taken_by: this.processForm.value.sample_taken_by || 'new',
       rice: this.processForm.value.rice,
       broken: this.processForm.value.broken,
       bran: this.processForm.value.bran,
