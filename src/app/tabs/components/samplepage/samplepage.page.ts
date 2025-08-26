@@ -79,7 +79,7 @@ export class SamplepagePage implements OnInit {
       rawOrDried: ['', Validators.required],
       bags: ['', Validators.required],
       weight: ['', Validators.required],
-      sampleTakenBy: [''],
+      sample_taken_by: [''],
       rice: [''],
       broken: [''],
       bran: [''],

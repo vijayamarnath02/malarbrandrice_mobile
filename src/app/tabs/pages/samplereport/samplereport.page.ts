@@ -202,7 +202,9 @@ export class SamplereportPage implements OnInit {
   viewReport(report: SampleReport) {
     sampleReportListSignal.set(report);
     if (report._id) {
-      this.router.navigate(['/tabs/viewsamplereport', report._id]);
+      setTimeout(() => {
+        this.router.navigate(['/tabs/viewsamplereport', report._id]);
+      }, 1000)
     } else {
       this.showToast('Cannot view report: ID not found', 'warning');
     }

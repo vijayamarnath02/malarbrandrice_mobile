@@ -4,14 +4,14 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="false" class="ion-padding">
+<ion-content [fullscreen]="true" class="ion-padding">
   <form [formGroup]="processForm" (ngSubmit)="onSubmit()">
 
     <!-- Date -->
     <ion-item>
       <ion-label position="floating">Date</ion-label>
       <ion-input type="text" formControlName="date" placeholder="Select date" (ionChange)="onDateChange()"
-        readonly></ion-input>
+        [disabled]="true"></ion-input>
     </ion-item>
 
     <!-- Load Number -->
