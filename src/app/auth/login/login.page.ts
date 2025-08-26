@@ -56,6 +56,7 @@ export class LoginPage implements OnInit {
             console.log(res);
             localStorage.setItem('token', res?.response?.token);
             localStorage.setItem('userrole', res?.response?.user_type)
+            localStorage.setItem('username', res?.response);
             this.presentToast('Login successful!', 'success');
             setTimeout(() => {
               this.router.navigate(['/tabs/dashboard']);
