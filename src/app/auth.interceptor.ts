@@ -6,7 +6,6 @@ import { tap } from 'rxjs';
 
 export const AuthInterceptor: HttpInterceptorFn = (req, next) => {
     const router = inject(Router);
-    console.log('Intercepted request:', req);
     return next(req).pipe(
         tap({
             error: (error) => {
