@@ -1,0 +1,28 @@
+.oops-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.oops-wrapper {
+  text-align: center;
+  max-width: 320px;
+  margin: auto;
+}
+
+.oops-icon {
+  font-size: 5rem;
+  color: var(--ion-color-danger);
+  margin-bottom: 16px;
+}
+
+h2 {
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+p {
+  color: #666;
+  margin-bottom: 20px;
+}

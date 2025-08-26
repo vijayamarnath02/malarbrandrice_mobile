@@ -65,4 +65,7 @@ export class StockoutPage implements OnInit {
       },
     });
   }
+  addNewWetPaddy() {
+    localStorage.setItem('stockOutProcessId', this.processId || '');
+  }
 }

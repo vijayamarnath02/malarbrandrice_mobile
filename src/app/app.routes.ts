@@ -10,6 +10,11 @@ export const routes: Routes = [
     loadComponent: () => import('./tabs/tab/tab.page').then(m => m.TabPage),
     children: [
       {
+        path: '',
+        redirectTo: 'dashboard',
+        pathMatch: 'full'
+      },
+      {
         path: 'setting',
         loadComponent: () => import('./tabs/pages/setting/setting.page').then(m => m.SettingPage)
       },
@@ -148,6 +153,16 @@ export const routes: Routes = [
     path: '',
     redirectTo: 'home',
     pathMatch: 'full',
-  }
+  },
+  {
+    path: 'notfound',
+    loadComponent: () => import('./notfound/notfound.page').then(m => m.NotfoundPage)
+  },
+  {
+    path: 'oops',
+    loadComponent: () => import('./oops/oops.page').then(m => m.OopsPage)
+  },
+  { path: '**', redirectTo: 'notfound' },
+
 
 ];

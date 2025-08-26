@@ -35,7 +35,7 @@ export class StockoutwardPage implements OnInit {
       lot: [''],
       bags: ['', Validators.required],
       weight: ['', Validators.required],
-      transferTo: ['', Validators.required],
+      // transferTo: ['', Validators.required],
       bin: [''],
       stack: [''],
       vehicleNumber: ['', Validators.required],
@@ -57,19 +57,20 @@ export class StockoutwardPage implements OnInit {
 
             // Patch form with mapped keys
             this.stockOutForm.patchValue({
-              date: data.date ? new Date(data.date).toISOString() : '',
+              date: data.date ? new Date(data.date) : new Date(),
               incharge: data.in_charge,
               item: data.item_id,
               godownName: data.godown_id,
               lot: data.lot,
               bags: data.bags,
               weight: data.weight,
-              transferTo: data.delivery_at || '', // if available
+              // transferTo: data.delivery_at || '', // if available
               bin: data.bin || '',
               stack: data.stack || '',
               vehicleNumber: data.vehicle_number,
               remarks: data.remarks || ''
             });
+            this.onDateChange()
           },
           error: (err) => console.error('Item load failed', err),
         });
@@ -91,7 +92,7 @@ export class StockoutwardPage implements OnInit {
     if (this.stockOutForm.invalid) return;
     const formValue = this.stockOutForm.value;
     const payload = {
-      date: formValue.date || this.onDateChange(),
+      date: formValue.date,
       in_charge: formValue.incharge,
       item_id: formValue.item,
       godown_id: formValue.godownName,
@@ -100,25 +101,26 @@ export class StockoutwardPage implements OnInit {
       weight: formValue.weight,
       reason: formValue.remarks || "",
       transfer_to: {
-        value: formValue.transferTo,
+        // value: formValue.transferTo,
         godown_id: formValue.godownName,
         bin: formValue.bin || "",
         stack: formValue.stack || ""
       },
       vehicle_number: formValue.vehicleNumber
+
     };
     if (this.processId) {
       // Update
-      this.malarService.updateWetPaddyOut(this.processId, payload).subscribe({
+      this.malarService.updateStockOutward(this.processId, payload).subscribe({
         next: res => {
           console.log('Stock updated:', res);
-          this.router.navigate(['/tabs/dashboard']);
+          this.router.navigate(['/tabs/samplepage']);
         },
         error: err => console.error('Update failed:', err)
       });
     } else {
       // Create
-      this.malarService.createWetPaddyOut(payload).subscribe({
+      this.malarService.createStockOutward(payload).subscribe({
         next: res => {
           console.log('Stock created:', res);
           this.router.navigate(['/tabs/samplepage']);
