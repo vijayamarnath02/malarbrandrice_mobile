@@ -407,4 +407,14 @@ export class MalarService {
       .pipe(map((res: any) => res));
     return this.withLoader(obs, 'Deleting wet paddy outwards...');
   }
+  createStockOutward(data: any): Observable<any> {
+    const obs = this.http.post(`${this.BASE_URL}/stock-outward`, data, this.getHeaders())
+      .pipe(map((res: any) => res.response));
+    return this.withLoader(obs, 'Creating stock outward...');
+  }
+  updateStockOutward(id: string, data: any): Observable<any> {
+    const obs = this.http.put(`${this.BASE_URL}/stock-outward/${id}`, data, this.getHeaders())
+      .pipe(map((res: any) => res.response));
+    return this.withLoader(obs, 'Updating stock outward...');
+  }
 }

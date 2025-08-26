@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IonicModule } from "@ionic/angular";
+import { getValidPastOrToday } from 'src/app/utils/date-utils';
 import { MalarService } from '../../services/malar.service';
 
 @Component({
@@ -27,7 +28,7 @@ export class StockoutwardPage implements OnInit {
 
   ngOnInit() {
     this.stockOutForm = this.fb.group({
-      date: ['', Validators.required],
+      date: [new Date(), Validators.required],
       incharge: ['', Validators.required],
       item: ['', Validators.required],
       godownName: ['', Validators.required],
@@ -40,6 +41,7 @@ export class StockoutwardPage implements OnInit {
       vehicleNumber: ['', Validators.required],
       remarks: ['']
     });
+    this.onDateChange();
   }
 
   get f() {
@@ -87,7 +89,48 @@ export class StockoutwardPage implements OnInit {
   onSubmit() {
     this.submitted = true;
     if (this.stockOutForm.invalid) return;
-    console.log('Stock Outward Data:', this.stockOutForm.value);
+
+    const formValue = this.stockOutForm.value;
+    const payload = {
+      sample_report_id: this.processId,
+      date: formValue.date,
+      item_id: formValue.item,
+      dried_at: formValue.godownName,
+      delivery_at: formValue.transferTo,
+      moisture: formValue.moisture,
+      bags: formValue.bags,
+      weight: formValue.weight,
+      vehicle_number: formValue.vehicleNumber,
+      in_charge: formValue.incharge
+    };
+    if (this.processId) {
+      // Update
+      this.malarService.updateStockOutward(this.processId, payload).subscribe({
+        next: res => {
+          console.log('Stock updated:', res);
+          this.router.navigate(['/tabs/dashboard']);
+        },
+        error: err => console.error('Update failed:', err)
+      });
+    } else {
+      // Create
+      this.malarService.createStockOutward(payload).subscribe({
+        next: res => {
+          console.log('Stock created:', res);
+          this.router.navigate(['/tabs/samplepage']);
+        },
+        error: err => console.error('Creation failed:', err)
+      });
+    }
+    // You can now send `payload` to your API
+  }
+
+  onDateChange() {
+    const control = this.stockOutForm.get('date');
+    if (control) {
+      const corrected = getValidPastOrToday(control.value);
+      control.setValue(corrected, { emitEvent: false });
+    }
   }
   onCancel() {
     this.router.navigate(['/tabs/samplepage']);

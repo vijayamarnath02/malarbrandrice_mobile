@@ -46,7 +46,7 @@ export class WetpaddyPage implements OnInit {
     const formattedDate = `${yyyy}-${mm}-${dd}`;
 
     this.wetpaddyForm = this.fb.group({
-      date: [formattedDate],
+      date: [new Date()],
       party_name: [''],
       broker_name: [''],
       vehicle_number: ['', Validators.required],
@@ -54,13 +54,14 @@ export class WetpaddyPage implements OnInit {
       cell_number: [''],
       item_id: ['', Validators.required],
       bill_number: [''],
-      bill_date: [formattedDate],
+      bill_date: [today],
       moisture: ['', Validators.required],
       bags: ['', Validators.required],
       weight: ['', Validators.required],
       dried_at: ['']
     });
 
+    this.onDateChange('date');
   }
 
   ionViewWillEnter() {
@@ -105,7 +106,7 @@ export class WetpaddyPage implements OnInit {
   onDateChange(controlName: 'date' | 'bill_date') {
     const control = this.wetpaddyForm.get(controlName);
     if (control) {
-      const corrected = getValidPastOrToday(control.value);
+      const corrected = getValidPastOrToday(control.value || new Date());
       control.setValue(corrected, { emitEvent: false });
     }
   }
