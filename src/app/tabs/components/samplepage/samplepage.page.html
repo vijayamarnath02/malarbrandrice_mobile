@@ -156,7 +156,7 @@
 
     <!-- Accept / Reject -->
     <ion-item>
-      <ion-label position="floating">Accept / Reject</ion-label>
+      <ion-label position="floating" *ngIf="userRole === '1'">Accept / Reject</ion-label>
       <ion-select formControlName="acceptReject" placeholder="Select decision">
         <ion-select-option [value]="1">Ok</ion-select-option>
         <ion-select-option [value]="2">Reject</ion-select-option>

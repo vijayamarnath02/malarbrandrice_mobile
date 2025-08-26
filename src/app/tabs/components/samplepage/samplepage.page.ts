@@ -50,6 +50,7 @@ export class SamplepagePage implements OnInit {
   editMode = false;
   recordId: string | null = null;
   itemList: any;
+  userRole: string | null = localStorage.getItem('userrole');
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -170,7 +171,7 @@ export class SamplepagePage implements OnInit {
       broken: this.processForm.value.broken,
       bran: this.processForm.value.bran,
       total_percentage: this.processForm.value.totalPercentage,
-      status: this.processForm.value.acceptReject,
+      status: this.userRole === '1' ? this.processForm.value.acceptReject : 2,
       reason: this.processForm.value.reason,
       delivered_at: this.processForm.value.deliveryAt,
     };
