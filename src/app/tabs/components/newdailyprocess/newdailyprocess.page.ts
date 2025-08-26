@@ -66,7 +66,7 @@ export class NewdailyprocessPage implements OnInit {
   ngOnInit() {
     this.dailyProcessForm = this.fb.group({
       item: ['', Validators.required],
-      date: [{ value: this.onDateChange(), disabled: true }, Validators.required],
+      date: [{ value: new Date(), disabled: true }, Validators.required],
       ural: ['', Validators.required],
       unit: ['', Validators.required],
       lotNumber: ['', Validators.required],

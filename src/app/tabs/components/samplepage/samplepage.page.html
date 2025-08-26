@@ -166,7 +166,10 @@
       *ngIf="f['acceptReject'].errors?.['required'] && (f['acceptReject'].touched || f['acceptReject'].dirty)">
       Accept / Reject selection is required
     </ion-text>
-
+    <ion-item>
+      <ion-label position="floating">Sample Taken By</ion-label>
+      <ion-input type="text" formControlName="sample_taken_by" placeholder="Enter sample taken by"></ion-input>
+    </ion-item>
     <!-- Reason -->
     <ion-item>
       <ion-label position="floating">Reason</ion-label>
