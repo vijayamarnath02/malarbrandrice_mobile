@@ -41,7 +41,7 @@ export class NewPrestreamingPage implements OnInit {
     this.prestreamingForm = this.fb.group({
       item: ['', Validators.required],
       unit: ['', Validators.required],
-      batchNumber: [{ value: this.batchNumber, disabled: true }],
+      batchNumber: [this.batchNumber, Validators.required],
       tankLevelTiming: ['', Validators.required],
       timing: ['', Validators.required],
       uralTiming: ['', Validators.required],
@@ -104,7 +104,7 @@ export class NewPrestreamingPage implements OnInit {
         ural_timing: formValue.uralTiming,
         water_release_timing: formValue.waterReleaseTiming,
         remarks: formValue.remarks,
-
+        batch_number: formValue.batchNumber,
       }
       this.malarService.createPrestreaming(data).subscribe({
         next: res => {
@@ -125,6 +125,7 @@ export class NewPrestreamingPage implements OnInit {
         ural_timing: formValue.uralTiming,
         water_release_timing: formValue.waterReleaseTiming,
         remarks: formValue.remarks,
+        batch_number: formValue.batchNumber
       }
       this.malarService.putPrestreaming(this.processId, data).subscribe({
         next: res => {

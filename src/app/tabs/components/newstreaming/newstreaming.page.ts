@@ -77,7 +77,7 @@ export class NewStreamingPage implements OnInit {
         this.streamingForm.patchValue({
           item: res.item_id._id,
           unit: res.unit_id._id,
-          batchNumber: res.batch_number,
+          batch_number: res.batch_number,
           streamingTiming: res.streamend_time,
           streamStartTime: res.stream_start_time,
           endTime: res.streamend_time,
@@ -107,7 +107,9 @@ export class NewStreamingPage implements OnInit {
         stream_start_time: formValue.streamStartTime,
         stream_end_time: formValue.streamEndTime,
         streamend_time: formValue.endTime,
-        dryer_id: formValue.dryer
+        dryer_id: formValue.dryer,
+        batch_number: formValue.batch_number
+
 
       }
       this.malarService.createStreaming(data).subscribe({
