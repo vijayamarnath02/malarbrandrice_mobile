@@ -1,9 +1,15 @@
 ion-item {
   --padding-start: 16px;
   --inner-padding-end: 16px;
-  border-bottom: 1px solid #eaeaea;
 }
 
 ion-toolbar ion-icon {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
+}
+
+.sample-report-card {
+  transition: transform 0.2s ease-in-out;
+}
+.sample-report-card:hover {
+  transform: translateY(-4px) scale(1.01);
 }

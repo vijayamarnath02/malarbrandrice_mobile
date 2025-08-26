@@ -20,116 +20,59 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+
   <ion-list *ngIf="sampleReportList.length > 0" style="background-color: var(--ion-color-background);">
     <ion-card *ngFor="let report of sampleReportList" class="sample-report-card animate__animated animate__fadeInUp">
       <ion-card-header>
         <ion-card-title>{{ report.party_name }} - {{ report.item_id.name }}</ion-card-title>
-        <ion-card-subtitle>Bill #: {{ report.bill_number }} | Date: {{ report.bill_date | date }}</ion-card-subtitle>
+        <ion-card-subtitle>Bill #: {{ report.bill_number }} | Date: {{ report.bill_date | date: 'mediumDate'
+          }}</ion-card-subtitle>
       </ion-card-header>
+
       <ion-card-content>
         <ion-row>
-          <ion-col size="6">
-            <ion-chip color="primary">
-              <ion-label>Load #: {{ report.load_number }}</ion-label>
-            </ion-chip>
-          </ion-col>
-          <ion-col size="6">
-            <ion-chip color="tertiary">
-              <ion-label>Vehicle #: {{ report.vehicle_number }}</ion-label>
-            </ion-chip>
+          <ion-col size="12">
+            Load #: {{ report.load_number }} | Vehicle #: {{ report.vehicle_number }} | Driver: {{ report.driver_name }}
           </ion-col>
         </ion-row>
         <ion-row>
-          <ion-col size="6">
-            <ion-chip color="success">
-              <ion-label>Driver: {{ report.driver_name }}</ion-label>
-            </ion-chip>
-          </ion-col>
-          <ion-col size="6">
-            <ion-chip color="warning">
-              <ion-label>Cell: {{ report.cell_number }}</ion-label>
-            </ion-chip>
+          <ion-col size="12">
+            Broker: {{ report.broker_name }} | Delivered At: {{ report.delivered_at }}
           </ion-col>
         </ion-row>
         <ion-row>
-          <ion-col size="6">
-            <ion-chip color="primary">
-              <ion-label>Broker: {{ report.broker_name }}</ion-label>
-            </ion-chip>
-          </ion-col>
-          <ion-col size="6">
-            <ion-chip color="tertiary">
-              <ion-label>Delivered At: {{ report.delivered_at }}</ion-label>
-            </ion-chip>
+          <ion-col size="12">
+            Moisture: {{ report.moisture }} | Paddy Type: {{ report.paddy_type === 1 ? 'Dry Paddy' : 'Wet Paddy' }} |
+            Bags: {{ report.bags }}
           </ion-col>
         </ion-row>
         <ion-row>
-          <ion-col size="4">
-            <ion-chip color="success">
-              <ion-label>Moisture: {{ report.moisture }}</ion-label>
-            </ion-chip>
-          </ion-col>
-          <ion-col size="4">
-            <ion-chip color="warning">
-              <ion-label>Paddy Type: {{ report.paddy_type }}</ion-label>
-            </ion-chip>
-          </ion-col>
-          <ion-col size="4">
-            <ion-chip color="primary">
-              <ion-label>Bags: {{ report.bags }}</ion-label>
-            </ion-chip>
+          <ion-col size="12">
+            Weight: {{ report.weight }} | Sample By: {{ report.sample_taken_by }}
           </ion-col>
         </ion-row>
         <ion-row>
-          <ion-col size="6">
-            <ion-chip color="tertiary">
-              <ion-label>Weight: {{ report.weight }}</ion-label>
-            </ion-chip>
-          </ion-col>
-          <ion-col size="6">
-            <ion-chip color="success">
-              <ion-label>Sample By: {{ report.sample_taken_by }}</ion-label>
-            </ion-chip>
+          <ion-col size="12">
+            Rice: {{ report.rice }}% | Broken: {{ report.broken }}% | Bran: {{ report.bran }}% | Total %: {{
+            report.total_percentage }}
           </ion-col>
         </ion-row>
         <ion-row>
-          <ion-col size="4">
-            <ion-chip color="primary">
-              <ion-label>Rice: {{ report.rice }}%</ion-label>
-            </ion-chip>
-          </ion-col>
-          <ion-col size="4">
-            <ion-chip color="warning">
-              <ion-label>Broken: {{ report.broken }}%</ion-label>
-            </ion-chip>
-          </ion-col>
-          <ion-col size="4">
-            <ion-chip color="tertiary">
-              <ion-label>Bran: {{ report.bran }}%</ion-label>
-            </ion-chip>
+          <ion-col size="12" style="text-align: center;justify-content: start;display: flex;align-items: center;">
+            Status:
+            <ion-badge [color]="report.status === 1 ? 'success' : 'danger'">{{ report.status === 1 ? 'Accepted' :
+              'Rejected' }}</ion-badge>
           </ion-col>
         </ion-row>
         <ion-row>
-          <ion-col size="6">
-            <ion-chip color="success">
-              <ion-label>Total %: {{ report.total_percentage }}</ion-label>
-            </ion-chip>
-          </ion-col>
-          <ion-col size="6">
-            <ion-chip [color]="report.status === 1 ? 'primary' : 'danger'">
-              <ion-label>Status: {{ report.status === 1 ? 'Accepted' : 'Rejected' }}</ion-label>
-            </ion-chip>
+          <ion-col size="12">
+            Reason: {{ report.reason }}
           </ion-col>
         </ion-row>
         <ion-row>
-          <ion-col>
-            <p>Reason: {{ report.reason }}</p>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col style="display: flex;justify-content: end;align-items: center;">
-            <ion-button color="custom" size="small" (click)="viewReport(report) ">
-              <ion-icon name="eye-outline" slot="icon-only" style="color: white;"></ion-icon>
+          <ion-col size="12" style="display: flex; justify-content: flex-end; align-items: center;">
+            <ion-button color="custom" size="small" (click)="viewReport(report)">
+              <ion-icon name="eye-outline" slot="icon-only"></ion-icon>
             </ion-button>
             <ion-button color="medium" size="small" (click)="editReport(report)">
               <ion-icon name="create-outline" slot="icon-only"></ion-icon>
@@ -139,13 +82,14 @@
             </ion-button>
           </ion-col>
         </ion-row>
-
       </ion-card-content>
     </ion-card>
   </ion-list>
+
   <ion-text color="medium" *ngIf="sampleReportList.length === 0">
     <p class="ion-padding">No sample reports found.</p>
   </ion-text>
+
   <ion-action-sheet [isOpen]="isActionSheetOpen" header="Actions" [buttons]="actionSheetButtons"
     (didDismiss)="logResult($event)">
   </ion-action-sheet>

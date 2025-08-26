@@ -7,9 +7,9 @@
 <ion-content class="ion-padding">
   <ion-grid>
     <ion-row>
-
-      <ion-col size="6">
-        <ion-card button (click)="goToPage('paddyin', this.processId)">
+      <!-- Paddy Inward and Outward (only if Wet Paddy) -->
+      <ion-col size="6" *ngIf="statusCheck?.paddy_type === 2">
+        <ion-card button (click)="goToPage('paddyin', processId)">
           <ion-card-content class="grid-box">
             <ion-icon name="download-outline" class="grid-icon" color="primary"></ion-icon>
             <div class="grid-title">Paddy Inward</div>
@@ -17,8 +17,8 @@
         </ion-card>
       </ion-col>
 
-      <ion-col size="6">
-        <ion-card button (click)="goToPage('paddyout', this.processId)">
+      <ion-col size="6" *ngIf="statusCheck?.paddy_type === 2">
+        <ion-card button (click)="goToPage('paddyout', processId)">
           <ion-card-content class="grid-box">
             <ion-icon name="cloud-upload-outline" color="primary" class="grid-icon"></ion-icon>
             <div class="grid-title">Paddy Outward</div>
@@ -26,8 +26,9 @@
         </ion-card>
       </ion-col>
 
-      <ion-col size="6">
-        <ion-card button (click)="goToPage('stockin')">
+      <!-- Stock Inward and Outward (both Dry and Wet) -->
+      <ion-col size="6" *ngIf="statusCheck?.paddy_type === 1 || statusCheck?.paddy_type === 2">
+        <ion-card button (click)="goToPage('stockin', processId)">
           <ion-card-content class="grid-box">
             <ion-icon name="archive-outline" color="primary" class="grid-icon"></ion-icon>
             <div class="grid-title">Stock Inward</div>
@@ -35,24 +36,14 @@
         </ion-card>
       </ion-col>
 
-      <ion-col size="6">
-        <ion-card button (click)="goToPage('stockout')">
+      <ion-col size="6" *ngIf="statusCheck?.paddy_type === 1 || statusCheck?.paddy_type === 2">
+        <ion-card button (click)="goToPage('stockout', processId)">
           <ion-card-content class="grid-box">
             <ion-icon name="arrow-up-outline" color="primary" class="grid-icon"></ion-icon>
             <div class="grid-title">Stock Outward</div>
           </ion-card-content>
         </ion-card>
       </ion-col>
-
-      <!-- <ion-col size="12">
-        <ion-card button color="primary" (click)="goToPage('wet-paddy', this.processId)">
-          <ion-card-content class="grid-box">
-            <ion-icon name="water-outline" class="grid-icon"></ion-icon>
-            <div class="grid-title">Wet Paddy</div>
-          </ion-card-content>
-        </ion-card>
-      </ion-col> -->
-
     </ion-row>
   </ion-grid>
 </ion-content>

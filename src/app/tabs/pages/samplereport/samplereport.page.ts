@@ -5,13 +5,16 @@ import { Router, RouterModule } from '@angular/router';
 import { AlertController, ToastController } from '@ionic/angular';
 import {
   IonActionSheet,
+  IonBadge,
   IonButton, IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle,
-  IonChip, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonLabel, IonList, IonRow, IonText,
+  IonCol, IonContent, IonGrid, IonHeader, IonIcon,
+  IonList, IonRow, IonText,
   IonTitle, IonToolbar
 } from '@ionic/angular/standalone';
 import { OverlayEventDetail } from '@ionic/core';
 import { addIcons } from 'ionicons';
 import { addOutline, createOutline, eyeOutline, flashOutline, gridOutline, listOutline, settingsOutline, shieldCheckmarkOutline, timeOutline, trashOutline, waterOutline } from 'ionicons/icons';
+import { sampleReportListSignal } from 'src/app/signal/sample-report.signal';
 import { MalarService } from '../../services/malar.service';
 
 interface SampleReport {
@@ -45,8 +48,8 @@ interface SampleReport {
   templateUrl: './samplereport.page.html',
   styleUrls: ['./samplereport.page.scss'],
   standalone: true,
-  imports: [IonActionSheet,
-    IonText, IonLabel, IonChip, IonCardContent, IonCardSubtitle, IonCardTitle, IonCardHeader,
+  imports: [IonBadge, IonActionSheet,
+    IonText, IonCardContent, IonCardSubtitle, IonCardTitle, IonCardHeader,
     IonCard, IonList, IonCol, IonRow, IonGrid, IonIcon, IonButton, IonButtons, IonContent,
     IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, RouterModule
   ]
@@ -197,6 +200,7 @@ export class SamplereportPage implements OnInit {
 
   }
   viewReport(report: SampleReport) {
+    sampleReportListSignal.set(report);
     if (report._id) {
       this.router.navigate(['/tabs/viewsamplereport', report._id]);
     } else {
