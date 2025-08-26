@@ -80,20 +80,18 @@ export class SamplepagePage implements OnInit {
       rawOrDried: ['', Validators.required],
       bags: ['', Validators.required],
       weight: ['', Validators.required],
-      sample_taken_by: [''],
+      sample_taken_by: [localStorage.getItem('username') || ''],
       rice: [''],
       broken: [''],
       bran: [''],
       totalPercentage: [''],
-      acceptReject: [1, Validators.required],
+      acceptReject: [],
       reason: [''],
       deliveryAt: [''],
     });
 
   }
   ionViewWillEnter() {
-
-
     // Get ID from route
     this.recordId = this.route.snapshot.paramMap.get('id');
     if (this.recordId) {

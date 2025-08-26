@@ -155,8 +155,8 @@
     </ion-item>
 
     <!-- Accept / Reject -->
-    <ion-item>
-      <ion-label position="floating" *ngIf="userRole === '1'">Accept / Reject</ion-label>
+    <ion-item *ngIf="userRole === '1'">
+      <ion-label position="floating">Accept / Reject</ion-label>
       <ion-select formControlName="acceptReject" placeholder="Select decision">
         <ion-select-option [value]="1">Ok</ion-select-option>
         <ion-select-option [value]="2">Reject</ion-select-option>
@@ -168,7 +168,9 @@
     </ion-text>
     <ion-item>
       <ion-label position="floating">Sample Taken By</ion-label>
-      <ion-input type="text" formControlName="sample_taken_by" placeholder="Enter sample taken by"></ion-input>
+      <ion-input type="text" formControlName="sample_taken_by" placeholder="Enter sample taken by"
+        [disabled]="processForm.get('sample_taken_by')?.value ? true : false">
+      </ion-input>
     </ion-item>
     <!-- Reason -->
     <ion-item>
