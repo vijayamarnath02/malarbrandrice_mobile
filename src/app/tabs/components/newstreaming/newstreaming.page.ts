@@ -41,7 +41,7 @@ export class NewStreamingPage implements OnInit {
     this.streamingForm = this.fb.group({
       item: ['', Validators.required],
       unit: ['', Validators.required],
-      batchNumber: ['', Validators.required],
+      batchNumber: [this.batchNumber, Validators.required],
       streamingTiming: ['', Validators.required],
       streamStartTime: ['', Validators.required],
       endTime: ['', Validators.required],
