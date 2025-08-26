@@ -208,7 +208,7 @@ export class SamplepagePage implements OnInit {
   calculateTotalPercentage() {
     const moistureValue = parseFloat(this.processForm.value.moisture);
     if (!isNaN(moistureValue)) {
-      const paddyType = moistureValue >= 10 ? 1 : 2;
+      const paddyType = moistureValue <= 10 ? 1 : 2;
       this.processForm.patchValue({ rawOrDried: paddyType });
     }
   }
